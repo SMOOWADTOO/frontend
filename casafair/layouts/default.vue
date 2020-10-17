@@ -1,74 +1,31 @@
 <template>
-  <div>
-    <nav
-      class="navbar header has-shadow is-primary"
-      role="navigation"
-      aria-label="main navigation"
-    >
-      <div class="navbar-brand">
-        <a
-          class="navbar-item"
-          href="/"
-        >
-          <img
-            src="~assets/buefy.png"
-            alt="Buefy"
-            height="28"
-          >
-        </a>
-
-        <div class="navbar-burger">
-          <span />
-          <span />
-          <span />
-        </div>
-      </div>
-    </nav>
-
-    <section class="main-content columns">
-      <aside class="column is-2 section">
-        <p class="menu-label is-hidden-touch">
-          General
-        </p>
-        <ul class="menu-list">
-          <li
-            v-for="(item, key) of items"
-            :key="key"
-          >
-            <nuxt-link
-              :to="item.to"
-              exact-active-class="is-active"
-            >
-              <b-icon :icon="item.icon" /> {{ item.title }}
-            </nuxt-link>
-          </li>
-        </ul>
-      </aside>
-
-      <div class="container column is-10">
-        <nuxt />
-      </div>
-    </section>
-  </div>
+    <div class="container-fluid" style="min-height: 100vh;">
+        <!-- 4 buttons in nav, write each description here -->
+        <navbar pill0="List your car" pill1="Rent a car" pill2="Log in" pill3="Sign up"/>
+        <nuxt/>
+        <bottom/>
+    </div>
+    
 </template>
 
 <script>
+import navbar from '@/components/layouts/Navbar.vue'
+import bottom from '@/components/layouts/Bottom.vue'
+
 export default {
-  data () {
-    return {
-      items: [
-        {
-          title: 'Home',
-          icon: 'home',
-          to: { name: 'index' }
-        },
-        {
-          title: 'Inspire',
-          icon: 'lightbulb',
-          to: { name: 'inspire' }
+    head: {
+        link: [
+            { rel: 'stylesheet', href: 'https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css' },
+        ],
+    },
+    data () {
+        return {
+            mobile: false,
         }
-      ]
-    }
-  }
+    },
+    components: {
+        navbar,
+        bottom,
+    },
 }
 </script>
