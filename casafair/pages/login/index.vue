@@ -23,7 +23,7 @@
                             <br>
                             <button class="button is-primary is-light signature-dark-purple-shadows my-5 is-fullwidth" type="submit">Log in</button>
                             <hr>
-                            <button class="button is-primary signature-dark-purple-shadows my-5 is-fullwidth" type="submit">Register</button>
+                            <button class="button is-primary signature-dark-purple-shadows my-5 is-fullwidth" v-on:click.prevent="register()">Register</button>
                         </div>
                     </div>
                 </form>
@@ -59,6 +59,9 @@ export default {
     mounted() {
     },
     methods: {
+        register() {
+            this.$router.push("/register")
+        },
         login() {
             this.$auth.loginWith('local', { data: {
                     "email": this.email,
