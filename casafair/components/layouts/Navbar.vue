@@ -5,13 +5,14 @@
                 <!-- <img
                     src="@/assets/images/.png" alt=""
                 > -->
+                Home (logo here)
             </b-navbar-item>
         </template>
         <template slot="end">
-            <b-navbar-item tag="router-link" :to="{path: '/'}">
+            <b-navbar-item tag="router-link" :to="{path: '/' + urlSafe(pill0)}">
                 {{pill0}}
             </b-navbar-item>
-            <b-navbar-item tag="router-link" :to="{path: '/'}">
+            <b-navbar-item tag="router-link" :to="{path: '/' + urlSafe(pill1)}">
                 {{pill1}}
             </b-navbar-item>
             <b-navbar-item  tag="router-link" :to="{path: '/login', query: {'redirect_from': this.$nuxt.$route.path}}" v-if="!$auth.loggedIn">
@@ -48,6 +49,9 @@ export default {
         logout() {
             this.$auth.logout()
             this.toastAlert("You've logged out.", "is-info", 5000)
+        },
+        urlSafe(link) {
+            return link.toLowerCase().replace(" ", "-");
         }
     },
     data() {
