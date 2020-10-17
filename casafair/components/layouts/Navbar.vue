@@ -21,10 +21,7 @@
                 <button class="button is-primary signature-dark-purple-shadows" v-on:click="goRegister">{{pill3}}</button>
             </b-navbar-item>
             
-            <b-navbar-dropdown :label="'Hey, ' + this.$auth.user.first_name + '!'" v-else>
-                <b-navbar-item tag="router-link" :to="{path: '/user/my_cars'}">
-                    My Cars
-                </b-navbar-item>
+            <b-navbar-dropdown :label="'Hey, ' + this.$auth.user.user.firstName + '!'" v-else>
                 <b-navbar-item tag="router-link" :to="{path: '/user/settings'}">
                     Account Settings
                 </b-navbar-item>

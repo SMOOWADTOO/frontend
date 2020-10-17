@@ -65,7 +65,8 @@ export default {
                     "password": this.password
                 }
             }).then((userResponse) => {
-                this.toastAlert("Welcome back, " + this.$auth.user.first_name + "!", "is-success", 5000)
+                let user = this.$auth.user.user
+                this.toastAlert("Welcome back, " + user.firstName + "!", "is-success", 5000)
 
                 // redirects you back to where you came from
                 if (this.$nuxt.$route.query.redirect_from != undefined) {
