@@ -36,14 +36,18 @@ export default {
     '@nuxtjs/auth'
   ],
 
+  axios: {
+    baseURL: 'http://localhost', // Used as fallback if no runtime config is provided
+  },
+
   auth: {
     strategies: {
         local: {
             endpoints: {
                 // DEV LOCAL
-                // login: { url: 'http://localhost:7001/user/authenticate', propertyName: 'token'},
-                // user: { url: 'http://localhost:7001/user/get/me', method: 'get', propertyName: '' },
-                // logout: { url: 'http://localhost:7001/user/logout', method: 'get'},
+                login: { url: 'http://localhost:7001/user/authentication', propertyName: 'token'},
+                user: { url: 'http://localhost:7001/user/profile/me', method: 'get', propertyName: '' },
+                logout: { url: 'http://localhost:7001/user/logout', method: 'get'},
             },
             tokenType: 'bearer',
         }

@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import api from '@/plugins/api'
 
 Vue.mixin({
     data() {
@@ -6,7 +7,12 @@ Vue.mixin({
             // Put all global variables here
             appName: "Casafair",
             appSlogan: "Anyone can do business. From home.",
-            appDescription: "Casafair is the first platform to connect home businesses with Singaporeans. It makes transactions easy, frictionless and fast."
+            appDescription: "Casafair is the first platform to connect home businesses with Singaporeans. It makes transactions easy, frictionless and fast.",
+
+
+            // API Setup
+
+            USERAPI: api.USERAPI
         }
     },
     methods: {
