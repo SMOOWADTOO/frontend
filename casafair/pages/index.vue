@@ -5,12 +5,12 @@
                 <HeroGallery/>
             </div>
         </div>
-        <div class="columns">
+        <div class="columns mx-0">
             <div class="column is-12">
                 <CardGallery/>
             </div>
         </div>
-        <div class="columns has-background-dark px-5">
+        <div class="columns has-background-dark mx-0 px-5">
             <div class="column is-12">
                 <h1 class="has-text-light is-size-3 is-size-4-mobile has-text-weight-bold mt-5">
                     Featured home business
