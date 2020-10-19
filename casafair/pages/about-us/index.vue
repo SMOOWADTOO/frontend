@@ -1,6 +1,6 @@
 <template>
     <section>
-        <StaticPageHeader :title="pageName" :description="pageDescription"/>
+        <StaticPageHeader :heroClass="'has-text-centered'" :title="pageName" :description="pageDescription"/>
     </section>
 </template>
 
