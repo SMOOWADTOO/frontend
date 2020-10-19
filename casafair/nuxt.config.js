@@ -45,9 +45,13 @@ export default {
         local: {
             endpoints: {
                 // DEV LOCAL
-                login: { url: 'http://localhost:7001/user/authentication', propertyName: 'token'},
-                user: { url: 'http://localhost:7001/user/profile/me', method: 'get', propertyName: '' },
-                logout: { url: 'http://localhost:7001/user/logout', method: 'get'},
+                // login: { url: 'http://localhost:7001/user/authentication', propertyName: 'token'},
+                // user: { url: 'http://localhost:7001/user/profile/me', method: 'get', propertyName: '' },
+                // logout: { url: 'http://localhost:7001/user/logout', method: 'get'},
+                // DEV INSTANCE
+                login: { url: 'http://35.185.176.233/api/user/authentication', propertyName: 'token'},
+                user: { url: 'http://35.185.176.233/api/user/profile/me', method: 'get', propertyName: '' },
+                logout: { url: 'http://35.185.176.233/api/user/logout', method: 'get'},
             },
             tokenType: 'bearer',
         }

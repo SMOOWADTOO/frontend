@@ -1,0 +1,22 @@
+version: '3.7'
+
+networks:
+    homebiz-net:
+        driver: bridge
+
+services:
+
+    #######################################
+    # Backend Services
+    #######################################
+
+    ui: # service name
+        build: ./casafair
+        image: asia.gcr.io/wad2-286702/homebiz-ui
+        container_name: ui
+        restart: always
+        ports:
+        - 3000:3000
+        networks:
+        - homebiz-net
+        command: "npm run start"
