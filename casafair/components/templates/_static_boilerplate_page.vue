@@ -1,6 +1,6 @@
 <template>
     <section>
-        <StaticPageHeader :title="pageName" :description="pageDescription"/>
+        <StaticPageHeader :heroClass="''" :title="pageName" :description="pageDescription"/>
     </section>
 </template>
 
