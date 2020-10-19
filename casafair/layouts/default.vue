@@ -29,3 +29,17 @@ export default {
     },
 }
 </script>
+
+<style>
+    .sticky-box {
+        top: 5vh !important;
+        z-index: 0;
+    }
+
+    .sticky-top {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 29;
+    }
+</style>
