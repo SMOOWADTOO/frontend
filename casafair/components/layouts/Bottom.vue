@@ -27,6 +27,23 @@
                     </div>
                 </div>
             </div>
+            <div class="columns is-multiline">
+                <div class="column is-3 has-text-left">
+                    <p class="has-text-weight-bold">Pages</p>
+                    <ul class="is-size-7">
+                        <li><nuxt-link to="/storefront">Storefront</nuxt-link></li>
+                        <li><nuxt-link to="/storefront/product">Product</nuxt-link></li>
+                        <li><nuxt-link to="/contact">Contact us</nuxt-link></li>
+                    </ul>
+                </div>
+                <div class="column is-3 has-text-left">
+                    <p class="has-text-weight-bold">Pages</p>
+                    <ul class="is-size-7">
+                        <li><nuxt-link to="/faq">FAQ</nuxt-link></li>
+                        <li><nuxt-link to="/about">About</nuxt-link></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </footer>
 </template>
