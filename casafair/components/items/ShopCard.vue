@@ -36,19 +36,19 @@
             <hr class="is-hidden-mobile">
             <div class="content" v-if="this.route.includes('/storefront/product')">
                 <p class="is-size-4 title">Get this item</p>
-                <b-field label="Quantity" type="is-danger" message="Quantity is invalid">
-                    <b-numberinput controls-position="compact" v-model="quantity" min=1 expanded></b-numberinput>
+                <b-field label="Quantity" :type="formFields.quantity.type" :message="formFields.quantity.message">
+                    <b-numberinput controls-position="compact" v-model="quantity" min=1 max=300 expanded></b-numberinput>
                 </b-field>
                 <hr>
                 <nav class="level is-mobile">
                     <div class="level-item has-text-centered">
                         <div>
-                        <p class="heading">Price</p>
-                        <p class="title">S$ {{calculatedPrice.toFixed(2)}}</p>
+                            <p class="heading">Price</p>
+                            <p class="title">S$ {{calculatedPrice.toFixed(2)}}</p>
                         </div>
                     </div>
                 </nav>
-                <button class="button is-primary is-fullwidth mt-5">Get it now</button>
+                <button class="button is-primary is-fullwidth mt-5" :disabled="this.quantity >= 300">Get it now</button>
             </div>
         </div>
     </div>
@@ -64,12 +64,21 @@ export default {
                 this.windowWidth = window.innerWidth
             }
         }
+        this.calculatedPrice = this.price * this.quantity
     },
 
     watch: {
         quantity: function() {
             if (this.quantity >= 0) {
                 this.calculatedPrice = this.price * this.quantity
+
+                if (this.quantity >= 300) {
+                    this.formFields.quantity.message = "Limit reached. Please contact the business directly."
+                    this.formFields.quantity.type = "is-danger"
+                } else {
+                    this.formFields.quantity.message = ""
+                    this.formFields.quantity.type = ""
+                }
             }
         }
     },
@@ -91,6 +100,12 @@ export default {
             // purchases
             quantity: 1,
             calculatedPrice: 0,
+
+            formFields: {
+                "quantity": {
+                    "type": "", "message": ""
+                },
+            }
         }
     },
 
