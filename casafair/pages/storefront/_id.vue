@@ -5,13 +5,13 @@
         </div>
         <div class="column is-8 is-12-mobile">
             <b-tabs v-model="activeTab" position="is-centered" :size="this.windowWidth > 420 ? 'is-medium' : 'is-small'" type="is-boxed" expanded>
-                <b-tab-item label="Listing" icon="google-photos">
+                <b-tab-item label="Listing">
                     <Listing/>
                 </b-tab-item>
-                <b-tab-item label="Reviews" icon="library">
+                <b-tab-item label="Reviews">
                     <Review/>
                 </b-tab-item>
-                <b-tab-item label="About" icon="video">
+                <b-tab-item label="About">
                     <About/>
                 </b-tab-item>
             </b-tabs>
