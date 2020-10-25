@@ -1,13 +1,13 @@
 <template>
     <div class="columns">
         <div class="column is-4 is-12-mobile">
-            <UserCard :rating="this.rate"/>
+            <UserCard/>
         </div>
         <div class="column is-8 is-12-mobile is-centered">
             <div class="title has-text-centered">Shopping Cart</div>
             <hr>
-<!-- should change this to product purchase card (create new) -->
-            <ReviewCard v-for="i of reviewData" v-bind:key="i.name" :rData="i"/>
+            
+            <ShoppingCartCard v-for="i of reviewData" v-bind:key="i.name" :rData="i"/>
         </div>
     </div>
 </template>
