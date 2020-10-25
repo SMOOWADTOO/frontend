@@ -13,7 +13,7 @@
                 </div>
             </div>
 
-            <hr>
+            <!-- <hr>
             <div class="columns is-centered has-text-centered">
                 <div class="column is-6">
                     <p class="title is-6">1,234</p>
@@ -23,7 +23,7 @@
                     <p class="title is-6">100</p>
                     <p class="subtitle is-7">Following</p>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
