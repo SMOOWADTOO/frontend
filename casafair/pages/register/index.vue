@@ -27,6 +27,10 @@
                                 <b-input custom-class="has-background-input" v-model="cPassword" type="password" placeholder="password" class="borderless" expanded required password-reveal v-on:blur="checkIsSamePassword"></b-input>
                             </b-field>
 
+                            <b-field label="Your username" :type="uiLabels.username">
+                                <b-input custom-class="has-background-input" v-model="username" maxlength="16" type="text" placeholder="timapple123" class="borderless" expanded required v-on:blur="checkUsername"></b-input>
+                            </b-field>
+
                             <b-field label="Your first name">
                                 <b-input custom-class="has-background-input" v-model="fName" type="text" placeholder="Min Tao, Ayesha, Nikhil, Sophia..." class="borderless" expanded required></b-input>
                             </b-field>
@@ -67,6 +71,7 @@ export default {
             pageName: "Register with us",
             pageDescription: "Sign up with us today – Singapore\'s only platform for home businesses",
             email: "",
+            username: "",
             password: "",
             cPassword: "",
             fName: "",
@@ -76,9 +81,11 @@ export default {
             emailErrors: true,
             pwErrors: true,
             cPwErrors: true,
+            usernameErrors: true,
 
             // UI colour labels
             uiLabels: {
+                username: "",
                 email: "",
                 password: "",
                 cPassword: "",
@@ -144,6 +151,34 @@ export default {
                         this.toastAlert(error, "is-danger", 5000)
                     }
                 })
+            } else {
+                this.emailErrors = true
+                this.uiLabels.emailErrors = "is-danger"
+            }
+        },
+        checkUsername() {
+            if (this.username != "") {
+                let r = this.$axios.get(this.USERAPI + "/check/username/" + this.username).then((userResponse) => {
+
+                    if (userResponse.data.type == "success") {
+                        this.usernameErrors = true
+                        this.snackbarAlert("Username exists. Please choose another username.", "is-danger", 5000)
+                        this.uiLabels.username = "is-danger"
+                    } else {
+                        this.usernameErrors = false
+                        this.uiLabels.username = "is-success"
+                    }
+                }).catch((error) => {
+                    if (error.response.status == 404) {
+                        this.usernameErrors = false
+                        this.uiLabels.username = "is-success"
+                    } else {
+                        this.toastAlert(error, "is-danger", 5000)
+                    }
+                })
+            } else {
+                this.usernameErrors = true
+                this.uiLabels.username = "is-danger"
             }
         },
         checkPassword() { 
@@ -172,6 +207,7 @@ export default {
         },
         login() {
             this.$auth.loginWith('local', { data: {
+                    "username": this.username,
                     "email": this.email,
                     "password": this.password
                 }
