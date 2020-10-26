@@ -37,7 +37,7 @@ export default {
   ],
 
   axios: {
-    baseURL: 'http://localhost', // Used as fallback if no runtime config is provided
+    baseURL: 'https://www.casafair.org/', // Used as fallback if no runtime config is provided
   },
 
   auth: {
@@ -49,9 +49,9 @@ export default {
                 // user: { url: 'http://localhost:7001/user/profile/me', method: 'get', propertyName: '' },
                 // logout: { url: 'http://localhost:7001/user/logout', method: 'get'},
                 // DEV INSTANCE
-                login: { url: 'http://35.185.176.233/api/user/authentication', propertyName: 'token'},
-                user: { url: 'http://35.185.176.233/api/user/profile/me', method: 'get', propertyName: '' },
-                logout: { url: 'http://35.185.176.233/api/user/logout', method: 'get'},
+                login: { url: 'https://www.casafair.org/api/user/authentication', propertyName: 'token'},
+                user: { url: 'https://www.casafair.org/api/user/profile/me', method: 'get', propertyName: '' },
+                logout: { url: 'https://www.casafair.org/api/user/logout', method: 'get'},
             },
             tokenType: 'bearer',
         }
