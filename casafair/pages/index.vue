@@ -5,6 +5,11 @@
                 <HeroGallery/>
             </div>
         </div>
+        <div class="columns mx-5">
+            <div class="column is-12">
+                <SearchBar/>
+            </div>
+        </div>
         <div class="columns mx-0">
             <div class="column is-12">
                 <CardGallery/>

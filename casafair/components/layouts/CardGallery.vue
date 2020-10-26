@@ -2,9 +2,9 @@
     <div class="container">
         <!-- If car cards gallery -->
         <swiper ref="mySwiper" :options="swiperOptions" v-if="hasLoaded" >
-            <swiper-slide style="padding:2rem 0;" v-for="detail in details" v-bind:key="detail.id">
+            <swiper-slide style="padding:2rem 0;" v-for="product in productsData" v-bind:key="product.id">
                 <router-link :to="{path: '/view/'}">
-                    <VerticalCard :details="detail"/>
+                    <HorizontalCard :productData="product"/>
                 </router-link>
             </swiper-slide>
             <div class="swiper-pagination" slot="pagination"></div>
@@ -24,13 +24,10 @@
 <script>
 import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
 import 'swiper/swiper-bundle.css'
-import VerticalCard from '@/components/items/VerticalCard.vue'
-import LoadingCard from '@/components/items/LoadingCard.vue'
-// import API from '@/constants/api_constants.js'
 export default {
     data() {
         return {
-            details: [],
+            productsData: [],
             hasLoaded: false,
             swiperOptions: {
                 lazy: true,
@@ -70,17 +67,30 @@ export default {
         }
     },
     mounted() {
+        this.fetchProducts()
     },
     components: {
         Swiper,
-        SwiperSlide,
-        VerticalCard,
-        LoadingCard
+        SwiperSlide
     },
     directives: {
         swiper: directive
     },
     methods: {
+        fetchProducts() {
+            let r = this.$axios.get(this.PRODUCTAPI).then((response) => {
+                let productsData = response.data
+                this.productsData = productsData.products
+                this.hasLoaded = true
+            }).catch((error) => {
+                if (error.response != undefined) {
+                    var response = error.response.data
+                    this.toastAlert(response.message, "is-danger", 5000)
+                } else {
+                    this.toastAlert(error, "is-danger", 5000)
+                }
+            })
+        }
     },
 }
 </script>

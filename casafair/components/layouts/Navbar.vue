@@ -2,10 +2,9 @@
     <b-navbar>
         <template slot="brand">
             <b-navbar-item tag="router-link" :to="{ path: '/' }">
-                <!-- <img
-                    src="@/assets/images/.png" alt=""
-                > -->
-                Home (logo here)
+                <img
+                     class="mr-2" src="@/assets/images/casafair_logo.png" alt="Casafair's logo"
+                >
             </b-navbar-item>
         </template>
         <template slot="end">
@@ -23,6 +22,9 @@
             </b-navbar-item>
             
             <b-navbar-dropdown :label="'Hey, ' + this.$auth.user.user.firstName + '!'" v-else>
+                <b-navbar-item tag="router-link" :to="{path: '/user/profile/' + this.$auth.user.user.id}">
+                    My Profile
+                </b-navbar-item>
                 <b-navbar-item tag="router-link" :to="{path: '/user/settings'}">
                     Account Settings
                 </b-navbar-item>

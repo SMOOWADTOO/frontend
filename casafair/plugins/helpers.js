@@ -12,7 +12,14 @@ Vue.mixin({
 
             // API Setup
 
-            USERAPI: api.USERAPI
+            USERAPI: api.USERAPI,
+            PAYMENTAPI: api.PAYMENTAPI,
+            SHOPAPI: api.SHOPAPI,
+            ORDERAPI: api.ORDERAPI,
+            PRODUCTAPI: api.PRODUCTAPI,
+            REVIEWAPI: api.REVIEWAPI,
+            NOTIFICATIONAPI: api.NOTIFICATIONAPI,
+            SEARCHAPI: api.SEARCHAPI,
         }
     },
     methods: {
