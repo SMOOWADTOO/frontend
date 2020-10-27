@@ -7,7 +7,8 @@
         </div>
         <div class="card-content">
             <div class="content">
-                {{description}}
+                <b-skeleton width="100%" :animated="true" v-if="this.loading"></b-skeleton>
+                <span v-else>{{profile.description}}</span>
             </div>
         </div>
     </div>
@@ -17,6 +18,32 @@
 export default {
     props: {
         description: String,
+    },
+    watch: {
+        description: function() {
+            this.fetchOwnerProfile()
+        }
+    },
+    data() {
+        return {
+            profile: {},
+            loading: true,
+        }
+    },
+    methods: {
+        fetchOwnerProfile() {
+            let r = this.$axios.get(this.USERAPI + "/profile/" + this.description.id).then((response) => {
+                this.loading = false
+                this.profile = response.data.user_profile
+            }).catch((error) => {
+                if (error.response != undefined) {
+                    var response = error.response.data
+                    this.toastAlert(response.message, "is-danger", 5000)
+                } else {
+                    this.toastAlert(error, "is-danger", 5000)
+                }
+            })
+        },
     }
 }
 </script>
