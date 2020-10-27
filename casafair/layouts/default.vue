@@ -30,6 +30,10 @@ export default {
 }
 </script>
 
+<style lang="scss">
+    @import '~assets/styles/main.scss';
+</style>
+
 <style>
     .sticky-box {
         top: 5vh !important;

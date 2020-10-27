@@ -1,9 +1,29 @@
 <template>
     <section>
-        <StaticPageHeader :heroClass="'has-text-centered'" :title="pageName" :description="pageDescription"/>
-                <div class="columns is-3 my-5 is-vcentered is-centered">
+        <!-- <StaticPageHeader :heroClass="'has-text-centered'" :title="pageName" :description="pageDescription"/> -->
+          <!-- Hero content: will be in the middle -->
+        <section class="hero has-background-primary-light">
+            <div class="hero-body">
+                <div class="container has-text-centered"  id="trigger">
+                    <div class="columns">
+                        <div class="column is-6 is-offset-3">
+                            <figure class="image is-30x30">
+                                <img src="@/assets/images/business_shop.svg" alt="Image"  id="img-1">
+                            </figure>
+                        </div>
+                    </div>
+                    <h1 class="title" id="title-1">
+                        First, there was COVID-19.
+                    </h1>
+                    <h2 class="subtitle" id="subtitle-1">
+                        Then, people were confined in their homes. How do we keep the spirit of home businesses alive?
+                    </h2>
+                </div>
+            </div>
+        </section>
+        <div class="columns is-3 my-5 is-vcentered is-centered">
             <div class="column is-5">
-                <div class="title">About Us</div>
+                <div class="title">With Casafair, you're the boss.</div>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -16,7 +36,7 @@
             <div class="column is-1"></div>
             <div class="column is-5">
                 <figure class="image is-60x60">
-                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                    <img src="@/assets/images/youretheboss.svg" alt="Image">
                 </figure>
             </div>
             
@@ -29,13 +49,13 @@
         <div class="columns is-8 my-5 is-vcentered is-centered">
             <div class="column is-5">
                 <figure class="image is-60x60">
-                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                    <img src="@/assets/images/wallet.svg" alt="Image">
                 </figure>
             </div>
             <div class="column is-1"></div>
 
             <div class="column is-5">
-                <div class="title">Our Vision</div>
+                <div class="title">The entrepreneur is in you.</div>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -51,7 +71,7 @@
 
         <div class="columns is-3 my-5 is-vcentered is-centered">
             <div class="column is-5">
-                <div class="title">Our Mission</div>
+                <div class="title">Payments with ease. No fees.</div>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -64,7 +84,7 @@
             <div class="column is-1"></div>
             <div class="column is-5">
                 <figure class="image is-60x60">
-                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                    <img src="@/assets/images/payment.svg" alt="Image">
                 </figure>
             </div>
 
@@ -90,6 +110,14 @@ export default {
             pageName: "About Us",
             pageDescription: "Why did we start Casafair?",
         }
+    },
+    mounted() {
+        this.startAnimation()
+    },
+    methods: {
+        startAnimation() {
+            
+        },
     }
 }
 </script>
