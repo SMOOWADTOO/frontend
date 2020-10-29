@@ -24,7 +24,7 @@
         </section>
         <div class="columns is-3 my-5 is-vcentered is-centered">
             <div class="column is-5 trigger-3">
-                <div class="title">With Casafair, you're the boss.</div>
+                <div class="title">With Casafair, you're in charge.</div>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -49,14 +49,14 @@
 
         <div class="columns is-8 my-5 is-vcentered is-centered">
             <div class="column is-5">
-                <figure class="image is-60x60">
+                <figure class="image is-60x60 trigger-5">
                     <img src="@/assets/images/wallet.svg" alt="Image">
                 </figure>
             </div>
             <div class="column is-1"></div>
 
-            <div class="column is-5">
-                <div class="title">The entrepreneur is in you.</div>
+            <div class="column is-5 trigger-6">
+                <div class="title">We help you reach greater heights.</div>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -70,8 +70,10 @@
 
         </div>
 
+        <div style="height: 50vh;"></div>
+
         <div class="columns is-3 my-5 is-vcentered is-centered">
-            <div class="column is-5">
+            <div class="column is-5 trigger-7">
                 <div class="title">Payments with ease. No fees.</div>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
@@ -84,13 +86,15 @@
             </div>
             <div class="column is-1"></div>
             <div class="column is-5">
-                <figure class="image is-60x60">
+                <figure class="image is-60x60 trigger-8">
                     <img src="@/assets/images/payment.svg" alt="Image">
                 </figure>
             </div>
 
 
         </div>
+
+        <div style="height: 50vh;"></div>
     </section>
 
 </template>
@@ -152,10 +156,51 @@ export default {
                         trigger: ".trigger-4",
                         pin: true,   // pin the trigger element while active
                         start: "-=200", // when the top of the trigger hits the top of the viewport
-                        end: "+=300", // end after scrolling 500px beyond the start
+                        end: "+=200", // end after scrolling 500px beyond the start
                         scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
                     }
                 }).from(".trigger-4", {x: 800})
+
+                let t5 = this.$gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".trigger-5",
+                        pin: true,   // pin the trigger element while active
+                        start: "-=400", // when the top of the trigger hits the top of the viewport
+                        end: "+=500", // end after scrolling 500px beyond the start
+                        scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+                    }
+                }).from(".trigger-5", {scale: 0.4, autoAlpha:0})
+
+                let t6 = this.$gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".trigger-6",
+                        pin: true,   // pin the trigger element while active
+                        start: "-=400", // when the top of the trigger hits the top of the viewport
+                        end: "+=300", // end after scrolling 500px beyond the start
+                        scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+                    }
+                }).from(".trigger-6", {autoAlpha: 0})
+
+                let t7 = this.$gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".trigger-7",
+                        pin: true,   // pin the trigger element while active
+                        start: "-=400", // when the top of the trigger hits the top of the viewport
+                        end: "+=00", // end after scrolling 500px beyond the start
+                        scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+                    }
+                }).from(".trigger-7", {x: -800})
+
+                let t8 = this.$gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".trigger-8",
+                        pin: true,   // pin the trigger element while active
+                        start: "-=400", // when the top of the trigger hits the top of the viewport
+                        end: "+=00", // end after scrolling 500px beyond the start
+                        scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+                    }
+                }).from(".trigger-8", {x: 800})
+
             }
     },
     methods: {
