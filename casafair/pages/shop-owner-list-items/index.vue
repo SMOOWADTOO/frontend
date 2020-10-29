@@ -2,27 +2,41 @@
     <section>
         <br>
         <div class="columns is-centered is-vcentered">
-            <div class="column is-3">
-                <figure class="image">
-                    <img src="https://bulma.io/images/placeholders/128x128.png">
-                </figure>
-            </div>
-            <div class="column is-3">
-                <figure class="image">
-                    <img src="https://bulma.io/images/placeholders/128x128.png">
-                </figure>
-            </div>
-            <div class="column is-3">
-                <figure class="image">
-                    <img src="https://bulma.io/images/placeholders/128x128.png">
-                </figure>
+            <b-field>
+                <b-upload v-model="dropFiles"
+                    multiple
+                    drag-drop>
+                    <section class="section">
+                        <div class="content has-text-centered">
+                            <p>
+                                <b-icon
+                                    icon="upload"
+                                    size="is-large">
+                                </b-icon>
+                            </p>
+                            <p>Drop your files here or click to upload</p>
+                        </div>
+                    </section>
+                </b-upload>
+            </b-field>
+
+            <div class="tags">
+                <span v-for="(file, index) in dropFiles"
+                    :key="index"
+                    class="tag is-primary" >
+                    {{file.name}}
+                    <button class="delete is-small"
+                        type="button"
+                        @click="deleteDropFile(index)">
+                    </button>
+                </span>
             </div>
         </div>
 
         <div class="columns is-centered">
             <div class="column is-9">
                 <div class="field">
-                    <label class="label">Subject</label>
+                    <label class="label">Category</label>
                     <div class="control">
                         <div class="select is-fullwidth">
                             <select>
@@ -69,3 +83,18 @@
         <br>
     </section>
 </template>
+
+<script>
+    export default {
+        data() {
+            return {
+                dropFiles: []
+            }
+        },
+        methods: {
+            deleteDropFile(index) {
+                this.dropFiles.splice(index, 1)
+            }
+        }
+    }
+</script>
