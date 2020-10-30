@@ -9,15 +9,15 @@
             <div class="columns is-centered has-text-centered is-hidden-mobile">
                 <div class="column is-12">
                     <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                    <p class="title is-4">My Shop Name</p>
-                    <p class="subtitle is-6">@shop_name</p>
+                    <p class="title is-4">{{shopData.shopName}}</p>
+                    <p class="subtitle is-6">by @{{shopData.username}}</p>
                 </div>
             </div>
 
             <div class="content is-hidden-mobile">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                <a href="#">#css</a> <a href="#">#responsive</a>
+                {{shopData.shopDesc}}
+                <br>
+                <a :href="'mailto:' + this.shopData.email">Email us</a>
                 <br>
                 <br>
                 <b-rate
@@ -30,7 +30,7 @@
                     :spaced="true"
                     :disabled="true">
                 </b-rate>
-                <small>Since 1 Jan 2016</small>
+                <small>Since {{shopData.createdAt}}</small>
                 <br>
             </div>
             <hr class="is-hidden-mobile">
@@ -80,12 +80,19 @@ export default {
                     this.formFields.quantity.type = ""
                 }
             }
+        },
+        price: function() {
+            this.calculatedPrice = this.price * this.quantity
+        },
+        shopID: function() {
+            this.fetchShop()
         }
     },
 
     props: {
         rating: Number,
         price: Number,
+        shopID: Number,
     },
 
     data() {
@@ -105,11 +112,29 @@ export default {
                 "quantity": {
                     "type": "", "message": ""
                 },
-            }
+            },
+
+            shopData: {}
         }
     },
 
     methods: {
+        fetchShop() {
+            let r = this.$axios.get(this.SHOPAPI + "/" + this.shopID).then((response) => {
+                let shopData = response.data
+                this.shopData = shopData.shop
+                var options = { year: 'numeric', month: 'long', day: 'numeric' };
+                this.shopData.createdAt = new Date(this.shopData.createdAt).toLocaleDateString('en-GB', options)
+                console.log(shopData)
+            }).catch((error) => {
+                if (error.response != undefined) {
+                    var response = error.response.data
+                    this.toastAlert(response.message, "is-danger", 5000)
+                } else {
+                    this.toastAlert(error, "is-danger", 5000)
+                }
+            })
+        },
     }
 }
 </script>

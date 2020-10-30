@@ -5,15 +5,52 @@
                 <figure class="image is-4by3">
                     <img src="https://bulma.io/images/placeholders/128x128.png">
                     <p class="is-overlay mx-5 is-size-4-desktop is-size-3-touch" style="margin-top: 60%;">
-                        Product Name
+                        {{productInfo.productName}}
                     </p>
                 </figure>
                 <hr>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p>{{productInfo.productDesc}}</p>
             </div>
             <div class="column is-4">
-                <ShopCard :price="4.50"/>   
+                <client-only>
+                    <ShopCard :price="productInfo.unitPrice" :shopID="productInfo.shopId"/>
+                </client-only>
             </div>
         </div>
     </section>
 </template>
+
+<script>
+export default {
+    created() {
+        this.productID = this.$route.params.id
+        console.log(this.$route.params.id)
+
+        this.fetchInformation()
+    },
+    mounted() {
+        this.fetchInformation()
+    },
+    data() {
+        return {
+            productID: 0,
+            productInfo: {}
+        }
+    },
+    methods: {
+        fetchInformation() {
+            let r = this.$axios.get(this.PRODUCTAPI + "/" + this.productID).then((response) => {
+                let productsData = response.data
+                this.productInfo = productsData.product
+            }).catch((error) => {
+                if (error.response != undefined) {
+                    var response = error.response.data
+                    this.toastAlert(response.message, "is-danger", 5000)
+                } else {
+                    this.toastAlert(error, "is-danger", 5000)
+                }
+            })
+        }
+    }
+}
+</script>

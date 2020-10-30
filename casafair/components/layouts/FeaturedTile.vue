@@ -34,7 +34,7 @@ export default {
             featuredShopData: {},
             didFetchUserDetails: false,
             ownerDetails: {},
-            randomUserID: 1,
+            randomShopID: 1,
             products: [],
         }
     },
@@ -48,7 +48,7 @@ export default {
     },
     methods: {
         fetchFeaturedBusiness() {
-            let r = this.$axios.get(this.SHOPAPI + "/" + this.randomUserID).then((response) => {
+            let r = this.$axios.get(this.SHOPAPI + "/" + this.randomShopID).then((response) => {
                 let featuredShopData = response.data
                 this.featuredShopData = featuredShopData.shop
             }).catch((error) => {
@@ -61,9 +61,10 @@ export default {
             })
         },
         fetchOwnerDetails() {
-            let r = this.$axios.get(this.USERAPI + "/username/" + this.featuredShopData.username).then((response) => {
+            let r = this.$axios.get(this.USERAPI + "/check/username/" + this.featuredShopData.username).then((response) => {
                 let userData = response.data
                 this.ownerDetails = userData.user
+                console.log(this.ownerDetails)
                 this.didFetchUserDetails = true
             }).catch((error) => {
                 if (error.response != undefined) {
@@ -75,7 +76,7 @@ export default {
             })
         },
         fetchShopProducts() {
-            let r = this.$axios.get(this.PRODUCTAPI + "/" + this.featuredShopData.shopId).then((response) => {
+            let r = this.$axios.get(this.PRODUCTAPI + "/by_store/" + this.featuredShopData.shopId).then((response) => {
                 let respData = response.data
                 this.products = respData.products
             }).catch((error) => {
