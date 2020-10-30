@@ -56,6 +56,8 @@ export default {
         shopSearch: String,
     },
     mounted() {
+        this.getShopNames(),
+        this.getProductNames()
     },
     computed: {
         filteredDataArray() {
@@ -93,8 +95,36 @@ export default {
         validateBeforeSubmit() {
         },
         getShopNames() {
+            let r = this.$axios.get(this.SHOPAPI + "/all").then((response) => {
+                let shopsData = response.data;
+                var shopsInfo = shopsData.shops;
+                for (var shop of shopsInfo) {
+                    this.shopData.push(shop.shopName);
+                }
+            }).catch((error) => {
+                if (error.response != undefined) {
+                    var response = error.response.data
+                    this.toastAlert(response.message, "is-danger", 5000)
+                } else {
+                    this.toastAlert(error, "is-danger", 5000)
+                }
+            })
         },
         getProductNames() {
+            let r = this.$axios.get(this.PRODUCTAPI).then((response) => {
+                let productsData = response.data;
+                var productsInfo = productsData.products;
+                for (var product of productsInfo) {
+                    this.productData.push(product.productName);
+                }
+            }).catch((error) => {
+                if (error.response != undefined) {
+                    var response = error.response.data
+                    this.toastAlert(response.message, "is-danger", 5000)
+                } else {
+                    this.toastAlert(error, "is-danger", 5000)
+                }
+            })
         }
     },
 }
