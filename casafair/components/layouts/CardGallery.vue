@@ -3,7 +3,7 @@
         <!-- If car cards gallery -->
         <swiper ref="mySwiper" :options="swiperOptions" v-if="hasLoaded" >
             <swiper-slide style="padding:2rem 0;" v-for="product in productsData" v-bind:key="product.id">
-                <router-link :to="{path: '/view/'}">
+                <router-link :to="{path: '/storefront/product/' + product.productId}">
                     <HorizontalCard :productData="product"/>
                 </router-link>
             </swiper-slide>
