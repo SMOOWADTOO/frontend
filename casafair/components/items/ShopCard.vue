@@ -24,7 +24,7 @@
                     v-if="!this.route.includes('/storefront/product')" 
                     v-model="rating"
                     :maxs="5"
-                    :show-score="score"
+                    :show-score="true"
                     :show-text="true"
                     :texts="ratingTexts"
                     :spaced="true"

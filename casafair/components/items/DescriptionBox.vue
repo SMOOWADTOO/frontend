@@ -4,7 +4,7 @@
             <p class="title">{{title}}</p>
             <p class="subtitle">{{description}}</p>
             <div class="content">
-                <!-- Content -->
+                <nuxt-link :to="'/storefront/' + shopID">Visit this page ></nuxt-link>
             </div>
         </div>
     </article>
@@ -15,6 +15,7 @@ export default {
     props: {
         title: String,
         description: String,
+        shopID: String,
     }
 }
 </script>
