@@ -14,7 +14,7 @@ data() {
 }
 ```
 
-### Casafair is made from the following frameworks:
+### Casafair is made with the following frameworks:
 
 **Scripting**
 - Vue.js
