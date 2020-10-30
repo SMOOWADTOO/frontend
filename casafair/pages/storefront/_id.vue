@@ -1,7 +1,7 @@
 <template>
     <div class="columns">
         <div class="column is-4 is-12-mobile">
-            <ShopCard :rating="this.rate"/>
+            <ShopCard ref="shopCard" :rating="this.rate" :shopID="this.shopID"/>
         </div>
         <div class="column is-8 is-12-mobile">
             <b-tabs v-model="activeTab" position="is-centered" :size="this.windowWidth > 420 ? 'is-medium' : 'is-small'" type="is-boxed" expanded>
@@ -41,6 +41,10 @@ export default {
         About
     },
 
+    created() {
+        this.shopID = parseInt(this.$route.params.id)
+    },
+
     mounted() {
         if (process.client) {
             this.windowWidth = window.innerWidth
@@ -48,10 +52,12 @@ export default {
                 this.windowWidth = window.innerWidth
             }
         }
+        this.$refs.shopCard.fetchShop()
     },
 
     data() {
         return {
+            shopID: 0,
             pageName: "Storefront",
             pageDescription: "Storefront for ",
 

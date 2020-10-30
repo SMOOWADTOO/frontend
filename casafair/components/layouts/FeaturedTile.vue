@@ -1,7 +1,7 @@
 <template>
     <div class="columns my-5">
         <div class="column">
-            <DescriptionBox :title="featuredShopData.shopName" :description="featuredShopData.shopDesc"/>
+            <DescriptionBox :title="featuredShopData.shopName" :description="featuredShopData.shopDesc" :shopID="featuredShopData.shopId"/>
         </div>
         <div class="column is-4">
             <div class="columns is-multiline">
