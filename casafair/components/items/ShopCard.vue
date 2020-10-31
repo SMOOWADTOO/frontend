@@ -33,23 +33,35 @@
                 <small>Since {{shopData.createdAt}}</small>
                 <br>
             </div>
-            <hr class="is-hidden-mobile">
-            <div class="content" v-if="this.route.includes('/storefront/product')">
-                <p class="is-size-4 title">Get this item</p>
-                <b-field label="Quantity" :type="formFields.quantity.type" :message="formFields.quantity.message">
-                    <b-numberinput controls-position="compact" v-model="quantity" min=1 max=300 expanded></b-numberinput>
-                </b-field>
+            <span v-if="shopData.username == this.$auth.user.user.username">
+                <br>
                 <hr>
-                <nav class="level is-mobile">
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <p class="heading">Price</p>
-                            <p class="title">S$ {{calculatedPrice.toFixed(2)}}</p>
+                <nuxt-link class="level-item" aria-label="accept" :to="'/storefront/product/edit/' + this.$route.params.id">
+                    <span class="icon is-large">
+                        <i class="las la-pen has-text-signature-purple is-size-3" aria-hidden="true"></i>
+                        Edit
+                    </span>
+                </nuxt-link>
+            </span>
+            <span v-else>
+                <hr class="is-hidden-mobile">
+                <div class="content" v-if="this.route.includes('/storefront/product')">
+                    <p class="is-size-4 title">Get this item</p>
+                    <b-field label="Quantity" :type="formFields.quantity.type" :message="formFields.quantity.message">
+                        <b-numberinput controls-position="compact" v-model="quantity" min=1 max=300 expanded></b-numberinput>
+                    </b-field>
+                    <hr>
+                    <nav class="level is-mobile">
+                        <div class="level-item has-text-centered">
+                            <div>
+                                <p class="heading">Price</p>
+                                <p class="title">S$ {{calculatedPrice.toFixed(2)}}</p>
+                            </div>
                         </div>
-                    </div>
-                </nav>
-                <button class="button is-primary is-fullwidth mt-5" :disabled="this.quantity >= 300" v-on:click="beginPaymentSession">Get it now</button>
-            </div>
+                    </nav>
+                    <button class="button is-primary is-fullwidth mt-5" :disabled="this.quantity >= 300" v-on:click="beginPaymentSession">Get it now</button>
+                </div>
+            </span>
         </div>
     </div>
 </template>
