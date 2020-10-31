@@ -48,7 +48,7 @@
                         </div>
                     </div>
                 </nav>
-                <button class="button is-primary is-fullwidth mt-5" :disabled="this.quantity >= 300">Get it now</button>
+                <button class="button is-primary is-fullwidth mt-5" :disabled="this.quantity >= 300" v-on:click="beginPaymentSession">Get it now</button>
             </div>
         </div>
     </div>
@@ -93,6 +93,7 @@ export default {
         rating: Number,
         price: Number,
         shopID: Number,
+        productInfo: Object,
     },
 
     data() {
@@ -114,7 +115,11 @@ export default {
                 },
             },
 
-            shopData: {}
+            shopData: {},
+
+            paymentData: {
+                "products": [],
+            },
         }
     },
 
@@ -135,6 +140,23 @@ export default {
                 }
             })
         },
+        beginPaymentSession() {
+            var paymentProduct = this.productInfo
+            paymentProduct["quantity"] = this.quantity
+            this.paymentData.products.push(paymentProduct)
+            let r = this.$axios.post(this.PAYMENTAPI + "/session", this.paymentData).then((response) => {
+                var sessionToken = response.data.paymentToken
+
+                this.$router.push("/payment?session=" + sessionToken)
+            }).catch((error) => {
+                if (error.response != undefined) {
+                    var response = error.response.data
+                    this.toastAlert(response.message, "is-danger", 5000)
+                } else {
+                    this.toastAlert(error, "is-danger", 5000)
+                }
+            })
+        }
     }
 }
 </script>
