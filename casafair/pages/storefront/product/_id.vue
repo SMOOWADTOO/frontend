@@ -13,7 +13,7 @@
             </div>
             <div class="column is-4">
                 <client-only>
-                    <ShopCard :price="productInfo.unitPrice" :shopID="productInfo.shopId"/>
+                    <ShopCard :price="productInfo.unitPrice" :shopID="productInfo.shopId" :productInfo="productInfo"/>
                 </client-only>
             </div>
         </div>

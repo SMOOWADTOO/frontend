@@ -260,8 +260,6 @@ export default {
         getInfo() {
             let response = this.$axios.get(this.USERAPI + '/profile/me').then((r) => {
                 var infoResponse = r.data.user
-
-                console.log(infoResponse)
                 
                 this.nric = infoResponse.nric === "" ? "" : infoResponse.nric
                 this.fName = infoResponse.firstName === "" ? "" : infoResponse.firstName
