@@ -40,7 +40,7 @@
             <div class="column is-1">
                 <b-field grouped style="min-width:100%; min-height:100%;">
                     <p class="control" style="min-width:100%; min-height:100%;">
-                        <button class="button is-primary" style="min-width:100%; min-height:100%;" type="submit" :disabled="!valid">Search</button>
+                        <button v-on:click="goSearch()" class="button is-primary" style="min-width:100%; min-height:100%;" type="submit" :disabled="!valid">Search</button>
                     </p>
                 </b-field>
             </div>
@@ -125,6 +125,9 @@ export default {
                     this.toastAlert(error, "is-danger", 5000)
                 }
             })
+        },
+        goSearch() {
+            this.$router.push("/search");
         }
     },
 }
