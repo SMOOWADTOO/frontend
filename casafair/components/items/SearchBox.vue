@@ -1,23 +1,27 @@
 <template>
   <form v-on:submit.prevent="validateBeforeSubmit">
-    <div class="columns input-group px-5">
-      <div class="column is-1">
-        <div class="field">
-          <small>Search</small>
+    <div class="columns input-group px-5 is-vcentered">
+      <div class="column is-2" id="search-toggle">
+        <div class="field is-vcentered level-right">
+          <label for="search-switch" id="switch-label">Product</label>
           <b-switch
             v-model="isShopSwitch"
             :rounded="false"
-            type="is-danger"
+            type="is-secondary"
             true-value="Shop"
             false-value="Product"
+            id="search-switch"
+            size="is-medium"
+            passive-type="is-warning"
           >
           </b-switch>
-          <small>{{ isShopSwitch.toLowerCase() }}</small>
+          <label for="search-switch" id="switch-label">Shop</label>
+
         </div>
       </div>
-      <div class="column is-10">
+      <div class="column is-9">
         <b-field
-          :label="isShopSwitch.toLowerCase() + ' search'"
+          :label="isShopSwitch + ' Search'"
           v-if="isShopSwitch == 'Product'"
         >
           <b-autocomplete
@@ -25,6 +29,7 @@
             :data="filteredProductArray"
             placeholder='Try "Brownies", "Curry Puff"...'
             icon="magnify"
+            class="search-bar"
             clearable
             required
             @select="option => (productSelected = option)"
@@ -34,7 +39,7 @@
           </b-autocomplete>
         </b-field>
         <b-field
-          :label="isShopSwitch.toLowerCase() + ' search'"
+          :label="isShopSwitch + ' Search'"
           v-if="isShopSwitch == 'Shop'"
         >
           <b-autocomplete
@@ -42,15 +47,17 @@
             :data="filteredShopArray"
             placeholder='Try "The Sunshine Shop", "Rudy&apos;s bakes"...'
             icon="magnify"
+            class="search-bar"
             clearable
             required
             @select="option => (shopSelected = option)"
+
           >
             <template slot="empty">No results found</template>
           </b-autocomplete>
         </b-field>
       </div>
-      <div class="column is-1">
+      <div class="column">
         <b-field grouped style="min-width: 100%; min-height: 100%">
           <p class="control" style="min-width: 100%; min-height: 100%">
             <button
@@ -59,6 +66,7 @@
               style="min-width: 100%; min-height: 100%"
               type="submit"
               :disabled="!valid"
+              id="search-submit"
             >
               Search
             </button>
