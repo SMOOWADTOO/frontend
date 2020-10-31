@@ -105,6 +105,7 @@ export default {
             if (!this.emailErrors && !this.pwErrors && !this.cPwErrors) {
                 
                 let r = this.$axios.post(this.USERAPI + "/" + this.accountType, {
+                    "username": this.username,
                     "email": this.email,
                     "password": this.password,
                     "firstName": this.fName,
