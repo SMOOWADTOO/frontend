@@ -1,46 +1,51 @@
 <template>
     <form v-on:submit.prevent="validateBeforeSubmit">
-        <div class="columns input-group px-5">
-            <div class="column is-1">
-                <div class="field">
-                    <small>Search</small>
+        <div class="columns input-group px-5 is-vcentered">
+            <div class="column is-2" id="search-toggle">
+                <div class="field is-vcentered level-right">
+                    <label for="search-switch" id="switch-label">Change</label>
                     <b-switch v-model="isShopSwitch"
                         :rounded="false"
-                        type="is-danger"
+                        type="is-secondary"
                         true-value="Shop"
-                        false-value="Product">
+                        false-value="Product"
+                        id="search-switch"
+                        size="is-medium"
+                        passive-type='is-warning'
+                        >
                     </b-switch>
-                    <small>{{ isShopSwitch.toLowerCase() }}</small>
                 </div>
             </div>
-            <div class="column is-10">
-                <b-field :label="isShopSwitch.toLowerCase() + ' search'" v-if="isShopSwitch == 'Product'">
+            <div class="column is-9">
+                <b-field :label="isShopSwitch + ' Search'" v-if="isShopSwitch == 'Product'">
                     <b-autocomplete
                         v-model="product"
                         :data="filteredCarArray"
                         placeholder="Try &quot;Brownies&quot;, &quot;Curry Puff&quot;..."
                         icon="magnify"
+                        class="search-bar"
                         clearable
                         required>
                         <template slot="empty">No results found</template>
                     </b-autocomplete>
                 </b-field>
-                <b-field :label="isShopSwitch.toLowerCase() + ' search'" v-if="isShopSwitch == 'Shop'">
+                <b-field :label="isShopSwitch + ' Search'" v-if="isShopSwitch == 'Shop'">
                     <b-autocomplete
                         v-model="shop"
                         :data="filteredDataArray"
                         placeholder="Try &quot;The Sunshine Shop&quot;, &quot;Rudy's bakes&quot;..."
                         icon="magnify"
+                        class="search-bar"
                         clearable
                         required>
                         <template slot="empty">No results found</template>
                     </b-autocomplete>
                 </b-field>
             </div>
-            <div class="column is-1">
+            <div class="column">
                 <b-field grouped style="min-width:100%; min-height:100%;">
                     <p class="control" style="min-width:100%; min-height:100%;">
-                        <button class="button is-primary" style="min-width:100%; min-height:100%;" type="submit" :disabled="!valid">Search</button>
+                        <button class="button is-primary" style="min-width:100%; min-height:100%;" type="submit" :disabled="!valid" id="search-submit">Search</button>
                     </p>
                 </b-field>
             </div>
