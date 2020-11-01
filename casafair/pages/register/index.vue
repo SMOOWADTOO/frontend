@@ -105,6 +105,7 @@ export default {
             if (!this.emailErrors && !this.pwErrors && !this.cPwErrors) {
                 
                 let r = this.$axios.post(this.USERAPI + "/" + this.accountType, {
+                    "username": this.username,
                     "email": this.email,
                     "password": this.password,
                     "firstName": this.fName,
@@ -113,7 +114,6 @@ export default {
                     var response = newUserResponse.data
                     var fetchType = response.type
                     if (fetchType == "success") {
-                        this.$router.push("/user/settings")
                         this.login()
                     } else {
                         this.toastAlert(response.message, "is-danger", 5000)
@@ -214,8 +214,7 @@ export default {
             }).then((userResponse) => {
                 let authenticatedUser = this.$auth.user.user
                 this.toastAlert("Welcome to " + this.appName + ", " + authenticatedUser.firstName + "!", "is-success", 5000)
-                // this.$router.push("/user/settings")
-                this.$router.push("/")
+                this.$router.push("/user/settings")
             }).catch((error) => {
                 if (error.response != undefined) {
                     var response = error.response.data
