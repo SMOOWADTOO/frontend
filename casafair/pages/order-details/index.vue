@@ -45,6 +45,7 @@
                     <h6 class="subtitle is-6">8 November 2020</h6>
                 </div>
             </div>
+            <button class="button is-medium is-fullwidth is-primary is-outlined">EDIT ORDER</button> <br>
             <button class="button is-medium is-fullwidth is-primary is-outlined">CANCEL ORDER</button>
         </div>
     </div>
