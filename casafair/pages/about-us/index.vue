@@ -3,13 +3,13 @@
         <StaticPageHeader :heroClass="'has-text-centered'" :title="pageName" :description="pageDescription"/>
                 <div class="columns is-3 my-5 is-vcentered is-centered">
             <div class="column is-5">
-                <div class="title">About Us</div>
+                <div class="title">Why did we start Casafair?</div>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum
+                    During the COVID-19 pandemic, which affected the entire world, unemployment in many countries, including Singapore, was on the rise.
+                    With more people forced to stay at home, this gave rise to a number of small home businesses. Many of these home businesses have to
+                    start from scratch and establish their own platforms with the help of their own social media platforms. Thus, many tasks are manual, 
+                    from having to liaise with customers on the product information to scheduling delivery dates. Therefore, Casafair believes that home
+                    businesses' efficiency and productivity could be improved by providing a platform for home businesses to sell their products.
                 </p>
 
             </div>
@@ -35,13 +35,10 @@
             <div class="column is-1"></div>
 
             <div class="column is-5">
-                <div class="title">Our Vision</div>
+                <div class="title">Our Mission</div>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum
+                    Casafair is committed to providing a one-stop online platform for home businesses to sell their products with ease and from the comfort of their own homes, as well as for
+                    potential customers to have a one-stop platform to shop various local brands conveniently.
                 </p>
 
             </div>
@@ -51,13 +48,9 @@
 
         <div class="columns is-3 my-5 is-vcentered is-centered">
             <div class="column is-5">
-                <div class="title">Our Mission</div>
+                <div class="title">Our Vission</div>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum
+                    Casafair believes in the transformative power of technology and want to change the world for the better by opening up opportunities for all, regardless of background or ability, especially during this poor economic outlook.
                 </p>
 
             </div>
@@ -88,7 +81,7 @@ export default {
     data() {
         return {
             pageName: "About Us",
-            pageDescription: "Why did we start Casafair?",
+            pageDescription: "All about Casafair",
         }
     }
 }
