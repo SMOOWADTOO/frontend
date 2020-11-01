@@ -1,7 +1,7 @@
 <template>
     <nuxt-link :to="'/storefront/product/' + productInfo.productId">
         <figure class="image">
-            <img src="https://bulma.io/images/placeholders/128x128.png">
+            <img :src="productInfo.productPhotoURL">
             <p class="is-overlay mx-5 is-size-4-desktop is-size-3-touch" style="margin-top: 60%;">
                 {{productInfo.productName}}
                 <br>
