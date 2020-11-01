@@ -17,17 +17,18 @@ data() {
 ### Casafair is made with the following frameworks:
 
 **Scripting**
-- Vue.js
-- Nuxt.js – _Vue.js framework_
-- Axios – _API calls_
-- GSAP3 – _Script-based animation of pages and elements_
+- Vue.js :white_check_mark:
+- Nuxt.js – _Vue.js framework_ :white_check_mark:
+- Axios – _API calls_ :white_check_mark:
+- GSAP3 – _Script-based animation of pages and elements_ :white_check_mark:
 
 **Styling**
-- Buefy for components – _Buefy is built on top of Bulma_
-- Bulma _(better design language than Twitter Bootstrap)_
+- Buefy for components – _Buefy is built on top of Bulma_ :white_check_mark:
+- Bulma _(better design language than Twitter Bootstrap)_ :white_check_mark:
+- Sass :white_check_mark:
 
 **APIs used**
-- OneMAP API (by Singapore Land Authority)
+- OneMAP API (by Singapore Land Authority) :white_check_mark:
 - Google Maps API
-- Stripe API
+- Stripe API :white_check_mark:
 - Telegram API
