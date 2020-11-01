@@ -2,7 +2,7 @@
     <div class="card is-horizontal">
         <div class="card-image">
             <figure class="image is-4by3 has-background-grey-lighter">
-
+                <img :src="productData.productPhotoURL" :alt="productData.productName + ' image'" v-if="productData.productPhotoURL != null">
             </figure>
         </div>
         <div class="card-stacked">
