@@ -1,5 +1,5 @@
 <template>
-    <section class="hero is-fullheight">
+    <section class="hero is-fullheight page-content">
         <div class="hero-body" v-if="!pageHasExpired">
             <div class="container hero-container">
                 <div class="columns">

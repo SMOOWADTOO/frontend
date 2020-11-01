@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="page-content">
         <StaticPageHeader :title="pageName" :description="pageDescription"/>
         <div class="columns my-5 mx-5">
             <div class="column is-8 is-offset-2">

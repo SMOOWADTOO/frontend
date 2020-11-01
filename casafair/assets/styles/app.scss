@@ -64,6 +64,10 @@ $padding-margin-std: 10%;
     }
 }
 
+.page-content {
+    min-height: calc(100vh - 20vh);
+}
+
 .content-text {
     display: -webkit-box;
     line-height: 1.5rem;
@@ -78,6 +82,11 @@ $padding-margin-std: 10%;
     flex-direction: column;
     height: 100%;
 }
+
+
+.footer {
+    height: 50px;
+  }
 
 .full-height {
     height: $max;
@@ -112,7 +121,8 @@ $padding-margin-std: 10%;
 }
 
 #search-switch {
-    margin-left: 10px;
+    margin: 10px;
+    width: 27%;
 }
 
 #search-toggle {

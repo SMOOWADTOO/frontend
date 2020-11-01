@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="page-content">
         <div class="columns is-centered">
             <div class="column is-10 is-12-mobile is-centered">
                 <div class="title has-text-centered">Shopping Cart</div>

@@ -1,5 +1,5 @@
 <template>
-    <section class="">
+    <section class="page-content">
         <div class="hero">
             <div class="hero-body">
                 <HeroGallery/>

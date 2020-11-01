@@ -1,5 +1,5 @@
 <template>
-    <div class="columns">
+    <div class="columns page-content">
         <div class="column is-4 is-12-mobile">
             <UserCard/>
         </div>

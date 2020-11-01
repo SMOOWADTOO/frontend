@@ -2,7 +2,7 @@
     <section>
         <!-- <StaticPageHeader :heroClass="'has-text-centered'" :title="pageName" :description="pageDescription"/> -->
           <!-- Hero content: will be in the middle -->
-        <section class="hero has-background-primary-light">
+        <section class="hero has-background-primary-light page-content">
             <div class="hero-body">
                 <div class="container has-text-centered">
                     <h1 class="mt-5 title trigger-1" id="title-1">
