@@ -3,7 +3,7 @@
     <div class="card is-fullimage equal-height">
         <div class="card-image">
             <figure class="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                <img :src="profile.profilePhotoURL" :alt="profile.firstName + '\'s photo'">
             </figure>
             <div class="card-stacked full-height">
                 <div class="card-content equal-height to-bottom">
