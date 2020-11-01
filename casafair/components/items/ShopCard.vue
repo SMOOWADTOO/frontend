@@ -35,7 +35,7 @@
             </div>
             <hr class="is-hidden-mobile">
             <div class="content" v-if="this.route.includes('/storefront/' + this.shopData.shopId)">
-                <span v-if="shopData.username == this.$auth.user.user.username">
+                <span v-if="this.$auth.user != null && shopData.username == this.$auth.user.user.username">
                     <br>
                     <hr>
                     <nuxt-link class="level-item" aria-label="accept" :to="'/storefront/product/new?shopID=' + this.$route.params.id">
@@ -48,7 +48,7 @@
             </div>
             <div class="content" v-if="this.route.includes('/storefront/product')">
 
-                <span v-if="shopData.username == this.$auth.user.user.username">
+                <span v-if="this.$auth.user != null && shopData.username == this.$auth.user.user.username">
                     <br>
                     <hr>
                     <nuxt-link class="level-item" aria-label="accept" :to="'/storefront/product/edit/' + this.$route.params.id">
