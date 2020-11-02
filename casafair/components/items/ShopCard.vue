@@ -167,21 +167,28 @@ export default {
             })
         },
         beginPaymentSession() {
-            var paymentProduct = this.productInfo
-            paymentProduct["quantity"] = this.quantity
-            this.paymentData.products.push(paymentProduct)
-            let r = this.$axios.post(this.PAYMENTAPI + "/session", this.paymentData).then((response) => {
-                var sessionToken = response.data.paymentToken
+            if (this.$auth.user == undefined) {
+                console.log(this.$route.fullPath)
+                this.$router.push("/login?redirect_from=" + this.$route.fullPath)
+                this.toastAlert("You have to be logged in first.", "is-danger", 5000)
+            } else {
+                var paymentProduct = this.productInfo
+                paymentProduct["quantity"] = this.quantity
+                this.paymentData.products.push(paymentProduct)
+                let r = this.$axios.post(this.PAYMENTAPI + "/session", this.paymentData).then((response) => {
+                    var sessionToken = response.data.paymentToken
 
-                this.$router.push("/payment?session=" + sessionToken)
-            }).catch((error) => {
-                if (error.response != undefined) {
-                    var response = error.response.data
-                    this.toastAlert(response.message, "is-danger", 5000)
-                } else {
-                    this.toastAlert(error, "is-danger", 5000)
-                }
-            })
+                    this.$router.push("/payment?session=" + sessionToken)
+                }).catch((error) => {
+                    if (error.response != undefined) {
+                        var response = error.response.data
+                        this.toastAlert(response.message, "is-danger", 5000)
+                    } else {
+                        this.toastAlert(error, "is-danger", 5000)
+                    }
+                })
+            }
+            
         }
     }
 }
