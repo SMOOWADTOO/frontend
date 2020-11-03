@@ -21,7 +21,7 @@ import PastOrders from '@/pages/order-details/PastOrders'
 export default {
     head () {
         return {
-            title: this.appName + " | " + this.pageName,
+            title: this.title,
             meta: [
                 // hid is used as unique identifier. Do not use `vmid` for it as it will not work
                 { hid: 'description', name: 'description', content: this.pageDescription }
@@ -49,6 +49,7 @@ export default {
 
     data() {
         return {
+            title: "Casafair | Create Store",
             activeTab: 0,
 
             // responsive tabs
