@@ -11,8 +11,8 @@
                 </p>
             </figure>
         </div>
-        <div class="column is-1"></div>
-        <div class="column is-5">
+        <div class="column is-1"></div> -->
+        <!-- <div class="column is-5">
             <div class="title is-3">$12.96</div>
             <div class="subtitle is-4">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
@@ -46,6 +46,61 @@
                 </div>
             </div>
             <button class="button is-medium is-fullwidth is-primary is-outlined">CANCEL ORDER</button>
+        </div> -->
+        <div class="column is-8 is-12-mobile">
+            <b-tabs v-model="activeTab" position="is-centered" :size="this.windowWidth > 420 ? 'is-medium' : 'is-small'" type="is-boxed" expanded>
+                <b-tab-item label="Current Orders">
+                    <CurrentOrders/>
+                </b-tab-item>
+                <b-tab-item label="Past Orders">
+                    <PastOrders/>
+                    <!-- <OrderCard v-for="i of reviewData" v-bind:key="i.name" :rData="i" /> -->
+                </b-tab-item>
+            </b-tabs>
         </div>
     </div>
 </template>
+
+<script>
+import CurrentOrders from '@/pages/order-details/CurrentOrders'
+import PastOrders from '@/pages/order-details/PastOrders'
+
+export default {
+    head () {
+        return {
+            title: this.appName + " | " + this.pageName,
+            meta: [
+                // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+                { hid: 'description', name: 'description', content: this.pageDescription }
+            ]
+        }
+    },
+
+    components: {
+        CurrentOrders,
+        PastOrders
+    },
+
+    created() {
+        this.shopID = parseInt(this.$route.params.id)
+    },
+
+    mounted() {
+        if (process.client) {
+            this.windowWidth = window.innerWidth
+            window.onresize = () => {
+                this.windowWidth = window.innerWidth
+            }
+        }
+    },
+
+    data() {
+        return {
+            activeTab: 0,
+
+            // responsive tabs
+            windowWidth: 0,
+        }
+    }
+}
+</script>
