@@ -1,5 +1,5 @@
 <template>
-    <div class="columns is-centered  is-vcentered">
+    <div class="columns is-centered  is-vcentered page-content">
         <div class="column is-3">
             <figure class="image">
                 <img src="https://bulma.io/images/placeholders/128x128.png">

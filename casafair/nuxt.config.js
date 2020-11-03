@@ -35,9 +35,13 @@ export default {
     // https://go.nuxtjs.dev/buefy
     'nuxt-buefy',
     '@nuxtjs/axios',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    'nuxt-stripe-module'
   ],
-
+  stripe: {
+    // version: 'v3',
+    publishableKey: 'pk_test_IvYzdyvIdcwePrzqrp4JSKS800xyHThH0F',
+  },
   axios: {
     baseURL: 'https://www.casafair.org/', // Used as fallback if no runtime config is provided
   },

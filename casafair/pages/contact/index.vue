@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="page-content">
         <StaticPageHeader :heroClass="'has-text-centered'" :title="pageName" :description="pageDescription" />
         <!-- contact form -->
         <div class="field">

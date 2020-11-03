@@ -1,5 +1,5 @@
 <template>
-    <section class="">
+    <section class="page-content">
         <div class="hero">
             <div class="hero-body">
                 <HeroGallery/>
@@ -7,7 +7,7 @@
         </div>
         <div class="columns mx-5">
             <div class="column is-12">
-                <SearchBar/>
+                <SearchBox/>
             </div>
         </div>
         <div class="columns mx-0">

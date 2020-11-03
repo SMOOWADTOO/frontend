@@ -1,9 +1,9 @@
 <template>
-    <section class="container px-3 my-5">
+    <section class="container px-3 my-5 page-content">
         <div class="columns">
             <div class="column is-8">
                 <figure class="image is-4by3">
-                    <img src="https://bulma.io/images/placeholders/128x128.png">
+                    <img :src="productInfo.productPhotoURL" :alt="productInfo.productName + ' image'">
                     <p class="is-overlay mx-5 is-size-4-desktop is-size-3-touch" style="margin-top: 60%;">
                         {{productInfo.productName}}
                     </p>
@@ -13,7 +13,7 @@
             </div>
             <div class="column is-4">
                 <client-only>
-                    <ShopCard :price="productInfo.unitPrice" :shopID="productInfo.shopId"/>
+                    <ShopCard :price="productInfo.unitPrice" :shopID="productInfo.shopId" :productInfo="productInfo"/>
                 </client-only>
             </div>
         </div>

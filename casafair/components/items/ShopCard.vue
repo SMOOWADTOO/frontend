@@ -34,21 +34,47 @@
                 <br>
             </div>
             <hr class="is-hidden-mobile">
+            <div class="content" v-if="this.route.includes('/storefront/' + this.shopData.shopId)">
+                <span v-if="this.$auth.user != null && shopData.username == this.$auth.user.user.username">
+                    <br>
+                    <hr>
+                    <nuxt-link class="level-item" aria-label="accept" :to="'/storefront/product/new?shopID=' + this.$route.params.id">
+                        <span class="icon is-large">
+                            <i class="las la-pen has-text-signature-purple is-size-3" aria-hidden="true"></i>
+                            New product
+                        </span>
+                    </nuxt-link>
+                </span>
+            </div>
             <div class="content" v-if="this.route.includes('/storefront/product')">
-                <p class="is-size-4 title">Get this item</p>
-                <b-field label="Quantity" :type="formFields.quantity.type" :message="formFields.quantity.message">
-                    <b-numberinput controls-position="compact" v-model="quantity" min=1 max=300 expanded></b-numberinput>
-                </b-field>
-                <hr>
-                <nav class="level is-mobile">
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <p class="heading">Price</p>
-                            <p class="title">S$ {{calculatedPrice.toFixed(2)}}</p>
+
+                <span v-if="this.$auth.user != null && shopData.username == this.$auth.user.user.username">
+                    <br>
+                    <hr>
+                    <nuxt-link class="level-item" aria-label="accept" :to="'/storefront/product/edit/' + this.$route.params.id">
+                        <span class="icon is-large">
+                            <i class="las la-pen has-text-signature-purple is-size-3" aria-hidden="true"></i>
+                            Edit
+                        </span>
+                    </nuxt-link>
+                </span>
+
+                <span v-else>
+                    <p class="is-size-4 title">Get this item</p>
+                    <b-field label="Quantity" :type="formFields.quantity.type" :message="formFields.quantity.message">
+                        <b-numberinput controls-position="compact" v-model="quantity" min=1 max=300 expanded></b-numberinput>
+                    </b-field>
+                    <hr>
+                    <nav class="level is-mobile">
+                        <div class="level-item has-text-centered">
+                            <div>
+                                <p class="heading">Price</p>
+                                <p class="title">S$ {{calculatedPrice.toFixed(2)}}</p>
+                            </div>
                         </div>
-                    </div>
-                </nav>
-                <button class="button is-primary is-fullwidth mt-5" :disabled="this.quantity >= 300">Get it now</button>
+                    </nav>
+                    <button class="button is-primary is-fullwidth mt-5" :disabled="this.quantity >= 300" v-on:click="beginPaymentSession">Get it now</button>
+                </span>
             </div>
         </div>
     </div>
@@ -93,6 +119,7 @@ export default {
         rating: Number,
         price: Number,
         shopID: Number,
+        productInfo: Object,
     },
 
     data() {
@@ -114,7 +141,11 @@ export default {
                 },
             },
 
-            shopData: {}
+            shopData: {},
+
+            paymentData: {
+                "products": [],
+            },
         }
     },
 
@@ -135,6 +166,30 @@ export default {
                 }
             })
         },
+        beginPaymentSession() {
+            if (this.$auth.user == undefined) {
+                console.log(this.$route.fullPath)
+                this.$router.push("/login?redirect_from=" + this.$route.fullPath)
+                this.toastAlert("You have to be logged in first.", "is-danger", 5000)
+            } else {
+                var paymentProduct = this.productInfo
+                paymentProduct["quantity"] = this.quantity
+                this.paymentData.products.push(paymentProduct)
+                let r = this.$axios.post(this.PAYMENTAPI + "/session", this.paymentData).then((response) => {
+                    var sessionToken = response.data.paymentToken
+
+                    this.$router.push("/payment?session=" + sessionToken)
+                }).catch((error) => {
+                    if (error.response != undefined) {
+                        var response = error.response.data
+                        this.toastAlert(response.message, "is-danger", 5000)
+                    } else {
+                        this.toastAlert(error, "is-danger", 5000)
+                    }
+                })
+            }
+            
+        }
     }
 }
 </script>

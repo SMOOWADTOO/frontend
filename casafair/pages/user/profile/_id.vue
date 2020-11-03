@@ -1,5 +1,5 @@
 <template>
-    <div class="columns px-5">
+    <div class="columns px-5 page-content">
         <div class="column is-4 is-12-mobile">
             <UserCard :userData="this.userData" :rating="this.rate"/>
         </div>

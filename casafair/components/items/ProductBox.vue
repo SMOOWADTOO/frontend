@@ -1,14 +1,15 @@
 <template>
-    <div class="card">
+    <div class="card is-fullimage">
         <div class="card-image">
             <figure class="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                <img :src="product.productPhotoURL" :alt="product.productName + ' image'">
             </figure>
-        </div>
-        <div class="card-content">
-            <div class="content">
-                <p class="title is-6 mb-3">{{product.productName}}</p>
-                <small>{{product.productDesc}}</small>
+            <div class="card-stacked">
+                <div class="card-content to-bottom">
+                    <div class="content">
+                        <p class="title is-5">{{product.productName}}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

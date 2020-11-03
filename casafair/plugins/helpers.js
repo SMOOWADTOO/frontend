@@ -20,6 +20,7 @@ Vue.mixin({
             REVIEWAPI: api.REVIEWAPI,
             NOTIFICATIONAPI: api.NOTIFICATIONAPI,
             SEARCHAPI: api.SEARCHAPI,
+            GENERALAPI: api.GENERALAPI,
         }
     },
     methods: {
