@@ -156,7 +156,6 @@ export default {
                 this.shopData = shopData.shop
                 var options = { year: 'numeric', month: 'long', day: 'numeric' };
                 this.shopData.createdAt = new Date(this.shopData.createdAt).toLocaleDateString('en-GB', options)
-                console.log(shopData)
             }).catch((error) => {
                 if (error.response != undefined) {
                     var response = error.response.data

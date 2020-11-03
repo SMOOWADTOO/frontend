@@ -12,7 +12,7 @@
                     <Review/>
                 </b-tab-item>
                 <b-tab-item label="About">
-                    <About/>
+                    <About ref="about" :shopID="this.shopID"/>
                 </b-tab-item>
             </b-tabs>
         </div>
@@ -53,6 +53,7 @@ export default {
             }
         }
         this.$refs.shopCard.fetchShop()
+        this.$refs.about.fetchShop()
     },
 
     data() {
