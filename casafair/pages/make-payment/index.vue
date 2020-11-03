@@ -28,12 +28,13 @@
             </div>
         </div>
 
-        <div class="columns">
-            <div class="column is-10">
+        <div class="columns is-centered">
+            <div class="column is-2">
+                <span class="title is-6">Promo Code: </span>
+            </div>
+
+            <div class="column is-8">
                 <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label">Promo Code: </label>
-                    </div>
                     <div class="field-body">
                         <div class="field">
                             <p class="control">
@@ -66,7 +67,7 @@
             <div class="column is-1">
                 <div class="title is-6">Total: $130.50</div>
             </div>
-            <div class="column is-8"></div>
+            <div class="column is-7"></div>
             <div class="column is-1">
                 <button class="button is-primary is-outlined">Place Order</button>
             </div>

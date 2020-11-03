@@ -6,14 +6,17 @@ $orange: #f5a167;
 $red: #ee4350;
 $max: 100%;
 $padding-margin-std: 10%;
+$align: center; 
 
 
 .card {
     &.is-horizontal {
         display: flex;
+        align-self: $align;
 
         .card-image {
-            width: $max;
+            width: -webkit-max-content;
+            // width: $max;
             height: $max;
         }
 
@@ -23,10 +26,12 @@ $padding-margin-std: 10%;
             display: flex;
             position: relative;
             width: 50%;
+            align-self: $align;
+            justify-content: center;
 
-            .card-content {
-                flex-grow: 2;
-            }
+            // .card-content {
+            //     // flex-grow: 2;
+            // }
         }
     }
 
@@ -40,6 +45,7 @@ $padding-margin-std: 10%;
                 position: absolute;
                 bottom: 0;
                 width: 100%;
+                // height: 100%;
                 background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%);
                 text-shadow: 0px 0px 2px #000000;
 
@@ -64,6 +70,10 @@ $padding-margin-std: 10%;
     }
 }
 
+.no-bkgrd {
+    background: none;
+}
+
 .page-content {
     min-height: calc(100vh - 20vh);
 }
@@ -81,6 +91,7 @@ $padding-margin-std: 10%;
     display: flex;
     flex-direction: column;
     height: 100%;
+    align-self: $align;
 }
 
 
