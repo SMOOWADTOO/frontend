@@ -1,5 +1,5 @@
 <template>
-    <section class="container px-3 my-5">
+    <section class="container px-3 my-5 page-content">
         <div class="columns">
             <div class="column is-8">
                 <figure class="image is-4by3">

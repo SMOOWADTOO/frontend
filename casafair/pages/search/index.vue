@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="page-content">
     <SearchBox />
     {{ search_type }}
     <div
