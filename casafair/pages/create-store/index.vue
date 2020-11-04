@@ -1,80 +1,73 @@
 <template>
-    <section>
+    <section class="container">
         <br>
-        <h1 class="hero-title is-size-1 is-size-3-touch has-text-signature has-text-centered-desktop">
-            Create Your Shop
-        </h1>
-        <p class="has-text-centered-desktop">Fill in the details below to create your shop and start listing products!</p>
-        <br><br>
-        <form v-on:submit.prevent="submitShopUpdate">
-            <div class="columns is-centered">
-                <b-field label="Shop Profile Picture">
-                    <div class="column is-3">
-                        <h5>Current photo</h5>
-                        <img :src="profilePhotoURL">
-                    </div>
-                    <b-upload v-model="profilePhoto"
-                        drag-drop v-if="profilePhoto == null">
-                        <section class="section">
-                            <div class="content has-text-centered">
-                                <p>
-                                    <b-icon
-                                        icon="upload"
-                                        size="is-large">
-                                    </b-icon>
-                                </p>
-                                <p>Drop your image files here or click to upload your shop picture for your shop</p>
-                            </div>
-                        </section>
-                    </b-upload>
-                    <section class="section" v-if="profilePhoto != null">
-                        <div class="content">
-                            <img v-if="profilePhoto != null" :src="profilePhotoPreview" style="max-width: 20vw;">
-                            <br><br>
-                            <span
-                                class="tag is-primary" v-if="profilePhoto != null">
-                                {{profilePhoto.name}}
-                                <button class="delete is-small"
-                                    type="button"
-                                    @click="deleteDropFile">
-                                </button>
-                            </span>
-                        </div>
-                    </section>
-                </b-field>
-
-                <!-- <div class="tags">
-                    <span v-for="(file, index) in dropFiles"
-                        :key="index"
-                        class="tag is-primary" >
-                        {{file.name}}
-                        <button class="delete is-small"
-                            type="button"
-                            @click="deleteDropFile(index)">
-                        </button>
-                    </span>
-                </div> -->
+        <div class="columns">
+            <div class="column is-8 is-offset-2">
+                <h1 class="title has-text-grey-dark has-text-centered">{{title}}</h1>
+                <!-- <p class="has-text-centered">Fill in the details below to create your shop and start listing products!</p> -->
             </div>
+        </div>
+        <br>
+        <div class="columns">
+            <div class="column is-8 is-offset-2">
+                <form v-on:submit.prevent="submitShopUpdate">
+                    <b-field label="Shop Profile Picture">
+                        <div class="columns">
+                            <div class="column is-3">
+                                <h5>Current photo</h5>
+                                <img :src="profilePhotoURL">
+                            </div>
+                            <b-upload v-model="profilePhoto"
+                                drag-drop v-if="profilePhoto == null">
+                                <section class="section">
+                                    <div class="content has-text-centered">
+                                        <p>
+                                            <b-icon
+                                                icon="upload"
+                                                size="is-large">
+                                            </b-icon>
+                                        </p>
+                                        <p>Drop your image files here or click to upload your shop picture for your shop</p>
+                                    </div>
+                                </section>
+                            </b-upload>
+                            <section class="section" v-if="profilePhoto != null">
+                                <div class="content">
+                                    <img v-if="profilePhoto != null" :src="profilePhotoPreview" style="max-width: 20vw;">
+                                    <br><br>
+                                    <span
+                                        class="tag is-primary" v-if="profilePhoto != null">
+                                        {{profilePhoto.name}}
+                                        <button class="delete is-small"
+                                            type="button"
+                                            @click="deleteDropFile">
+                                        </button>
+                                    </span>
+                                </div>
+                            </section>
+                        </div>
+                    </b-field>
 
-            <div class="columns is-centered">
-                <div class="column is-7">
-                    <b-field label="Shop Name">
+                    <b-field label="Shop Name*">
                         <b-input custom-class="has-background-input" v-model="sName" type="text" placeholder="Shop Name" class="borderless" expanded required></b-input>
                     </b-field>
 
-                    <b-field label="Shop Address">
-                        <b-input custom-class="has-background-input" v-model="sAddr" type="text" placeholder="Shop Address" class="borderless" expanded required></b-input>
-                    </b-field>
-
-                    <b-field label="Shop Email">
+                    <b-field label="Shop Email*">
                         <b-input custom-class="has-background-input" v-model="sEmail" type="email" placeholder="Email" class="borderless" expanded required></b-input>
                     </b-field>
 
-                    <b-field label="Shop Contact Number">
-                        <b-input custom-class="has-background-input" v-model="sContact" type="text" placeholder="Contact Number" class="borderless" expanded required></b-input>
+                    <b-field label="Shop Contact Number*">
+                        <div class="columns">
+                            <div class="column is-2">
+                                <b-input maxlength="3" custom-class="has-background-input borderless" v-model="countryCode" type="text" placeholder="65"  expanded required></b-input>
+                            </div>
+                            <div class="column is-10">
+                                <b-input maxlength="12" custom-class="has-background-input borderless" v-model="phoneNo" type="text" placeholder="91234567" expanded required></b-input>
+                            </div>
+                        </div>
                     </b-field>
 
-                    <b-field label="Shop Description">
+                    <b-field label="Shop Description*">
                         <b-input custom-class="has-background-input" v-model="sDesc" type="textarea" placeholder="Contact Number" class="borderless" expanded required></b-input>
                     </b-field>
 
@@ -82,18 +75,28 @@
                         <b-input custom-class="has-background-input" v-model="sWebsite" type="text" placeholder="Website URL" class="borderless" expanded required></b-input>
                     </b-field>
 
+                    <br>
+                    <p class="subtitle has-text-signature-purple">
+                        Shop Address
+                    </p>
+                    <b-field label="Shop Postal Code">
+                        <b-input custom-class="has-background-input" v-model="postalCode" type="text" placeholder="Shop Address" class="borderless" expanded></b-input>
+                    </b-field>
+                    <b-field label="Shop Address*">
+                        <b-input custom-class="has-background-input" v-model="sAddr" type="text" placeholder="Shop Address" class="borderless" expanded required></b-input>
+                    </b-field>
+                    <br>
                     <div class="field is-grouped">
                         <div class="control">
-                            <button class="button is-link" type="submit">Create Shop</button>
+                            <button class="button is-link" type="submit">{{submitTxt}}</button>
                         </div>
                         <div class="control">
-                            <button class="button is-link is-light">Cancel</button>
+                            <button class="button is-link is-light" @click="cancelAction">Cancel</button>
                         </div>
                     </div>
-                </div>
-
+                </form>
             </div>
-        </form>
+        </div>
         <br>
     </section>
 </template>
@@ -103,14 +106,19 @@
         data() {
             return {
                 dropFiles: [],
+                shopId: "",
                 sName: "",
                 username: this.$auth.user.user.username,
                 sAddr: "",
                 sEmail: "",
-                sContact: "",
+                countryCode: "",
+                phoneNo: "",
                 sDesc: "",
                 sWebsite: "",
                 profilePhotoURL: "",
+                title: "Create Your Shop",
+                submitTxt: "Create",
+                postalCode: "",
                 
                 // new profile photo settings
                 profilePhoto: null,
@@ -125,24 +133,42 @@
                         this.profilePhotoString = fileData
                     })
                 }
-            }
+            },
+            postalCode: function() {
+                if (this.postalCode != undefined && this.postalCode.length == 6) {
+                    this.getAddress()
+                }
+            },
+        },
+        mounted() {
+            this.getInfo()
         },
         methods: {
-            submitShopUpdate() {
-                console.log("HelLo");
-                // let r = this.$axios.post(this.USERAPI + "/profile", {
-                let r = this.$axios.post(this.SHOPAPI + "/create", {
-                    "address": this.sAddr, 
-                    "contactNo": this.sContact, 
-                    "email": this.sEmail, 
-                    "shopDesc": this.sDesc, 
-                    "shopImageFile": this.profilePhotoString, 
-                    "shopName": this.sName, 
-                    "username": this.$auth.user.user.username, 
-                    "website": this.sWebsite
-                }).then((resp) => {
-                    this.toastAlert("Shop has been updated!", "is-success", 5000)
-                    this.deleteDropFile()
+            getInfo() {
+                let r = this.$axios.get(this.SHOPAPI + "/user/" + this.$auth.user.user.username)
+                // let r = this.$axios.get("http://localhost:7002/shop/user/" + this.username)//this.$auth.user.user.username)
+                .then((resp) => {
+                    // check if have shop
+                    if (resp.data.shops.length > 0) {
+                        var shop = resp.data.shops[0];
+                        this.title = "Edit Your Shop";
+                        this.profilePhotoURL = shop.shopImageURL;
+                        this.submitTxt = "Edit"
+                        this.shopId = shop.shopId
+                        this.sName = shop.shopName
+                        this.sEmail = shop.email
+                        // contact No
+                        if (shop.contactNo) {
+                            var cNo = shop.contactNo.split(" ");
+                            this.countryCode = cNo[0];
+                            this.phoneNo = cNo[1];
+                        }
+                        this.sDesc = shop.shopDesc
+                        this.sWebsite = shop.website
+                        this.sAddr = shop.address
+                    } else {
+                        this.title = "Create Your Shop";
+                    }
                 }).catch((error) => {
                     if (error.response != undefined) {
                         var response = error.response.data
@@ -150,6 +176,74 @@
                     } else {
                         this.toastAlert(error, "is-danger", 5000)
                     }
+                })
+            },
+            submitShopUpdate() {
+                // let r = this.$axios.post(this.SHOPAPI + "/create", {
+                if (this.submitTxt == "Edit") {
+                    // let r = this.$axios.post("http://localhost:7002/shop/edit", {
+                    let r = this.$axios.post(this.SHOPAPI + "/edit", {
+                        "address": this.sAddr, 
+                        "contactNo": this.countryCode + " " + this.phoneNo, 
+                        "email": this.sEmail, 
+                        "shopDesc": this.sDesc, 
+                        "shopImageFile": this.profilePhotoString, 
+                        "shopName": this.sName, 
+                        "username": this.$auth.user.user.username, 
+                        "website": this.sWebsite,
+                        "shopId": this.shopId
+                    }).then((resp) => {
+                        this.toastAlert("Shop has been updated!", "is-success", 5000)
+                        this.$router.push("/storefront/" + this.shopId);
+                    }).catch((error) => {
+                        if (error.response != undefined) {
+                            var response = error.response.data
+                            this.toastAlert(response, "is-danger", 2000)
+                        } else {
+                            this.toastAlert(error, "is-danger", 5000)
+                        }
+                    })
+                } else {
+                    let r = this.$axios.post(this.SHOPAPI + "/create", {
+                        "address": this.sAddr, 
+                        "contactNo": this.countryCode + " " + this.phoneNo, 
+                        "email": this.sEmail, 
+                        "shopDesc": this.sDesc, 
+                        "shopImageFile": this.profilePhotoString, 
+                        "shopName": this.sName, 
+                        "username": this.$auth.user.user.username, 
+                        "website": this.sWebsite
+                    }).then((resp) => {
+                        this.toastAlert("Shop has been created!", "is-success", 5000)
+                        this.$router.push("/storefront/" + this.shopId);
+                    }).catch((error) => {
+                        if (error.response != undefined) {
+                            var response = error.response.data
+                            this.toastAlert(response, "is-danger", 2000)
+                        } else {
+                            this.toastAlert(error, "is-danger", 5000)
+                        }
+                    })
+
+                }
+            },
+            getAddress() {
+                let response = this.$axios.get(this.GENERALAPI + '/map/address/' + this.postalCode).then((resp) => {
+                    var a = resp.data.address
+                    if (a) {
+                        this.sAddr = a.ADDRESS
+                    } else {
+                        this.sAddr = "";
+                    }
+                }).catch((error) => {
+                    if (error.response != undefined) {
+                        var response = error.response.data
+                        this.toastAlert("Address: " + response.message, "is-danger", 2000)
+                    } else {
+                        this.toastAlert(error, "is-danger", 5000)
+                    }
+                    this.addressLine1 = ""
+                    this.addressLine2 = ""
                 })
             },
             deleteDropFile(index) {
@@ -172,7 +266,7 @@
                             reader.onerror = error => reject(error);
                         }
                     } else {
-                        console.log("FILE SIZE: "+ file.size)
+                        // console.log("FILE SIZE: "+ file.size)
                         this.snackbarAlert("File is too large!", "is-danger", 5000)
                         this.deleteDropFile()
                     }
@@ -184,6 +278,13 @@
                 this.profilePhotoString = ""
                 this.profilePhotoPreview = null
             },
+            cancelAction() {
+                if (this.submitTxt == "Edit") {
+                    this.$router.push("/storefront/" + this.shopid);
+                } else {
+                    this.$router.push("/user/profile/" + this.$auth.user.user.id)
+                }
+            }
         }
     }
 </script>
