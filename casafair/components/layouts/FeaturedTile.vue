@@ -90,6 +90,8 @@
                     response) => {
                     let respData = response.data
                     this.products = respData.products
+                    var prod = respData.products
+                    this.products = prod.slice(0,4)
                 }).catch((error) => {
                     if (error.response != undefined) {
                         var response = error.response.data

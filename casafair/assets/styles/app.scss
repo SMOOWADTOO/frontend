@@ -7,7 +7,6 @@ $red: #ee4350;
 $max: 100%;
 $padding-margin-std: 10%;
 
-
 .card {
     &.is-horizontal {
         display: flex;
@@ -35,6 +34,7 @@ $padding-margin-std: 10%;
 
         .card-image {
             color: #fff !important;
+            height: $max;
 
             .card-stacked {
                 position: absolute;
