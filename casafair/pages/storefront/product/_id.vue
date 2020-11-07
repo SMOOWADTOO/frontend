@@ -1,6 +1,6 @@
 <template>
     <section class="container px-3 my-5 page-content">
-        <div class="columns is-vcentered">
+        <div class="columns">
             <div class="column is-8">
                 <div class="card is-fullimage">
                     <div class="card-image">
@@ -18,14 +18,15 @@
 
                                 <div class="content">
                                     <b-skeleton width="100%" :animated="true" v-if="this.loading"></b-skeleton>
-                                    <div v-else><span class="title is-4">{{productInfo.productName}}</span><br>{{productInfo.productDesc}}</div>
+                                    <div v-else><span
+                                            class="title is-4">{{productInfo.productName}}</span><br>{{productInfo.productDesc}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="column is-4">
                 <client-only>
                     <ShopCard :price="productInfo.unitPrice" :shopID="productInfo.shopId" :productInfo="productInfo" />

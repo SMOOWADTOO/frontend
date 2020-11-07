@@ -34,9 +34,9 @@
                     <br>
                     <hr>
                     <nuxt-link class="level-item" aria-label="accept" :to="'/storefront/product/new?shopID=' + this.$route.params.id">
-                        <span>
+                        <span class="icon is-large">
                             <i class="las la-pen has-text-signature-purple is-size-3" aria-hidden="true"></i>
-                            New Product
+                            New product
                         </span>
                     </nuxt-link>
                 </span>
