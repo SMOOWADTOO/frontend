@@ -11,7 +11,7 @@
                     <img v-if="productURL == ''" src="https://bulma.io/images/placeholders/128x128.png">
                     <img v-else :src="productURL">
                     <p class="is-size-5-mobile is-size-3-touch">
-                        Shop: {{shopName}} <br>
+                        Shop: {{shopName}}<br>
                         Product: {{product}}
                     </p>
                 </figure>
@@ -101,8 +101,8 @@
                 })
             },
             submitReview() {
-                // let r = this.$axios.post(this.REVIEWAPI, {
-                let r = this.$axios.post("http://localhost:7005/review/add", {
+                let r = this.$axios.post(this.REVIEWAPI + "/add", {
+                // let r = this.$axios.post("http://localhost:7005/review/add", {
                     "rating": this.rating,
                     "reviewDetail": this.comment,
                     "shopId": this.shopId,

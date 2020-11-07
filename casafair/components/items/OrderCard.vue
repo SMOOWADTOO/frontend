@@ -73,8 +73,8 @@
                 this.$router.push({name: 'review', params: {allIds: allIds}})
             },
             hasReviewed(orderId) {
-                // let r = this.$axios.get(this.REVIEWAPI + "/done/" + orderId)
-                let r = this.$axios.get("http://localhost:7005/review/done/" + orderId)
+                let r = this.$axios.get(this.REVIEWAPI + "/done/" + orderId)
+                // let r = this.$axios.get("http://localhost:7005/review/done/" + orderId)
                 .then((response) => {
                     let info = response.data;
                     this.isReviewed = info.isReviewed;
