@@ -1,0 +1,81 @@
+<template>
+    <section class="page-content">
+        <StaticPageHeader :heroClass="'has-text-centered'" :title="pageName" :description="pageDescription" />
+        <!-- contact form -->
+        <div class="field">
+            <div class="columns">
+                <div class="column is-6 is-offset-3">
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Name">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <div class="columns">
+                <div class="column is-6 is-offset-3">
+                    <div class="control">
+                        <input class="input" type="email" placeholder="Email">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <div class="columns">
+                <div class="column is-6 is-offset-3">
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Subject">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <div class="columns">
+                <div class="column is-6 is-offset-3">
+                    <textarea class="textarea" placeholder="Description"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column is-6 is-offset-3">
+                <div class="field is-grouped is-grouped-right">
+                    <p class="control">
+                        <a class="button is-primary">
+                            Submit
+                        </a>
+                    </p>
+                    <p class="control">
+                        <a class="button is-light">
+                            Cancel
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </section>
+</template>
+
+<script>
+    export default {
+        head() {
+            return {
+                title: this.appName + " | " + this.pageName,
+                meta: [
+                    // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+                    {
+                        hid: 'description',
+                        name: 'description',
+                        content: this.pageDescription
+                    }
+                ]
+            }
+        },
+        data() {
+            return {
+                pageName: "Contact Us",
+                pageDescription: "Need any help? Let us know.",
+            }
+        }
+    }
+</script>
