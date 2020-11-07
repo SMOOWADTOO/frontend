@@ -1,5 +1,10 @@
 <template>
     <div :class="this.windowWidth > 768 ? 'card mx-3 my-3 sticky-box sticky-top' : 'card'">
+        <div class="card-image is-hidden-mobile">
+            <figure class="image is-4by3">
+                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+            </figure>
+        </div>
         <div class="card-content">
             <div class="columns is-centered has-text-centered is-hidden-mobile">
                 <div class="column is-12">
@@ -34,9 +39,9 @@
                     <br>
                     <hr>
                     <nuxt-link class="level-item" aria-label="accept" :to="'/storefront/product/new?shopID=' + this.$route.params.id">
-                        <span>
+                        <span class="icon is-large">
                             <i class="las la-pen has-text-signature-purple is-size-3" aria-hidden="true"></i>
-                            New Product
+                            New product
                         </span>
                     </nuxt-link>
                 </span>

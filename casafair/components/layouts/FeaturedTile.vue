@@ -89,8 +89,7 @@
                 let r = this.$axios.get(this.PRODUCTAPI + "/by_store/" + this.featuredShopData.shopId).then((
                     response) => {
                     let respData = response.data
-                    var prod = respData.products
-                    this.products = prod.slice(0,4)
+                    this.products = respData.products
                 }).catch((error) => {
                     if (error.response != undefined) {
                         var response = error.response.data
