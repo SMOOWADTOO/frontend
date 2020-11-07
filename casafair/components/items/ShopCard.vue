@@ -1,10 +1,5 @@
 <template>
     <div :class="this.windowWidth > 768 ? 'card mx-3 my-3 sticky-box sticky-top' : 'card'">
-        <div class="card-image is-hidden-mobile">
-            <figure class="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-            </figure>
-        </div>
         <div class="card-content">
             <div class="columns is-centered has-text-centered is-hidden-mobile">
                 <div class="column is-12">
@@ -39,9 +34,9 @@
                     <br>
                     <hr>
                     <nuxt-link class="level-item" aria-label="accept" :to="'/storefront/product/new?shopID=' + this.$route.params.id">
-                        <span class="icon is-large">
+                        <span>
                             <i class="las la-pen has-text-signature-purple is-size-3" aria-hidden="true"></i>
-                            New product
+                            New Product
                         </span>
                     </nuxt-link>
                 </span>
@@ -156,7 +151,6 @@ export default {
                 this.shopData = shopData.shop
                 var options = { year: 'numeric', month: 'long', day: 'numeric' };
                 this.shopData.createdAt = new Date(this.shopData.createdAt).toLocaleDateString('en-GB', options)
-                console.log(shopData)
             }).catch((error) => {
                 if (error.response != undefined) {
                     var response = error.response.data
@@ -167,21 +161,28 @@ export default {
             })
         },
         beginPaymentSession() {
-            var paymentProduct = this.productInfo
-            paymentProduct["quantity"] = this.quantity
-            this.paymentData.products.push(paymentProduct)
-            let r = this.$axios.post(this.PAYMENTAPI + "/session", this.paymentData).then((response) => {
-                var sessionToken = response.data.paymentToken
+            if (this.$auth.user == undefined) {
+                console.log(this.$route.fullPath)
+                this.$router.push("/login?redirect_from=" + this.$route.fullPath)
+                this.toastAlert("You have to be logged in first.", "is-danger", 5000)
+            } else {
+                var paymentProduct = this.productInfo
+                paymentProduct["quantity"] = this.quantity
+                this.paymentData.products.push(paymentProduct)
+                let r = this.$axios.post(this.PAYMENTAPI + "/session", this.paymentData).then((response) => {
+                    var sessionToken = response.data.paymentToken
 
-                this.$router.push("/payment?session=" + sessionToken)
-            }).catch((error) => {
-                if (error.response != undefined) {
-                    var response = error.response.data
-                    this.toastAlert(response.message, "is-danger", 5000)
-                } else {
-                    this.toastAlert(error, "is-danger", 5000)
-                }
-            })
+                    this.$router.push("/payment?session=" + sessionToken)
+                }).catch((error) => {
+                    if (error.response != undefined) {
+                        var response = error.response.data
+                        this.toastAlert(response.message, "is-danger", 5000)
+                    } else {
+                        this.toastAlert(error, "is-danger", 5000)
+                    }
+                })
+            }
+            
         }
     }
 }

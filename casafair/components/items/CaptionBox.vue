@@ -1,8 +1,8 @@
 <template>
 
-    <div class="card is-fullimage equal-height">
+    <div class="card is-fullimage full-height">
         <div class="card-image">
-            <figure class="image is-4by3">
+            <figure class="image">
                 <img :src="profile.profilePhotoURL" :alt="profile.firstName + '\'s photo'">
             </figure>
             <div class="card-stacked full-height">

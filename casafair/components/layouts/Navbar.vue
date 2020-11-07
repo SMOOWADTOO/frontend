@@ -25,8 +25,8 @@
                 <b-navbar-item tag="router-link" :to="{path: '/user/profile/' + this.$auth.user.user.id}">
                     My Profile
                 </b-navbar-item>
-                <b-navbar-item tag="router-link" :to="{path: store}">
-                    My Store
+                <b-navbar-item tag="router-link" :to="{path: '/order-details/'}">
+                    My Orders
                 </b-navbar-item>
                 <b-navbar-item tag="router-link" :to="{path: '/user/settings'}">
                     Account Settings

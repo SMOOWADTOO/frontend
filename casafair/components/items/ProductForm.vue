@@ -2,22 +2,45 @@
     <section>
         <br>
         <div class="columns is-centered is-vcentered">
-            <b-field>
-                <b-upload v-model="dropFiles"
-                    multiple
-                    drag-drop>
-                    <section class="section">
-                        <div class="content has-text-centered">
-                            <p>
-                                <b-icon
-                                    icon="upload"
-                                    size="is-large">
-                                </b-icon>
-                            </p>
-                            <p>Drop your files here or click to upload</p>
-                        </div>
-                    </section>
-                </b-upload>
+            <b-field label="Product picture">
+                <div class="columns">
+                    <div class="column is-6">
+                        <h5>Current photo</h5>
+                        <img :src="productInfo.productPhotoURL">
+                    </div>
+                    <div class="column is-6">
+                        <h5>Upload a new photo</h5>
+                        <b-upload v-model="productPhoto"
+                    drag-drop v-if="productPhoto == null">
+                            <section class="section">
+                                <div class="content has-text-centered">
+                                    <p>
+                                        <b-icon
+                                            icon="upload"
+                                            size="is-large">
+                                        </b-icon>
+                                    </p>
+                                    <p>Drop your product photo here or click to upload</p>
+                                </div>
+                            </section>
+                        </b-upload>
+                        <section class="section" v-if="productPhoto != null">
+                            <div class="content">
+                                <img v-if="productPhoto != null" :src="productPhotoPreview" style="max-width: 20vw;">
+                                <br><br>
+                                <span
+                                    class="tag is-primary" v-if="productPhoto != null">
+                                    {{productPhoto.name}}
+                                    <button class="delete is-small"
+                                        type="button"
+                                        @click="deleteDropFile">
+                                    </button>
+                                </span>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                
             </b-field>
 
             <div class="tags">
@@ -83,6 +106,21 @@
                 dropFiles: [],
                 productInfo: {},
                 shopID: 0,
+                productPhotoString: "",
+
+                // new product photo settings
+                productPhoto: null,
+                productPhotoString: "",
+                productPhotoPreview: "",
+            }
+        },
+        watch: {
+            productPhoto: function() {
+                if (this.productPhoto != null) {
+                    this.onFileChange().then((fileData) => {
+                        this.productPhotoString = fileData
+                    })
+                }
             }
         },
         methods: {
@@ -107,7 +145,8 @@
                     "productDesc": this.productInfo.productDesc,
                     "productId": this.$route.params.id,
                     "productName": this.productInfo.productName,
-                    "unitPrice": this.productInfo.unitPrice
+                    "unitPrice": this.productInfo.unitPrice,
+                    "productPhotoFile": this.productPhotoString,
                 }).then((response) => {
                     let productsData = response.data
                     this.productInfo = productsData.product
@@ -128,7 +167,8 @@
                     "productId": this.$route.params.id,
                     "productName": this.productInfo.productName,
                     "productDesc": this.productInfo.productDesc,
-                    "unitPrice": this.productInfo.unitPrice
+                    "unitPrice": this.productInfo.unitPrice,
+                    "productPhotoFile": this.productPhotoString,
                 }).then((response) => {
                     let productsData = response.data
                     this.productInfo = productsData.product
@@ -151,7 +191,36 @@
                 } else {
                     this.updateInfo()
                 }
-            }
+            },
+            deleteDropFile() {
+                this.productPhoto = null
+                this.productPhotoString = ""
+                this.productPhotoPreview = null
+            },
+            onFileChange() {
+                const file = this.productPhoto
+                return new Promise((resolve, reject) => {
+                    if (file.size < 10000000) {
+                        // Check if file type is jpeg or png
+                        if (file.type != "image/jpeg" && file.type != "image/png") {
+                            this.snackbarAlert("File is not in JPEG or PNG format!", "is-danger", 5000)
+                            this.deleteDropFile()
+                        } else {
+                            this.productPhotoPreview = URL.createObjectURL(file);
+                            
+                            const reader = new FileReader()
+                            reader.readAsDataURL(this.productPhoto)
+                            reader.onload = () => resolve(reader.result);
+                            reader.onerror = error => reject(error);
+                        }
+                    } else {
+                        console.log("FILE SIZE: "+ file.size)
+                        this.snackbarAlert("File is too large!", "is-danger", 5000)
+                        this.deleteDropFile()
+                    }
+
+                })
+            },
         }
     }
 </script>

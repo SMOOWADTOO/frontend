@@ -1,5 +1,5 @@
 <template>
-    <section class="hero is-fullheight">
+    <section class="hero is-fullheight page-content">
         <div class="hero-body">
             <div class="container hero-container">
                 <form v-on:submit.prevent="login">
@@ -56,9 +56,15 @@ export default {
             isFullPage: true,
         }
     },
-    mounted() {
+    created() {
+        if (this.$auth.user != undefined) {
+            this.redirectHome()
+        }
     },
     methods: {
+        redirectHome() {
+            this.$router.push("/")
+        },
         register() {
             this.$router.push("/register")
         },
