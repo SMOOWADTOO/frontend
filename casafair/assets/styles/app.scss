@@ -77,6 +77,15 @@ $padding-margin-std: 10%;
     text-overflow: ellipsis;
 }
 
+.content-title {
+    display: -webkit-box;
+    line-height: 1.5rem;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .equal-height {
     display: flex;
     flex-direction: column;
