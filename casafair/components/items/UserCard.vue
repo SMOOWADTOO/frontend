@@ -42,7 +42,8 @@ export default {
             }
         }
         this.fetchUserData()
-        if (this.$route.params.id == this.$auth.user.user.id) {
+
+        if (this.$auth.loggedIn && this.$route.params.id == this.$auth.user.user.id) {
             this.hasStore()
         }
     },
