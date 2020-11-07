@@ -1,66 +1,49 @@
 <template>
-    <div class="container">
-        <!-- If car cards gallery -->
-        <swiper ref="mySwiper" :options="swiperOptions" v-if="hasLoaded" >
-            <swiper-slide style="padding:2rem 0;" v-for="detail in details" v-bind:key="detail.id">
-                <router-link :to="{path: '/view/'}">
-                    <VerticalCard :details="detail"/>
-                </router-link>
-            </swiper-slide>
-            <div class="swiper-pagination" slot="pagination"></div>
-        </swiper>
-        <swiper ref="mySwiper" :options="swiperOptions" v-else>
-            <swiper-slide style="padding:2rem 0;" v-for="i in 3" v-bind:key="i">
-                <HeroCard :title="'Category-' + i" :description="'Description of category-' + i"/>
-            </swiper-slide>
-            <div class="swiper-pagination" slot="pagination"></div>
-        </swiper>
-        <!-- Add Arrows -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-    </div>
+    <b-carousel :indicator-inside="false"> 
+        <b-carousel-item>
+            <span class="image">
+              <img src="@/assets/images/carousel_img.png">
+            </span>
+        </b-carousel-item>
+        <b-carousel-item>
+            <span class="image">
+              <img src="@/assets/images/discover.png">
+            </span>
+        </b-carousel-item>
+        <b-carousel-item>
+            <span class="image is-4by3">
+              <img src="@/assets/images/boss.png">
+            </span>
+        </b-carousel-item>
+    </b-carousel>
 </template>
 
 <script>
-import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
-import 'swiper/swiper-bundle.css'
-import VerticalCard from '@/components/items/VerticalCard.vue'
-import LoadingCard from '@/components/items/LoadingCard.vue'
-// import API from '@/constants/api_constants.js'
 export default {
     data() {
         return {
-            details: [],
-            hasLoaded: false,
-            swiperOptions: {
-                lazy: true,
-                slidesPerView: 1,
-                centeredSlides: true,
-                loop: true,
-                // loopFillGroupWithBlank: true,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                pagination: {
-                    el: '.swiper-pagination'
-                    // type: 'progressbar',
-                },
-            }
+            imgUrls: [
+                "@/assets/images/carousel_img.png",
+                "@/assets/images/discover.png",
+                "@/assets/images/boss.png"
+            ], 
+            
         }
     },
-    mounted() {
-    },
-    components: {
-        Swiper,
-        SwiperSlide,
-        VerticalCard,
-        LoadingCard
-    },
-    directives: {
-        swiper: directive
-    },
     methods: {
-    },
+      getImgUrl(value) {
+          console.log(value); 
+          return this.imgUrls[value-1]
+      }
+    }
 }
 </script>
+
+<style>
+.is-active .al img {
+    filter: grayscale(0%);
+}
+.al img {
+    filter: grayscale(100%);
+}
+</style>
