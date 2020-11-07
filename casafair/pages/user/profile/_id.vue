@@ -1,7 +1,7 @@
 <template>
     <div class="columns px-5 page-content">
         <div class="column is-4 is-12-mobile">
-            <UserCard :userData="this.userData" :rating="this.rate"/>
+            <UserCard :userID="$route.params.id"/>
         </div>
         <div class="column is-8 is-12-mobile is-centered">
             <div class="title has-text-centered">Reviews</div>
@@ -21,9 +21,6 @@ export default {
         }
     },
     methods: {
-        random() {
-            return Math.floor(Math.random() * (10 - 1 + 1)) + 10;
-        }
     }
 }
 </script>
