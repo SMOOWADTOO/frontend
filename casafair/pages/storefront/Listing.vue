@@ -1,7 +1,19 @@
 <template>
     <section>
         <div class="columns is-multiline is-desktop">
-            <div class="column is-4-desktop" v-for="product in products" v-bind:key="product.productId">
+            <div class="column is-8 is-offset-2 mt-5 has-text-centered" v-if="products.length == 0">
+                <span class="icon is-large my-3">
+                    <i class="las la-store is-size-1"></i>
+                </span>
+                <p>Oh no. You've got no products. List a product?</p>
+                    <nuxt-link class="level-item" aria-label="accept" :to="'/storefront/product/new?shopID=' + this.$route.params.id">
+                        <span class="icon is-large">
+                            <i class="las la-pen has-text-signature-purple is-size-3" aria-hidden="true"></i>
+                        </span>
+                        New product
+                    </nuxt-link>
+            </div>
+            <div class="column is-4-desktop" v-for="product in products" v-bind:key="product.productId" v-else>
                 <ProductCard :productInfo="product"/>
             </div>
         </div>
