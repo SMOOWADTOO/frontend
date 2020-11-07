@@ -1,6 +1,6 @@
 <template>
-    <article class="tile is-child notification is-white">
-        <div class="content">
+    <article class="tile is-child notification is-white py-5">
+        <div class="content py-6">
             <p class="title">{{title}}</p>
             <p class="subtitle">{{description}}</p>
             <div class="content">

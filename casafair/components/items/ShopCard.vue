@@ -3,7 +3,7 @@
         <div class="card-content">
             <div class="columns is-centered has-text-centered is-hidden-mobile">
                 <div class="column is-12">
-                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                    <img :src="shopData.shopImageURL" alt="Placeholder image">
                     <p class="title is-4">{{shopData.shopName}}</p>
                     <p class="subtitle is-6">by @{{shopData.username}}</p>
                 </div>
