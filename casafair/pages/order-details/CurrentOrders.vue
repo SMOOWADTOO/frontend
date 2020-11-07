@@ -1,6 +1,6 @@
 <template>
     <section>
-        <OrderCard v-for="i of orderData" v-bind:key="i.name" :rData="i"/>
+        <OrderCard v-for="i of orderData" v-bind:key="i.orderId" :rData="i"/>
         <div style="text-align:center;" v-if=!this.orderData.length>No orders currently</div>
     </section>
 </template>
@@ -21,6 +21,7 @@ export default {
         },
         fetchInformation() {
             let r = this.$axios.get(this.ORDERAPI + "/user/" + this.$auth.user.user.username).then((response) => {
+                let oData = [];
                 let objectData = response.data;
                 let ordersData = objectData.orders;
                 for (var order of ordersData) {
@@ -31,6 +32,12 @@ export default {
                             productInfo["quantity"] = orderDetail.quantity;
                             productInfo["total"] = orderDetail.total.toFixed(2);
                             productInfo["username"] = order.username;
+                            productInfo["deliveryAddress"] = order.deliveryAddress;
+                            var epoch = Date.parse(order.createdAt)
+                            productInfo["createdAt"] = new Date(Date.parse(order.createdAt)).toString();
+                            productInfo["epoch"] = epoch;
+                            var deliveryDate = epoch + (Math.floor(Math.random() * 10) * 86400000);
+                            productInfo["deliveryDate"] = new Date(deliveryDate).toString();
                             productInfo["orderId"] = orderDetail.orderId;
                             let r = this.$axios.get(this.PRODUCTAPI + "/" + orderDetail.productId).then((response) => {
                                 let productsData = response.data;
@@ -39,8 +46,9 @@ export default {
                                 productInfo["name"] = product.productName;
                                 productInfo["shopId"] = product.shopId;
                                 productInfo["unitPrice"] = product.unitPrice;
-                                this.orderData.push(productInfo);
-                                console.log(productInfo);
+                                productInfo["productPhotoURL"] = product.productPhotoURL;
+                                oData.push(productInfo);
+                                // console.log(productInfo);
                             }).catch((error) => {
                                 if (error.response != undefined) {
                                     var response = error.response.data
@@ -52,7 +60,10 @@ export default {
                         }
                     }
                 }
+                oData.sort((a, b) => (a.orderId > b.orderId) ? 1 : -1);
+                this.orderData = oData;
                 // this.productInfo = productsData.product
+                console.log(oData);
             }).catch((error) => {
                 if (error.response != undefined) {
                     var response = error.response.data
