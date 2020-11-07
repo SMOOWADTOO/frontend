@@ -37,8 +37,6 @@
         },
         data() {
             return {
-                title: "Le Business Name",
-                description: "Lorem ipsum dolor sit amet consectur adispiscing",
                 featuredShopData: {},
                 didFetchUserDetails: false,
                 ownerDetails: {},
@@ -59,7 +57,6 @@
                 let r = this.$axios.get(this.SHOPAPI + "/" + this.randomShopID).then((response) => {
                     let featuredShopData = response.data
                     this.featuredShopData = featuredShopData.shop
-                    console.log(featuredShopData)
                 }).catch((error) => {
                     if (error.response != undefined) {
                         var response = error.response.data

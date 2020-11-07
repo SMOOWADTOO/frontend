@@ -1,7 +1,7 @@
 <template>
     <div id="app" class="container">
 
-        <b-carousel-list v-model="test" :data="productsData" :items-to-show="2" v-if="hasLoaded">
+        <b-carousel-list v-model="test" :data="productsData" :items-to-show="showItems" v-if="hasLoaded">
             <template slot="item" slot-scope="list">
                 <router-link :to="{path: '/storefront/product/' + list.productId}">
                     <HorizontalCard :productData="list" />
@@ -25,6 +25,9 @@
     export default {
         data() {
             return {
+                // responsive measurements
+                windowWidth: 0,
+
                 arrow: true,
                 arrowHover: true,
                 drag: true,
@@ -36,10 +39,28 @@
                 repeat: true,
                 productsData: [],
                 hasLoaded: false,
+                showItems: 2
             }
         },
         mounted() {
             this.fetchProducts()
+            if (process.client) {
+                this.windowWidth = window.innerWidth
+                window.onresize = () => {
+                    this.windowWidth = window.innerWidth
+                }
+            }
+        },
+        watch: {
+            windowWidth: function() {
+                if (this.windowWidth <= 576) {
+                    this.showItems = 1
+                } else if (this.windowWidth > 576 && this.windowWidth <= 1024) {
+                    this.showItems = 2
+                } else {
+                    this.showItems = 3
+                }
+            }
         },
         methods: {
             fetchProducts() {
