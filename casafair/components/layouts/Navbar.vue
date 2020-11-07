@@ -14,11 +14,14 @@
             <b-navbar-item tag="router-link" :to="{path: '/' + urlSafe(pill1)}">
                 {{pill1}}
             </b-navbar-item>
-            <b-navbar-item  tag="router-link" :to="{path: '/login', query: {'redirect_from': this.$nuxt.$route.path}}" v-if="!$auth.loggedIn">
+            <b-navbar-item tag="router-link" :to="{path: '/' + urlSafe(pill2)}">
                 {{pill2}}
             </b-navbar-item>
+            <b-navbar-item  tag="router-link" :to="{path: '/login', query: {'redirect_from': this.$nuxt.$route.path}}" v-if="!$auth.loggedIn">
+                {{pill3}}
+            </b-navbar-item>
             <b-navbar-item tag="div" v-if="!$auth.loggedIn">
-                <button class="button is-primary signature-dark-purple-shadows" v-on:click="goRegister">{{pill3}}</button>
+                <button class="button is-primary signature-dark-purple-shadows" v-on:click="goRegister">{{pill4}}</button>
             </b-navbar-item>
             
             <b-navbar-dropdown :label="'Hey, ' + this.$auth.user.user.firstName + '!'" v-else>
@@ -46,6 +49,7 @@ export default {
         pill1: String,
         pill2: String,
         pill3: String,
+        pill4: String,
     },
     mounted() {
     },

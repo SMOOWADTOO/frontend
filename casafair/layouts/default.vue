@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid" style="min-height: 100vh;">
         <!-- 4 buttons in nav, write each description here -->
-        <navbar pill0="About Us" pill1="FAQ" pill2="Log in" pill3="Sign up"/>
+        <navbar pill0="About Us" pill1="FAQ" pill2="Contact Us" pill3="Log in" pill4="Sign up"/>
         <nuxt/>
         <bottom/>
     </div>
