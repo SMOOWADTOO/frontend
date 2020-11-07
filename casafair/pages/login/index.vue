@@ -58,7 +58,7 @@ export default {
     },
     created() {
         console.log(this.$auth.user)
-        if (this.$auth.user.user != undefined) {
+        if (!!this.$auth.user) {
             this.redirectHome()
         }
     },
