@@ -1,6 +1,6 @@
 <template>
-    <div class="card is-horizontal" style="min-height: 30%">
-        <div class="card-image" style="max-width: 30%">
+    <div class="card is-horizontal is-vcentered">
+        <div class="card-image" style="max-width:50%">
             <figure class="image is-4by3 has-background-grey-lighter">
                 <img :src="productData.productPhotoURL" :alt="productData.productName + ' image'"
                     v-if="productData.productPhotoURL != null">
@@ -9,7 +9,7 @@
         <div class="card-stacked">
             <div class="card-content">
                 <div class="media-content">
-                    <p class="title is-4">{{productData.productName}}</p>
+                    <p class="title is-6 content-title">{{productData.productName}}</p>
                     <p class="subtitle is-6 content-text">{{productData.productDesc}}</p>
                 </div>
 
