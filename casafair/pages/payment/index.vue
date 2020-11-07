@@ -15,6 +15,10 @@
                                             <p><span class="has-text-weight-bold">Product Description:</span> {{item.productDesc}}</p>
                                             <p><span class="has-text-weight-bold">Quantity:</span> {{item.quantity}}</p>
                                             <p><span class="has-text-weight-bold">Price per item:</span> $ {{item.unitPrice}}</p>
+                                            <b-field label="Delivery Postal Code*">
+                                                <b-input custom-class="has-background-input borderless" v-model="postalCode" type="text" placeholder="307987" expanded required></b-input>
+                                            </b-field>
+                                            <p><span class="has-text-weight-bold">Delivery Address: </span>{{deliveryAddress === "" ? "" : deliveryAddress}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -27,12 +31,13 @@
                                     <p>Please fill in your payment details:</p>
                                     <!-- Display a payment form -->
                                     <form id="payment-form" v-on:submit.prevent="payWithCard">
+                                        <small>Powered by <b class="has-text-primary">stripe</b>.</small>
                                         <div id="card-element"></div>
                                         <br>
                                         <!-- <p :class="errorClass">{{this.ccErrors}}</p> -->
                                         <div class="columns">
                                             <div class="column is-12">
-                                                <button :class="buttonClass" id="submit" style="min-width:100%" :disabled="paymentButtonDisabled">
+                                                <button :class="buttonClass" id="submit" style="min-width:100%" :disabled="paymentButtonDisabled" v-if="addressNotEmpty">
                                                     <div class="spinner" id="spinner"></div>
                                                     <span id="button-text">Pay</span>
                                                 </button>
@@ -133,7 +138,7 @@ export default {
             const elements = stripe.elements()
 
             var style = {
-            base: {
+                base: {
                     color: "#333333",
                     fontFamily: 'Courier, monospace',
                     fontSmoothing: "antialiased",
@@ -180,6 +185,10 @@ export default {
             },
             beforeTaxLabel: "Total amount before tax.",
             gstLabel: "This is the Government's goods & services tax",
+            
+            postalCode: "",
+            deliveryAddress: "",
+            addressNotEmpty: false,
 
             ccErrors: "",
             errorClass: "is-hidden has-text-danger",
@@ -189,7 +198,30 @@ export default {
             paymentSuccess: false,
         }
     },
+    watch: {
+        postalCode: function() {
+            if (this.postalCode != undefined && this.postalCode.length == 6) {
+                this.getAddress()
+            }
+        },
+    },
     methods: {
+        getAddress() {
+            let response = this.$axios.get(this.GENERALAPI + '/map/address/' + this.postalCode).then((resp) => {
+                var a = resp.data.address
+                this.deliveryAddress = a.ADDRESS
+                this.addressNotEmpty = true
+            }).catch((error) => {
+                if (error.response != undefined) {
+                    var response = error.response.data
+                    this.toastAlert("Address: " + response.message, "is-danger", 2000)
+                } else {
+                    this.toastAlert(error, "is-danger", 5000)
+                }
+                this.deliveryAddress = ""
+                this.addressNotEmpty = false
+            })
+        },
         getInfo() {
             let r = this.$axios.get(this.USERAPI + "/profile/me").then((response) => {
                 var userInfo = response.data.user
@@ -307,7 +339,7 @@ export default {
 
             let r = this.$axios.post(this.ORDERAPI + "/create", {
                 "completed": false,
-                "deliveryAddress": "SMU SIS",
+                "deliveryAddress": this.deliveryAddress,
                 "paid": true,
                 "order_details": orderDetails,
                 "pickupAddress": "SMU SOE",
@@ -315,7 +347,6 @@ export default {
             }).then((paymentResponse) => {
                 var res = paymentResponse.data
                 this.orderID = res.order.orderId
-                this.toastAlert("Paid success", "is-info", 5000)
                 this.emailConfirmation()
             }).catch((error) => {
                 if (error.response != undefined) {
