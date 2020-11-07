@@ -1,6 +1,6 @@
 <template>
     <section>
-        <OrderCard v-for="i of orderData" v-bind:key="i.name" :rData="i"/>
+        <OrderCard v-for="i of orderData" v-bind:key="i.orderId" :rData="i"/>
         <div style="text-align:center;" v-if=!this.orderData.length>No past orders yet</div>
     </section>
 </template>
@@ -23,6 +23,7 @@ export default {
             let r = this.$axios.get(this.ORDERAPI + "/user/" + this.$auth.user.user.username).then((response) => {
                 let objectData = response.data;
                 let ordersData = objectData.orders;
+                let orderCount = 0;
                 for (var order of ordersData) {
                     if (order.completed) {
                         for (var orderDetail of order.order_details) {
@@ -31,6 +32,8 @@ export default {
                             productInfo["quantity"] = orderDetail.quantity;
                             productInfo["total"] = orderDetail.total.toFixed(2);
                             productInfo["username"] = orderDetail.username;
+                            productInfo["deliveryAddress"] = order.deliveryAddress;
+                            productInfo["createdAt"] = order.createdAt;
                             productInfo["orderId"] = orderDetail.orderId;
                             let r = this.$axios.get(this.PRODUCTAPI + "/" + orderDetail.productId).then((response) => {
                                 let productsData = response.data;
@@ -39,6 +42,7 @@ export default {
                                 productInfo["name"] = product.productName;
                                 productInfo["shopId"] = product.shopId;
                                 productInfo["unitPrice"] = product.unitPrice;
+                                productInfo["productPhotoURL"] = product.productPhotoURL;
                                 this.orderData.push(productInfo);
                             }).catch((error) => {
                                 if (error.response != undefined) {
