@@ -257,6 +257,19 @@ export default {
         this.getInfo()
     },
     methods: {
+        // updateAuth() {
+        //     this.$auth.user.user.nric = this.nric
+        //     this.$auth.user.user.fName = this.fName
+        //     this.$auth.user.user.lName = this.lName
+        //     this.$auth.user.user.mobileNo = this.mobileNo
+        //     this.$auth.user.user.gender = this.gender
+        //     this.$auth.user.user.birthDate = this.birthDate
+        //     this.$auth.user.user.description = this.description
+        //     this.$auth.user.user.postalCode = this.postalCode
+        //     this.$auth.user.user.addressLine1 = this.addressLine1
+        //     this.$auth.user.user.addressLine2 = this.addressLine2
+        //     this.$auth.user.user.profilePhotoURL = this.profilePhotoURL
+        // },
         getInfo() {
             let response = this.$axios.get(this.USERAPI + '/profile/me').then((r) => {
                 var infoResponse = r.data.user
@@ -384,6 +397,7 @@ export default {
                 this.toastAlert("Profile has been updated!", "is-success", 5000)
                 this.getInfo()
                 this.deleteDropFile()
+                window.location.href = '/user/settings'
             }).catch((error) => {
                 if (error.response != undefined) {
                     var response = error.response.data
@@ -407,6 +421,7 @@ export default {
             }).then((resp) => {
                 this.toastAlert("Profile has been updated!", "is-success", 5000)
                 this.getInfo()
+                window.location.href = '/user/settings'
             }).catch((error) => {
                 if (error.response != undefined) {
                     var response = error.response.data

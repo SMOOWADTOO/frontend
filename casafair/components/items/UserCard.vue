@@ -33,6 +33,7 @@
 <script>
 export default {
     mounted() {
+        console.log(this.$auth)
         this.route = this.$route.fullPath
         if (process.client) {
             this.windowWidth = window.innerWidth
