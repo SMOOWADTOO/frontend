@@ -71,7 +71,7 @@
                                             </b-tooltip>
                                         </div>
                                         <div class="column has-text-right">
-                                            <p><u>$ {{this.paymentResponse.gst}}</u></p>
+                                            <p><u>$ {{this.paymentResponse.gst === undefined ? '' : this.paymentResponse.gst.toFixed(2)}}</u></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -164,6 +164,9 @@ export default {
             pageExpiredLabel: "",
 
             userInfo: {},
+            orders: [],
+            emailDetails: [],
+            orderID: null,
 
             clientSecret: "",
             stripe: {
@@ -263,8 +266,27 @@ export default {
                 this.buttonClass = "is-signature button"
             }
         },
+        emailConfirmation() {
+            let r = this.$axios.post(this.NOTIFICATIONAPI + "/email", {
+                "email": this.$auth.user.user.email,
+                "firstName": this.$auth.user.user.firstName,
+                "lastName": this.$auth.user.user.lastName,
+                "orderId": this.orderID,
+                "productList": this.emailDetails
+            }).then((response) => {
+                this.toastAlert("A confirmation email has been sent to your email address.", "is-info", 5000)
+            }).catch((error) => {
+                if (error.response != undefined) {
+                    var response = error.response.data
+                    this.toastAlert(response.message, "is-danger", 5000)
+                } else {
+                    this.toastAlert(error, "is-danger", 5000)
+                }
+            })
+        },
         confirmTransaction() {
             var orderDetails = []
+            var emailDetails = []
             var purchasedProduct = this.paymentResponse.purchasedProducts[0]
 
             orderDetails.push({
@@ -274,6 +296,15 @@ export default {
                 "total": this.paymentResponse.amount
             })
 
+            emailDetails.push({
+                "price": purchasedProduct.unitPrice,
+                "itemName": purchasedProduct.productName,
+                "qty": purchasedProduct.quantity
+            })
+
+            this.orders = orderDetails
+            this.emailDetails = emailDetails
+
             let r = this.$axios.post(this.ORDERAPI + "/create", {
                 "completed": false,
                 "deliveryAddress": "SMU SIS",
@@ -282,7 +313,10 @@ export default {
                 "pickupAddress": "SMU SOE",
                 "username": this.$auth.user.user.username
             }).then((paymentResponse) => {
+                var res = paymentResponse.data
+                this.orderID = res.order.orderId
                 this.toastAlert("Paid success", "is-info", 5000)
+                this.emailConfirmation()
             }).catch((error) => {
                 if (error.response != undefined) {
                     var response = error.response.data

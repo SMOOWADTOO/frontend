@@ -399,7 +399,7 @@ export default {
                 "firstName": this.fName,
                 "lastName": this.lName,
                 "phoneNo": this.countryCode + " " + this.phoneNo,
-                "gender": this.gender == "Male" ? 0 : 1,
+                "gender": this.gender,
                 "birthday": this.birthDate,
                 "postalCode": this.postalCode,
                 "addressLine1": this.addressLine1,
