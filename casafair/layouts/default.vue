@@ -35,6 +35,9 @@ export default {
 </style>
 
 <style>
+    img {
+        object-fit: cover;
+    }
     .sticky-box {
         top: 5vh !important;
         z-index: 0;

@@ -1,7 +1,7 @@
 <template>
     <section class="container px-3 my-5 page-content">
         <div class="columns">
-            <div class="column is-8">
+            <div class="column is-7">
                 <div class="card is-fullimage">
                     <div class="card-image">
                         <figure class="image is-4by3">
@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div class="column is-4">
+            <div class="column is-5">
                 <client-only>
                     <ShopCard :price="productInfo.unitPrice" :shopID="productInfo.shopId" :productInfo="productInfo" />
                 </client-only>
