@@ -57,7 +57,8 @@ export default {
         }
     },
     created() {
-        if (this.$auth.user != undefined) {
+        console.log(this.$auth.user)
+        if (this.$auth.user.user != undefined) {
             this.redirectHome()
         }
     },
@@ -76,7 +77,6 @@ export default {
             }).then((userResponse) => {
                 let user = this.$auth.user.user
                 this.toastAlert("Welcome back, " + user.firstName + "!", "is-success", 5000)
-
                 // redirects you back to where you came from
                 if (this.$nuxt.$route.query.redirect_from != undefined) {
                     this.$router.push(this.$nuxt.$route.query.redirect_from)
