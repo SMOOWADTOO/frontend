@@ -1,19 +1,19 @@
 <template>
     <b-carousel :indicator-inside="false"> 
         <b-carousel-item>
-            <span class="image">
+            <figure class="image is-3by1">
               <img src="@/assets/images/carousel_img.png">
-            </span>
+            </figure>
         </b-carousel-item>
         <b-carousel-item>
-            <span class="image">
+            <figure class="image is-3by1">
               <img src="@/assets/images/discover.png">
-            </span>
+            </figure>
         </b-carousel-item>
         <b-carousel-item>
-            <span class="image is-4by3">
+            <figure class="image is-3by1">
               <img src="@/assets/images/boss.png">
-            </span>
+            </figure>
         </b-carousel-item>
     </b-carousel>
 </template>
