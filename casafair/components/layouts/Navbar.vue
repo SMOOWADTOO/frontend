@@ -48,7 +48,6 @@ export default {
         pill3: String,
     },
     mounted() {
-        this.hasStore()
     },
     methods: {
         goRegister() {
@@ -61,34 +60,9 @@ export default {
         urlSafe(link) {
             return link.toLowerCase().replace(" ", "-");
         },
-        hasStore() {
-            console.log(this.$auth.user.user.username)
-            let r = this.$axios.get(this.SHOPAPI + "/user/" + this.$auth.user.user.username)
-            // let r = this.$axios.get("http://localhost:7002/shop/user/" + this.username)//this.$auth.user.user.username)
-            .then((resp) => {
-                // check if have shop
-                console.log(resp);
-                if (resp.data.shops.length > 0) {
-                    var shop = resp.data.shops[0];
-                    console.log("/storefront/" + shop.shopId);
-                    this.store = "/storefront/" + shop.shopId;
-                } else {
-                    this.store = "/create-store";
-                }
-                console.log(this.store);
-            }).catch((error) => {
-                if (error.response != undefined) {
-                    var response = error.response.data
-                    this.toastAlert(response, "is-danger", 2000)
-                } else {
-                    this.toastAlert(error, "is-danger", 5000)
-                }
-            })
-        },
     },
     data() {
         return {
-            store: ""
         }
     },
 }

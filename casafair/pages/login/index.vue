@@ -57,7 +57,6 @@ export default {
         }
     },
     created() {
-        console.log(this.$auth.user)
         if (!!this.$auth.user) {
             this.redirectHome()
         }
