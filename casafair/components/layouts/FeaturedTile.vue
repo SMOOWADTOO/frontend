@@ -2,7 +2,6 @@
     <div class="columns my-5">
         <div class="column">
             <router-link :to="{path: '/storefront/' + featuredShopData.shopId}">
-
                 <DescriptionBox :title="featuredShopData.shopName" :description="featuredShopData.shopDesc"
                     :shopID="featuredShopData.shopId" />
             </router-link>
@@ -12,7 +11,7 @@
             <div class="columns is-multiline">
                 <div class="column is-12">
                     <!-- owner description -->
-                    <router-link :to="{path: '/storefront/' + featuredShopData.shopId}">
+                    <router-link :to="{path: '/user/profile/' + ownerDetails.id}">
                         <CaptionBox :description="ownerDetails" />
                     </router-link>
                 </div>
@@ -43,7 +42,7 @@
                 featuredShopData: {},
                 didFetchUserDetails: false,
                 ownerDetails: {},
-                randomShopID: 1,
+                randomShopID: Math.floor(Math.random() * Math.floor(2)) + 1,
                 products: [],
             }
         },
