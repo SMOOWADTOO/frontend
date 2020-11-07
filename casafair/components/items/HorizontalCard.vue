@@ -1,6 +1,6 @@
 <template>
-    <div class="card is-horizontal">
-        <div class="card-image">
+    <div class="card is-horizontal" style="min-height: 30%">
+        <div class="card-image" style="max-width: 30%">
             <figure class="image is-4by3 has-background-grey-lighter">
                 <img :src="productData.productPhotoURL" :alt="productData.productName + ' image'"
                     v-if="productData.productPhotoURL != null">
