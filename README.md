@@ -31,4 +31,4 @@ data() {
 - OneMAP API (by Singapore Land Authority) :white_check_mark:
 - Google Maps API :white_check_mark:
 - Stripe API :white_check_mark:
-- Mailjet API
+- Mailjet API :white_check_mark:
