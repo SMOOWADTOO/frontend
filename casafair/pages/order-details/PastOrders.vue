@@ -1,6 +1,7 @@
 <template>
     <section>
-        <OrderCard v-for="i of orderData" v-bind:key="i.orderId" :rData="i"/>
+        <v-dialog/>
+        <OrderCard @click="showButtonsDialog(i)" v-for="i of orderData" v-bind:key="i.orderId" :rData="i"/>
         <div style="text-align:center;" v-if=!this.orderData.length>No past orders yet</div>
     </section>
 </template>
@@ -35,6 +36,7 @@ export default {
                             productInfo["deliveryAddress"] = order.deliveryAddress;
                             productInfo["createdAt"] = order.createdAt;
                             productInfo["orderId"] = orderDetail.orderId;
+                            productInfo["productId"] = orderDetail.productId;
                             let r = this.$axios.get(this.PRODUCTAPI + "/" + orderDetail.productId).then((response) => {
                                 let productsData = response.data;
                                 let product = productsData.product;

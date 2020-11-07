@@ -1,9 +1,11 @@
 <template>
-    <div class="box">
+    <div class="box" @click="showButtonsDialog">
+        <!-- <v-dialog/> -->
+        <modal @click="showModal" name="example">This is</modal>
         <div class="columns is-vcentered-mobile">
             <div class="columns is-vcentered card-content is-flex is-horizontal-center">
                 <figure class="image is-128x128">
-                    <img @click="goToShop(rData.shopId)" :src="rData.productPhotoURL">
+                    <img :src="rData.productPhotoURL">
                 </figure>
             </div>
             <div class="column is-9-mobile">
@@ -19,6 +21,8 @@
                 <b>${{rData.total}}</b><br><br>
                 <button v-if="rData.isCurrent" id="receivedBtn" class="button is-primary is-outlined signature-dark-purple-shadows" @click="orderReceived(rData.orderId, rData.username)">Order Received</button>
                 <!-- <button v-else id="receivedBtn" class="button is-primary is-outlined signature-dark-purple-shadows" @click="orderReceived(rData.orderId, rData.username)">Order Received</button> -->
+                <p v-else-if="isReviewed" id="reviewed" class="subtitle">Reviewed</p>
+                <button v-else id="reviewBtn" class="button is-primary is-outlined signature-dark-purple-shadows" @click="submitReview(rData.shopId, rData.orderId, rData.productId)">Review</button>
             </div>
 
         </div>
@@ -31,9 +35,15 @@
             rData: Object,
             activeTab: Number
         },
-        // mounted() {
-        //     this.isCurrent(this.rData.isCurrent)
-        // },
+        data() {
+            return {
+                isReviewed: false
+            }
+        },
+        mounted() {
+            // this.isCurrent(this.rData.isCurrent)
+            this.hasReviewed(this.rData.orderId)
+        },
         methods: {
             orderReceived(orderId, username) {
                 let r = this.$axios.post(this.ORDERAPI + "/edit", {
@@ -54,12 +64,85 @@
             },
             goToShop(shopId) {
                 this.$router.push("/storefront/" + shopId);
-            }
+            },
+            goToProduct(productId) {
+                this.$router.push("/storefront/product/" + productId);
+            },
+            submitReview(shopId, orderId, productId) {
+                var allIds = shopId + "-" + orderId + "-" + productId;
+                this.$router.push({name: 'review', params: {allIds: allIds}})
+            },
+            hasReviewed(orderId) {
+                // let r = this.$axios.get(this.REVIEWAPI + "/done/" + orderId)
+                let r = this.$axios.get("http://localhost:7005/review/done/" + orderId)
+                .then((response) => {
+                    let info = response.data;
+                    this.isReviewed = info.isReviewed;
+                }).catch((error) => {
+                    if (error.response != undefined) {
+                        var response = error.response.data
+                        this.toastAlert(response.message, "is-danger", 5000)
+                    } else {
+                        this.toastAlert(error, "is-danger", 5000)
+                    }
+                })
+            },
             // isCurrent(current) {
             //     if (!current) {
             //         document.getElementById("receivedBtn").remove();
             //     }
             // }
+            showButtonsDialog() {
+                var currText = `<b>` + this.rData.name + ` x` + this.rData.quantity + `</b>` + `
+                <br>Unit Price: $` + this.rData.unitPrice.toFixed(2) + `
+                <br>GST: $` + (this.rData.unitPrice * 0.07).toFixed(2) + `
+                <br>Total Cost: $` + this.rData.total + `
+                <br><br>Estimated Delivery Date: ` + this.rData.deliveryDate + `
+                <br>Delivery Address: ` + this.rData.deliveryAddress + `
+                <hr>Order ID: ` + this.rData.orderId + `
+                <br>Order Created: ` + this.rData.createdAt;
+
+                var pastText = `<b>` + this.rData.name + ` x` + this.rData.quantity + `</b>` + `
+                <br>Unit Price: $` + this.rData.unitPrice.toFixed(2) + `
+                <br>GST: $` + (this.rData.unitPrice * 0.07).toFixed(2) + `
+                <br>Total Cost: $` + this.rData.total + `
+                <br><br>Successfully Delivered` + `
+                <br>Delivery Address: ` + this.rData.deliveryAddress + `
+                <hr>Order ID: ` + this.rData.orderId + `
+                <br>Order Created: ` + this.rData.createdAt;
+
+                var text = pastText;
+                if (this.rData.isCurrent) {
+                    text = currText;
+                }
+                this.$modal.show('dialog', {
+                    title: 'Order Details',
+                    text: text,
+                    buttons: [
+                    {
+                        title: 'Cancel',
+                        handler: () => {
+                        this.$modal.hide('dialog')
+                        }
+                    },
+                    {
+                        title: 'Visit Shop',
+                        handler: () => {
+                            this.goToShop(this.rData.shopId);
+                        }
+                    },
+                    {
+                        title: 'View Product',
+                        handler: () => {
+                            this.goToProduct(this.rData.productId);
+                        }
+                    }
+                    ]
+                })
+            },
+            showModal() {
+                this.$modal.show('example');
+            }
         }
     }
 </script>

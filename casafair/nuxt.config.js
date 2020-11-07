@@ -20,7 +20,8 @@ export default {
   plugins: [
     { src: '~/plugins/helpers' },
     { src: '~/plugins/scroller.js', mode: 'client' },
-    '~plugins/buefy.js'
+    '~plugins/buefy.js',
+    '~plugins/vue-js-modal.js'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

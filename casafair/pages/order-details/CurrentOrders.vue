@@ -1,6 +1,7 @@
 <template>
     <section>
-        <OrderCard v-for="i of orderData" v-bind:key="i.orderId" :rData="i"/>
+        <v-dialog/>
+        <OrderCard @click="showButtonsDialog(i)" v-for="i of orderData" v-bind:key="i.orderId" :rData="i"/>
         <div style="text-align:center;" v-if=!this.orderData.length>No orders currently</div>
     </section>
 </template>
@@ -14,6 +15,18 @@ export default {
         return {
             orderData: [],
         }
+    },
+    computed: {
+        sortByDate() {
+            function compare(a, b) {
+                if (a.orderId < b.orderId)
+                    return -1;
+                if (a.orderId > b.orderId)
+                    return 1;
+                return 0;
+            }
+            return this.orderData.sort(compare);
+        },
     },
     methods: {
         random() {
@@ -39,6 +52,7 @@ export default {
                             var deliveryDate = epoch + (Math.floor(Math.random() * 10) * 86400000);
                             productInfo["deliveryDate"] = new Date(deliveryDate).toString();
                             productInfo["orderId"] = orderDetail.orderId;
+                            productInfo["productId"] = orderDetail.productId;
                             let r = this.$axios.get(this.PRODUCTAPI + "/" + orderDetail.productId).then((response) => {
                                 let productsData = response.data;
                                 let product = productsData.product;
