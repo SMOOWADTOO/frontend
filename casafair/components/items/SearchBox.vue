@@ -1,25 +1,34 @@
 <template>
   <form v-on:submit.prevent="validateBeforeSubmit">
-    <div class="columns input-group px-5 is-vcentered">
-      <div class="column is-2" id="search-toggle">
-        <div class="field is-vcentered level-right">
-          <label for="search-switch" id="switch-label">Product</label>
-          <b-switch
-            v-model="isShopSwitch"
-            :rounded="false"
-            type="is-secondary"
-            true-value="Shop"
-            false-value="Product"
-            id="search-switch"
-            size="is-medium"
-            passive-type="is-warning"
-          >
-          </b-switch>
-          <label for="search-switch" id="switch-label">Shop</label>
+    <div class="columns is-desktop input-group is-vcentered">
+      <div class="column is-desktop" id="search-toggle">
+        <div class="field has-text-centered">
+          <!-- <div class="column"> -->
 
+          <label for="search-switch" id="switch-label">Product/Shop</label><br />
+          <b-tooltip
+            label="Switch to search for Product or Shop"
+            type="is-primary is-light"
+			size="is-small"
+            position="is-right"
+			multilined
+          >
+            <b-switch
+              v-model="isShopSwitch"
+              :rounded="false"
+              type="is-secondary"
+              true-value="Shop"
+              false-value="Product"
+              id="search-switch"
+              size="is-medium"
+              passive-type="is-warning"
+            >
+            </b-switch>
+          </b-tooltip>
         </div>
       </div>
-      <div class="column is-9">
+
+      <div class="column is-8">
         <b-field
           :label="isShopSwitch + ' Search'"
           v-if="isShopSwitch == 'Product'"
@@ -32,8 +41,7 @@
             class="search-bar"
             clearable
             required
-            @select="option => (productSelected = option)"
-
+            @select="(option) => (productSelected = option)"
           >
             <template slot="empty">No results found</template>
           </b-autocomplete>
@@ -50,14 +58,13 @@
             class="search-bar"
             clearable
             required
-            @select="option => (shopSelected = option)"
-
+            @select="(option) => (shopSelected = option)"
           >
             <template slot="empty">No results found</template>
           </b-autocomplete>
         </b-field>
       </div>
-      <div class="column">
+      <div class="column is-2">
         <b-field grouped style="min-width: 100%; min-height: 100%">
           <p class="control" style="min-width: 100%; min-height: 100%">
             <button
@@ -87,17 +94,18 @@ export default {
     this.getShopNames(), this.getProductNames();
   },
   watch: {
-    shopSelected: function() {
-      
+    shopSelected: function () {
       var shopId = this.shopIds[this.shopData.indexOf(this.shopSelected)];
-      
+
       this.$router.push("/storefront/" + shopId);
     },
-    productSelected: function() {
-      var productId = this.productIds[this.productData.indexOf(this.productSelected)];
-      
+    productSelected: function () {
+      var productId = this.productIds[
+        this.productData.indexOf(this.productSelected)
+      ];
+
       this.$router.push("/storefront/product/" + productId);
-    }
+    },
   },
   computed: {
     filteredShopArray() {
@@ -133,7 +141,7 @@ export default {
       productIds: [],
       isShopSwitch: "Shop",
       shopSelected: null,
-      productSelected: null
+      productSelected: null,
     };
   },
   methods: {
@@ -183,7 +191,9 @@ export default {
         this.$router.push("/search?search_type=shop&shopQuery=" + this.shop);
         return;
       } else if (this.isShopSwitch.toLowerCase() === "product") {
-        this.$router.push("/search?search_type=product&productQuery=" + this.product);
+        this.$router.push(
+          "/search?search_type=product&productQuery=" + this.product
+        );
         return;
       }
 
