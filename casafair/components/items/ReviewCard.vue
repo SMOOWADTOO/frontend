@@ -54,10 +54,11 @@ export default {
             var diff = tEpcoh - pEpoch;
             var days = Math.floor(diff / (1000*60*60*24));
             if (days == 0) {
-                return Math.floor(diff / 60000) + "m";
+                var minutes = Math.floor(diff / 60000);
                 if (minutes > 60) {
-                    return Math.floor(diff/ 1000 * 60 * 60);
+                    return Math.floor(diff/ (1000*60*60)) + "h";
                 }
+                return minutes + "m";
             }
             return days + "d";
         } 
