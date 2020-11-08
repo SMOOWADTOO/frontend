@@ -1,5 +1,7 @@
 <template>
     <section class="container px-3 my-5 page-content">
+        <nuxt-link :to="'/storefront/' + productInfo.shopId">&lt; Back to Shop</nuxt-link>
+        <br><br>
         <div class="columns">
             <div class="column is-7">
                 <div class="card is-fullimage">
