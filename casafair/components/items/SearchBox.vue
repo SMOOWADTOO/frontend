@@ -31,6 +31,7 @@
         <b-field
           :label="isShopSwitch + ' Search'"
           v-if="isShopSwitch == 'Product'"
+		  @keyup.native.enter="goSearch()"
         >
           <b-autocomplete
             v-model="product"
@@ -48,6 +49,7 @@
         <b-field
           :label="isShopSwitch + ' Search'"
           v-if="isShopSwitch == 'Shop'"
+		  @keyup.native.enter="goSearch()"
         >
           <b-autocomplete
             v-model="shop"
