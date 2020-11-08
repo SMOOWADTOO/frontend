@@ -2,7 +2,13 @@
     <section>
         <v-dialog/>
         <OrderCard @click="showButtonsDialog(i)" v-for="i of orderData" v-bind:key="i.orderId" :rData="i"/>
-        <div style="text-align:center;" v-if=!this.orderData.length>No orders currently</div>
+        <div class="has-text-centered is-4" v-if=!this.orderData.length>
+            <p class="icon is-large my-3">
+                <!-- <i class="las la-store is-size-1"></i> -->
+                <i class="las la-clipboard-list is-size-1"></i>
+            </p>
+            <p>No orders currently</p>
+        </div>
     </section>
 </template>
 
