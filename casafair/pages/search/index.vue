@@ -1,7 +1,10 @@
 <template>
   <section>
-    <SearchBox />
-    {{ search_type }}
+            <div class="columns mx-0">
+            <div class="column is-12">
+                <SearchBox/>
+            </div>
+        </div>
     <div
       class="columns is-multiline is-desktop"
       v-if="this.search_type === 'product'"
