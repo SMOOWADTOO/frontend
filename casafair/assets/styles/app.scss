@@ -7,6 +7,10 @@ $red: #ee4350;
 $max: 100%;
 $padding-margin-std: 10%;
 
+.carousel-pause {
+    display: none;
+}
+
 .card {
     &.is-horizontal {
         display: flex;
@@ -71,11 +75,17 @@ $padding-margin-std: 10%;
 .content-text {
     display: -webkit-box;
     line-height: 1.5rem;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    @media (min-width: 760) {
+        /* CSS that should be displayed if width is equal to or less than 800px goes here */
+        -webkit-line-clamp: 2;
+    }
 }
+
 
 .content-title {
     display: -webkit-box;

@@ -1,19 +1,12 @@
 <template>
-    <b-carousel :indicator-inside="false"> 
-        <b-carousel-item>
-            <figure class="image is-3by1">
-              <img src="@/assets/images/carousel_img.png">
-            </figure>
-        </b-carousel-item>
-        <b-carousel-item>
-            <figure class="image is-3by1">
-              <img src="@/assets/images/discover.png">
-            </figure>
-        </b-carousel-item>
-        <b-carousel-item>
-            <figure class="image is-3by1">
-              <img src="@/assets/images/boss.png">
-            </figure>
+    <b-carousel>
+        <b-carousel-item v-for="img in imgUrls" v-bind:key="img">
+            <!-- <section :class="`hero is-medium`" :style="{backgroundImage: 'url(~' + img + ')' }"> -->
+            <section :class="`hero is-medium`" style="background-image: 'url(~@/assets/images/carousel_img.png)">
+                <div class="hero-body has-text-centered" >
+                    <!-- <h1 class="title">{{carousel.text}}</h1> -->
+                </div>
+            </section>
         </b-carousel-item>
     </b-carousel>
 </template>
