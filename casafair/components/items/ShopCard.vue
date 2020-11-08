@@ -1,7 +1,7 @@
 <template>
     <div :class="this.windowWidth > 768 ? 'card mx-3 my-3 sticky-box sticky-top' : 'card'">
         <div class="card-content">
-            <div class="columns is-centered has-text-centered is-hidden-mobile">
+            <div class="columns is-centered has-text-centered">
                 <div class="column is-12">
                     <img :src="shopData.shopImageURL" alt="Placeholder image">
                     <p class="title is-4">{{shopData.shopName}}</p>
@@ -9,7 +9,7 @@
                 </div>
             </div>
 
-            <div class="content is-hidden-mobile">
+            <div class="content">
                 {{shopData.shopDesc}}
                 <br>
                 <a :href="'mailto:' + this.shopData.email">Email us</a>
@@ -23,19 +23,23 @@
                     :show-text="true"
                     :texts="ratingTexts"
                     :spaced="true"
-                    :disabled="true">
+                    :disab\led="true">
                 </b-rate>
                 <small>Since {{shopData.createdAt}}</small>
                 <br>
             </div>
-            <hr class="is-hidden-mobile">
+            <hr>
             <div class="content" v-if="this.route.includes('/storefront/' + this.shopData.shopId)">
                 <span v-if="this.$auth.user != null && shopData.username == this.$auth.user.user.username">
-                    <br>
-                    <hr>
-                    <nuxt-link class="level-item" aria-label="accept" :to="'/storefront/product/new?shopID=' + this.$route.params.id">
+                    <nuxt-link class="level-item" aria-label="accept" :to="{ name: 'create-store', params: { shopId: this.shopData.shopId }}">
                         <span class="icon is-large">
                             <i class="las la-pen has-text-signature-purple is-size-3" aria-hidden="true"></i>
+                        </span>
+                        Edit Store
+                    </nuxt-link>
+                    <nuxt-link class="level-item" aria-label="accept" :to="'/storefront/product/new?shopID=' + this.$route.params.id">
+                        <span class="icon is-large">
+                            <i class="lar la-plus-square is-size-3" aria-hidden="true"></i>
                         </span>
                         New product
                     </nuxt-link>
