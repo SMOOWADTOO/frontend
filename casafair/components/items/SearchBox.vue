@@ -3,14 +3,15 @@
     <div class="columns is-desktop input-group is-vcentered">
       <div class="column is-desktop" id="search-toggle">
         <div class="field has-text-centered">
-          <label for="search-switch" id="switch-label">Product/Shop</label
-          ><br />
+          <!-- <div class="column"> -->
+
+          <label for="search-switch" id="switch-label">Product/Shop</label><br />
           <b-tooltip
             label="Switch to search for Product or Shop"
             type="is-primary is-light"
-            size="is-small"
+			size="is-small"
             position="is-right"
-            multilined
+			multilined
           >
             <b-switch
               v-model="isShopSwitch"
@@ -52,7 +53,7 @@
           <b-autocomplete
             v-model="shop"
             :data="filteredShopArray"
-            placeholder='Try "The Sunshine Shop", "Rudy&#39;s bakes"...'
+            placeholder='Try "The Sunshine Shop", "Rudy&apos;s bakes"...'
             icon="magnify"
             class="search-bar"
             clearable
@@ -186,21 +187,10 @@ export default {
         });
     },
     goSearch() {
-      if (this.shop == "" && this.isShopSwitch.toLowerCase() === "shop")
-        this.toastAlert("Please type in a shop name", "is-warning", 5000);
-      else if (this.isShopSwitch.toLowerCase() === "shop" && this.shop != "") {
+      if (this.isShopSwitch.toLowerCase() === "shop") {
         this.$router.push("/search?search_type=shop&shopQuery=" + this.shop);
         return;
-      }
-      if (
-        this.product == "" &&
-        this.isShopSwitch.toLowerCase() === "product"
-      )
-        this.toastAlert("Please type in a product name", "is-warning", 5000);
-      else if (
-        this.isShopSwitch.toLowerCase() === "product" &&
-        this.product != ""
-      ) {
+      } else if (this.isShopSwitch.toLowerCase() === "product") {
         this.$router.push(
           "/search?search_type=product&productQuery=" + this.product
         );
