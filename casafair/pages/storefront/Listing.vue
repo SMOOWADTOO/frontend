@@ -8,7 +8,7 @@
                 <p>Oh no. You've got no products. List a product?</p>
                     <nuxt-link class="level-item" aria-label="accept" :to="'/storefront/product/new?shopID=' + this.$route.params.id">
                         <span class="icon is-large">
-                            <i class="las la-pen has-text-signature-purple is-size-3" aria-hidden="true"></i>
+                            <i class="lar la-plus-square is-size-3" aria-hidden="true"></i>
                         </span>
                         New product
                     </nuxt-link>

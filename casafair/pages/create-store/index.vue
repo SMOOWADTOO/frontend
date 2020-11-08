@@ -106,7 +106,8 @@
         data() {
             return {
                 dropFiles: [],
-                shopId: "",
+                // shopId: "",
+                shopId: this.$route.params.shopId,
                 sName: "",
                 username: this.$auth.user.user.username,
                 sAddr: "",
@@ -145,12 +146,13 @@
         },
         methods: {
             getInfo() {
-                let r = this.$axios.get(this.SHOPAPI + "/user/" + this.$auth.user.user.username)
+                // let r = this.$axios.get(this.SHOPAPI + "/user/" + this.$auth.user.user.username)
+                let r = this.$axios.get(this.SHOPAPI + "/" + this.shopId)
                 // let r = this.$axios.get("http://localhost:7002/shop/user/" + this.username)//this.$auth.user.user.username)
                 .then((resp) => {
                     // check if have shop
-                    if (resp.data.shops.length > 0) {
-                        var shop = resp.data.shops[0];
+                    var shop = resp.data.shop;
+                    if (shop) {
                         this.title = "Edit Your Shop";
                         this.profilePhotoURL = shop.shopImageURL;
                         this.submitTxt = "Edit"
@@ -280,7 +282,7 @@
             },
             cancelAction() {
                 if (this.submitTxt == "Edit") {
-                    this.$router.push("/storefront/" + this.shopid);
+                    this.$router.push("/storefront/" + this.shopId);
                 } else {
                     this.$router.push("/user/profile/" + this.$auth.user.user.id)
                 }

@@ -1,6 +1,12 @@
 <template>
     <section>
         <ReviewCard v-for="i of reviewData" v-bind:key="i.name" :rData="i"/>
+        <div class="column is-8 is-offset-2 mt-5 has-text-centered" v-if="reviewData.length == 0">
+            <p class="icon is-large my-3">
+                <i class="las la-envelope-open-text is-size-1"></i>
+            </p>
+            <p>No reviews for this store</p>
+        </div>
     </section>
 </template>
 

@@ -17,7 +17,6 @@
                             :maxs="5"
                             :show-score="true"
                             :show-text="true"
-                            :texts="ratingTexts"
                             :spaced="true"
                             :disabled="true">
                         </b-rate>
