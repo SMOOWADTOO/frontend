@@ -62,3 +62,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    section {
+        min-height: 75vh;
+    }
+</style>

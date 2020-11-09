@@ -21,7 +21,7 @@
                                 <b-input custom-class="has-background-input" v-model="password" type="password" placeholder="password" class="borderless" expanded required password-reveal v-on:blur="checkPassword"></b-input>
                             </b-field>
 
-                            <small class="is-italic">Your password has to be at least 8 characters, and contains an uppercase letter and a numeric digit</small><br><br>
+                            <small class="is-italic">Your password has to be at least 8 characters, and contains an uppercase letter, lowercase letter and a numeric digit</small><br><br>
 
                             <b-field label="Type your password again" :type="uiLabels.cPassword">
                                 <b-input custom-class="has-background-input" v-model="cPassword" type="password" placeholder="password" class="borderless" expanded required password-reveal v-on:blur="checkIsSamePassword"></b-input>
