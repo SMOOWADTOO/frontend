@@ -36,6 +36,10 @@ export default {
 
     created() {
         this.shopID = parseInt(this.$route.params.id)
+
+        if (!this.$auth.user) {
+            this.$router.push("/")
+        }
     },
 
     mounted() {
