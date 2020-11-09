@@ -1,16 +1,16 @@
 <template>
-  <section>
+  <section style="min-height: 80vh;">
         <div class="columns mx-0">
             <div class="column is-12">
                 <SearchBox/>
             </div>
         </div>
     <div
-      class="columns is-multiline is-desktop"
+      class="columns is-multiline is-desktop mx-5 px-5 my-5"
       v-if="this.search_type === 'product'"
     >
       <div
-        class="column"
+        class="column is-3"
         v-for="product in products"
         v-bind:key="product.productId"
       >
