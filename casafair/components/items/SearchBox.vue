@@ -27,7 +27,7 @@
         </div>
       </div>
 
-      <div class="column is-8">
+      <div class="column is-two-thirds-desktop">
         <b-field
           :label="isShopSwitch + ' Search'"
           v-if="isShopSwitch == 'Product'"
