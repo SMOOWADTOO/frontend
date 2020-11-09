@@ -3,7 +3,8 @@
     <div class="card">
       <div class="card-image">
         <figure class="image is-1by1">
-          <img :src="productInfo.productPhotoURL" />
+            <img :src="productInfo.productPhotoURL" alt="Product image" v-if="productInfo.productPhotoURL != null">
+            <img src="@/assets/images/product.svg" alt="Product image" v-else>
         </figure>
       </div>
       <div class="card-content is-overlay has-text-centered tag-for-pic">

@@ -1,5 +1,6 @@
 <template>
     <div class="columns px-5 page-content">
+        <b-loading :is-full-page="true" v-model="isLoading" :can-cancel="false"></b-loading>
         <div class="column is-4 is-12-mobile">
             <UserCard :userID="$route.params.id" @shop="fetchShops"/>
         </div>
@@ -48,8 +49,12 @@ export default {
     data() {
         return {
             userData: [],
-            shopData: []
+            shopData: [],
+            isLoading: true,
         }
+    },
+    mounted() {
+        this.isLoading = true
     },
     methods: {
         fetchShops(user) {
@@ -58,6 +63,7 @@ export default {
             .then((response) => {
                 let respData = response.data
                 this.shopData = respData.shops
+                this.isLoading = false
             }).catch((error) => {
                 if (error.response != undefined) {
                     var response = error.response.data

@@ -1,6 +1,7 @@
 <template>
     <section>
         <div class="columns is-multiline">
+            <b-loading :is-full-page="true" v-model="isLoading" :can-cancel="false"></b-loading>
             <div class="column is-8 is-offset-2 mt-5 has-text-centered" v-if="products.length == 0">
                 <span class="icon is-large my-3">
                     <i class="las la-store is-size-1"></i>
@@ -26,7 +27,8 @@ export default {
     data() {
         return {
             shopID: 0,
-            products: []
+            products: [],
+            isLoading: true,
         }
     },
     created() {
@@ -34,12 +36,14 @@ export default {
     },
     mounted() {
         this.fetchShopProducts()
+        this.isLoading = true
     },
     methods: {
         fetchShopProducts() {
             let r = this.$axios.get(this.PRODUCTAPI + "/by_store/" + this.shopID).then((response) => {
                 let respData = response.data
                 this.products = respData.products
+                this.isLoading = false
             }).catch((error) => {
                 if (error.response != undefined) {
                     var response = error.response.data
