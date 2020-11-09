@@ -1,40 +1,32 @@
 <template>
-    <b-carousel :indicator-inside="false"> 
-        <b-carousel-item>
-            <figure class="image is-3by1">
-              <img src="@/assets/images/carousel_img.png">
-            </figure>
-        </b-carousel-item>
-        <b-carousel-item>
-            <figure class="image is-3by1">
-              <img src="@/assets/images/discover.png">
-            </figure>
-        </b-carousel-item>
-        <b-carousel-item>
-            <figure class="image is-3by1">
-              <img src="@/assets/images/boss.png">
-            </figure>
+    <b-carousel>
+        <b-carousel-item v-for="img in imgURL" v-bind:key="img.id">
+            <!-- <section :class="`hero is-medium`" :style="{backgroundImage: 'url(~' + img + ')' }"> -->
+            <section :class="'hero is-medium carousel-img'" :style="{ backgroundImage: `url(${img.url})` }">
+                <div class="hero-body has-text-centered">
+                    <h1 class="title">{{img.text}}</h1>
+                </div>
+            </section>
         </b-carousel-item>
     </b-carousel>
 </template>
 
 <script>
+import carouselImg from '~/assets/images/carousel_img.png'
+import discover from '~/assets/images/discover.png'
+import boss from '~/assets/images/boss.png'
 export default {
     data() {
         return {
-            imgUrls: [
-                "@/assets/images/carousel_img.png",
-                "@/assets/images/discover.png",
-                "@/assets/images/boss.png"
+            imgURL: [
+                {"id": 1, "url": carouselImg, "text": "Casafair."},
+                {"id": 2, "url": discover, "text": "Discover."},
+                {"id": 3, "url": boss, "text": "Be your own boss."}
             ], 
             
         }
     },
     methods: {
-      getImgUrl(value) {
-          console.log(value); 
-          return this.imgUrls[value-1]
-      }
     }
 }
 </script>
@@ -45,5 +37,9 @@ export default {
 }
 .al img {
     filter: grayscale(100%);
+}
+
+.carousel-img {
+    background-size: cover;
 }
 </style>
