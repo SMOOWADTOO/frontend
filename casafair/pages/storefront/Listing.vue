@@ -1,6 +1,6 @@
 <template>
     <section>
-        <div class="columns is-multiline is-desktop">
+        <div class="columns is-multiline">
             <div class="column is-8 is-offset-2 mt-5 has-text-centered" v-if="products.length == 0">
                 <span class="icon is-large my-3">
                     <i class="las la-store is-size-1"></i>
@@ -13,7 +13,8 @@
                         New product
                     </nuxt-link>
             </div>
-            <div class="column is-4-desktop" v-for="product in products" v-bind:key="product.productId" v-else>
+            
+            <div class="column is-4-desktop is-6-tablet" v-for="product in products" v-bind:key="product.productId" v-else>
                 <ProductCard :productInfo="product"/>
             </div>
         </div>
