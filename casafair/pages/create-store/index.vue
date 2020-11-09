@@ -106,8 +106,8 @@
         data() {
             return {
                 dropFiles: [],
-                // shopId: "",
-                shopId: this.$route.params.shopId,
+                shopId: "",
+                // shopId: this.$route.params.shopId,
                 sName: "",
                 username: this.$auth.user.user.username,
                 sAddr: "",
@@ -142,9 +142,17 @@
             },
         },
         mounted() {
-            this.getInfo()
+            this.hasStore()
         },
         methods: {
+            hasStore() {
+                if (this.$route.params.shopId) {
+                    this.shopId = this.$route.params.shopId;
+                    this.getInfo();
+                } else {
+                    this.shopId = ""
+                }
+            },
             getInfo() {
                 // let r = this.$axios.get(this.SHOPAPI + "/user/" + this.$auth.user.user.username)
                 let r = this.$axios.get(this.SHOPAPI + "/" + this.shopId)
@@ -217,7 +225,26 @@
                         "website": this.sWebsite
                     }).then((resp) => {
                         this.toastAlert("Shop has been created!", "is-success", 5000)
-                        this.$router.push("/storefront/" + this.shopId);
+                        let r = this.$axios.get(this.SHOPAPI + "/user/" + this.$auth.user.user.username)
+                        .then((resp) => {
+                            // check if have shop
+                            var shops = resp.data.shops;
+                            // get latest store created by user
+                            if (shops.length > 0) {
+                                var latestShop = shops.pop() 
+                                var newShopId = latestShop.shopId;
+                                this.$router.push("/storefront/" + newShopId);
+                            } else {
+                                this.toastAlert('Something went wrong when creating shop, please try again', "is-danger", 2000)
+                            }
+                        }).catch((error) => {
+                            if (error.response != undefined) {
+                                var response = error.response.data
+                                this.toastAlert(response, "is-danger", 2000)
+                            } else {
+                                this.toastAlert(error, "is-danger", 5000)
+                            }
+                        })
                     }).catch((error) => {
                         if (error.response != undefined) {
                             var response = error.response.data
