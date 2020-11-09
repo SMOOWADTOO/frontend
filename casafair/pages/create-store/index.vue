@@ -71,7 +71,7 @@
                         <b-input custom-class="has-background-input" v-model="sDesc" type="textarea" placeholder="Contact Number" class="borderless" expanded required></b-input>
                     </b-field>
 
-                    <b-field label="Shop Website">
+                    <b-field label="Shop Website*">
                         <b-input custom-class="has-background-input" v-model="sWebsite" type="text" placeholder="Website URL" class="borderless" expanded required></b-input>
                     </b-field>
 
@@ -79,7 +79,7 @@
                     <p class="subtitle has-text-signature-purple">
                         Shop Address
                     </p>
-                    <b-field label="Shop Postal Code">
+                    <b-field label="Shop Postal Code*">
                         <b-input custom-class="has-background-input" v-model="postalCode" type="text" placeholder="Shop Address" class="borderless" expanded></b-input>
                     </b-field>
                     <b-field label="Shop Address*">

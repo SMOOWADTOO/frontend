@@ -66,7 +66,8 @@
                                     required>
                                 </b-datepicker>
                             </b-field>
-                            <small class="is-italic">You must be 18 years old to use this service.</small><br><br><br>
+                            <!-- <small class="is-italic">You must be 18 years old to use this service.</small><br> -->
+                            <br><br>
                             <p class="subtitle has-text-signature-purple">
                                 My Address
                             </p>
