@@ -193,7 +193,7 @@ export default {
       if (this.shop == "" && this.isShopSwitch.toLowerCase() === "shop")
         this.toastAlert("Please type in a shop name", "is-warning", 5000);
       else if (this.isShopSwitch.toLowerCase() === "shop" && this.shop != "") {
-        this.$router.push("/search?search_type=shop&shopQuery=" + this.shop);
+        this.$emit("search", [this.isShopSwitch.toLowerCase(), this.shop])
         return;
       }
       if (
@@ -205,9 +205,7 @@ export default {
         this.isShopSwitch.toLowerCase() === "product" &&
         this.product != ""
       ) {
-        this.$router.push(
-          "/search?search_type=product&productQuery=" + this.product
-        );
+        this.$emit("search", [this.isShopSwitch.toLowerCase(), this.product])
         return;
       }
 

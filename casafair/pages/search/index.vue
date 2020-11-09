@@ -2,7 +2,7 @@
   <section style="min-height: 80vh;">
         <div class="columns mx-0">
             <div class="column is-12">
-                <SearchBox/>
+                <SearchBox @search="goSearch"/>
             </div>
         </div>
         <div class="columns">
@@ -37,16 +37,7 @@
 <script>
 export default {
   mounted() {
-    if (this.$nuxt.$route.query.search_type === "shop") {
-      // console.log(this.$nuxt.$route.query.shopQuery);
-      var shopQuery = this.$nuxt.$route.query.shopQuery;
-      this.fetchShopSearchResult(shopQuery);
-    } else if (this.$nuxt.$route.query.search_type === "product") {
-      // console.log(this.$nuxt.$route.query.shopQuery);
-      var productQuery = this.$nuxt.$route.query.productQuery;
-      this.search_type = "product";
-      this.fetchProductSearchResult(productQuery);
-    }
+      this.goSearch()
   },
   data() {
     return {
@@ -56,6 +47,20 @@ export default {
     };
   },
   methods: {
+    goSearch(searchParams) {
+        var queryType = searchParams === undefined ? this.$nuxt.$route.query.search_type : searchParams[0]
+        if (queryType === "shop") {
+            var query = searchParams === undefined ? this.$nuxt.$route.query.shopQuery : searchParams[1]
+            var shopQuery = this.$nuxt.$route.query.shopQuery;
+            this.search_type = queryType;
+            this.fetchShopSearchResult(query);
+        } else if (queryType === "product") {
+            var query = searchParams === undefined ? this.$nuxt.$route.query.productQuery : searchParams[1]
+            var productQuery = this.$nuxt.$route.query.productQuery;
+            this.search_type = queryType;
+            this.fetchProductSearchResult(query);
+        }
+    },
     fetchShopSearchResult(shopQuery) {
       let r = this.$axios
         .get(this.SEARCHAPI + "/shop/" + shopQuery)

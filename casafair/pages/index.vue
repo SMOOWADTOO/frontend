@@ -7,7 +7,7 @@
         </div>
         <div class="columns mx-0">
             <div class="column is-12">
-                <SearchBox/>
+                <SearchBox @search="goSearch"/>
             </div>
         </div>
         <div class="columns mx-0">
@@ -52,5 +52,17 @@ export default {
             hasLoaded: false,
         }
     },
+
+    methods: {
+        goSearch(searchParams) {
+            var queryType = searchParams[0]
+            var query = searchParams[1]
+            if (queryType === "shop") {
+                this.$router.push("/search?search_type=shop&shopQuery=" + query)
+            } else if (queryType === "product") {
+                this.$router.push("/search?search_type=product&productQuery=" + query);
+            }
+        },
+    }
 }
 </script>
