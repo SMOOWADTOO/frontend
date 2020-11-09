@@ -3,7 +3,7 @@
         <div class="column is-4 is-12-mobile">
             <UserCard :userID="$route.params.id" @shop="fetchShops"/>
         </div>
-        <div class="column is-8 is-12-mobile is-centered" v-if="this.$route.params.id == this.$auth.user.user.id">
+        <div class="column is-8 is-12-mobile is-centered" v-if="this.$auth.user && this.$route.params.id == this.$auth.user.user.id">
             <div class="title has-text-centered">Visit your Stores</div>
             <hr>
             <div class="columns is-multiline">
