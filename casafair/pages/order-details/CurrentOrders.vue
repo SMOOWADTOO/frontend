@@ -1,7 +1,6 @@
 <template>
     <section>
-        <v-dialog/>
-        <OrderCard @click="showButtonsDialog(i)" v-for="i of orderData" v-bind:key="i.orderId" :rData="i"/>
+        <OrderCard v-for="i of orderData" v-bind:key="i.orderId" :rData="i"/>
         <div class="has-text-centered is-4" v-if=!this.orderData.length>
             <p class="icon is-large my-3">
                 <!-- <i class="las la-store is-size-1"></i> -->
