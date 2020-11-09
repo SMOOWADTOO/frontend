@@ -24,6 +24,10 @@
                     <nuxt-link v-for="shop in shopData" v-bind:key="shop.shopId" class="level-item" aria-label="visit store" :to="'/storefront/' + shop.shopId">
                         {{shop.shopName}}
                     </nuxt-link>
+                    <hr>
+                    <nuxt-link class="level-item" aria-label="create" :to="'/create-store/'">
+                        Create a new store
+                    </nuxt-link>
                 </div>
             </div>
         </div>
