@@ -1,7 +1,7 @@
 <template>
     <section class="page-content">
         <div class="hero">
-            <div class="hero-body">
+            <div class="hero-body px-0">
                 <HeroGallery/>
             </div>
         </div>
