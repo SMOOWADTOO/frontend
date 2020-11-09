@@ -46,6 +46,15 @@ export default {
   mounted() {
       this.goSearch()
   },
+  head () {
+        return {
+            title: this.appName + " | Searching for " + this.query,
+            meta: [
+                // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+                { hid: 'description', name: 'description', content: this.appDescription }
+            ]
+        }
+    },
   data() {
     return {
         shops: [],
@@ -53,6 +62,7 @@ export default {
         search_type: "shop",
         pageName: "Search Results",
         pageDescription: "",
+        query: "",
 
         isLoading: true
     };
@@ -64,11 +74,13 @@ export default {
         if (queryType === "shop") {
             var query = searchParams === undefined ? this.$nuxt.$route.query.shopQuery : searchParams[1]
             var shopQuery = this.$nuxt.$route.query.shopQuery;
+            this.query = query;
             this.search_type = queryType;
             this.fetchShopSearchResult(query);
         } else if (queryType === "product") {
             var query = searchParams === undefined ? this.$nuxt.$route.query.productQuery : searchParams[1]
             var productQuery = this.$nuxt.$route.query.productQuery;
+            this.query = query
             this.search_type = queryType;
             this.fetchProductSearchResult(query);
         }

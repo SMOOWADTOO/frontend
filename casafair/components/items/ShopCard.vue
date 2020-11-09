@@ -3,7 +3,7 @@
         <div class="card-content">
             <div class="columns is-centered has-text-centered">
                 <div class="column is-12">
-                    <img style="max-height:20vh;" class="is-64x64" :src="shopData.shopImageURL" alt="Placeholder image">
+                    <img style="max-height:20vh;" class="is-64x64" :src="shopData.shopImageURL == undefined ? '@/assets/images/placeholder.png' : shopData.shopImageURL" alt="Placeholder image">
                     <p class="title is-4">{{shopData.shopName}}</p>
                     <p class="subtitle is-6">by @{{shopData.username}}</p>
                 </div>

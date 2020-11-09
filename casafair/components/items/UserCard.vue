@@ -65,6 +65,7 @@ export default {
                 response) => {
                 let userData = response.data
                 this.userData = userData.user_profile
+                this.$emit("shop", userData.user_profile)
             }).catch((error) => {
                 if (error.response != undefined) {
                     var response = error.response.data

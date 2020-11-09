@@ -1,9 +1,9 @@
 <template>
     <div class="columns px-5 page-content">
         <div class="column is-4 is-12-mobile">
-            <UserCard :userID="$route.params.id"/>
+            <UserCard :userID="$route.params.id" @shop="fetchShops"/>
         </div>
-        <div class="column is-8 is-12-mobile is-centered">
+        <div class="column is-8 is-12-mobile is-centered" v-if="this.$route.params.id == this.$auth.user.user.id">
             <div class="title has-text-centered">Visit your Stores</div>
             <hr>
             <div class="columns is-multiline">
@@ -25,6 +25,21 @@
                 </div>
             </div>
         </div>
+        <div class="column is-8 is-12-mobile is-centered" v-else>
+            <div class="title has-text-centered">Have a look at some of my stores</div>
+            <hr>
+            <div class="columns is-multiline">
+                <div class="column is-8 is-offset-2 mt-5 has-text-centered" v-if="shopData.length == 0">
+                    <span class="icon is-large my-3">
+                        <i class="las la-store is-size-1"></i>
+                    </span>
+                    <p>Oh no. I've got none yet...</p>
+                </div>
+                <div class="column is-4-desktop is-6-tablet" v-for="shop in shopData" v-bind:key="shop.shopId" v-else>
+                    <ShopBox :rData="shop"/>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -36,12 +51,10 @@ export default {
             shopData: []
         }
     },
-    mounted() {
-        this.fetchShops()
-    },
     methods: {
-        fetchShops() {
-            let r = this.$axios.get(this.SHOPAPI + "/user/" + this.$auth.user.user.username)
+        fetchShops(user) {
+            let username = user.username
+            let r = this.$axios.get(this.SHOPAPI + "/user/" + username)
             .then((response) => {
                 let respData = response.data
                 this.shopData = respData.shops
