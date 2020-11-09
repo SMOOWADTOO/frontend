@@ -93,7 +93,9 @@ export default {
     shopSearch: String,
   },
   mounted() {
-    this.getShopNames(), this.getProductNames();
+    this.isShopSwitch = this.$route.query.search_type == "shop" ? "Shop" : "Product"
+    this.shop = this.$route.query.search_type == "shop" ? this.$route.query.shopQuery : ""
+    this.product = this.$route.query.search_type == "product" ? this.$route.query.productQuery : ""
   },
   watch: {
     shopSelected: function () {

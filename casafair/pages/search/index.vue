@@ -1,16 +1,21 @@
 <template>
-  <section>
+  <section style="min-height: 80vh;">
         <div class="columns mx-0">
             <div class="column is-12">
                 <SearchBox/>
             </div>
         </div>
+        <div class="columns">
+            <div class="column is-6 is-offset-3 has-text-centered">
+              <h3 class="title has-text-gray">Your search have returned {{search_type === 'product' ? products.length : shops.length}} results.</h3>
+            </div>
+        </div>
     <div
-      class="columns is-multiline is-desktop"
+      class="columns is-multiline is-desktop mx-5 px-5 my-5"
       v-if="this.search_type === 'product'"
     >
       <div
-        class="column"
+        class="column is-3"
         v-for="product in products"
         v-bind:key="product.productId"
       >
@@ -19,10 +24,10 @@
     </div>
 
     <div
-      class="columns is-multiline is-desktop"
+      class="columns is-multiline is-desktop mx-5 px-5 my-5"
       v-if="this.search_type === 'shop'"
     >
-      <div class="column is-4-desktop" v-for="shop in shops" v-bind:key="shop.shopId">
+      <div class="column is-3" v-for="shop in shops" v-bind:key="shop.shopId">
         <ShopCard :shopID="shop.shopId" />
       </div>
     </div>
