@@ -17,14 +17,14 @@
             <div class="columns is-centered has-text-centered" v-if="!!this.$auth.user && this.shopData != [] && this.$auth.user.user.id == this.$route.params.id">
                 <div class="column is-12">
                     <hr>
-                    <p class="title is-6">{{this.shopData.length == 0 ? "You've got no stores. Create one?" : "Visit your stores"}}</p>
+                    <!-- <p class="title is-6">{{this.shopData.length == 0 ? "You've got no stores. Create one?" : "Visit your stores"}}</p>
                     <nuxt-link class="level-item" aria-label="create" :to="'/create-store/'" v-if="this.shopData.length == 0">
                         Create your first store!
                     </nuxt-link>
                     <nuxt-link v-for="shop in shopData" v-bind:key="shop.shopId" class="level-item" aria-label="visit store" :to="'/storefront/' + shop.shopId">
                         {{shop.shopName}}
                     </nuxt-link>
-                    <hr>
+                    <hr> -->
                     <nuxt-link class="level-item" aria-label="create" :to="'/create-store/'">
                         Create a new store
                     </nuxt-link>
