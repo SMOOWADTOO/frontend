@@ -18,16 +18,15 @@
           <img :src="productInfo.productPhotoURL" />
         </figure>
       </div>
-      <div class="card-content is-overlay has-text-centered">
+      <div class="card-content is-overlay has-text-centered" style="margin-top: 85%">
         <b-tooltip
-            type="is-light"
-          position="is-bottom"
+          type="is-light"
+          position="is-top"
           :label="productInfo.productDesc"
           multilined
           animated
-          
         >
-          <b-tag type="is-primary" size="is-medium" rounded>
+          <b-tag type="is-primary" size="is-large" rounded>
             {{ productInfo.productName }}
           </b-tag>
         </b-tooltip>
