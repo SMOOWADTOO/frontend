@@ -1,24 +1,12 @@
 <template>
   <nuxt-link :to="'/storefront/product/' + productInfo.productId">
-    <!-- <figure class="image is-1by1">
-      <img :src="productInfo.productPhotoURL" />
-      <p
-        class="is-overlay mx-5 is-size-4-desktop is-size-3-touch"
-        style="margin-top: 60%"
-      >
-        {{ productInfo.productName }}
-        <br />
-        <small class="is-size-6">{{ productInfo.productDesc }}</small>
-      </p>
-    </figure> -->
-
     <div class="card">
       <div class="card-image">
         <figure class="image is-1by1">
           <img :src="productInfo.productPhotoURL" />
         </figure>
       </div>
-      <div class="card-content is-overlay has-text-centered" style="margin-top: 85%">
+      <div class="card-content is-overlay has-text-centered tag-for-pic">
         <b-tooltip
           type="is-light"
           position="is-top"
@@ -26,7 +14,7 @@
           multilined
           animated
         >
-          <b-tag type="is-primary" size="is-large" rounded>
+          <b-tag type="is-primary" :size="this.windowWidth < 769 ? 'is-large' : 'is-small'" rounded multilined>
             {{ productInfo.productName }}
           </b-tag>
         </b-tooltip>
@@ -40,11 +28,34 @@ export default {
   props: {
     productInfo: Object,
   },
+  created() {
+    window.addEventListener("resize", this.handleResize);
+    this.handleResize();
+  },
+  methods: {
+    handleResize() {
+      this.windowWidth = window.innerWidth;
+    },
+  },
+  data() {
+    return {
+      windowWidth: 0,
+    };
+  },
 };
 </script>
 
 <style scoped>
 img {
   border-radius: 10px !important;
+}
+.tag-for-pic {
+  margin-top: 70%;
+}
+
+@media (max-width: 768px) {
+  .tag-for-pic {
+    margin-top: 80%;
+  }
 }
 </style>
