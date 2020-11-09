@@ -33,36 +33,28 @@
           v-if="isShopSwitch == 'Product'"
 		  @keyup.native.enter="goSearch()"
         >
-          <b-autocomplete
+          <b-input
             v-model="product"
-            :data="filteredProductArray"
             placeholder='Try "Brownies", "Curry Puff"...'
             icon="magnify"
             class="search-bar"
-            clearable
             required
-            @select="(option) => (productSelected = option)"
           >
-            <template slot="empty">No results found</template>
-          </b-autocomplete>
+          </b-input>
         </b-field>
         <b-field
           :label="isShopSwitch + ' Search'"
           v-if="isShopSwitch == 'Shop'"
 		  @keyup.native.enter="goSearch()"
         >
-          <b-autocomplete
+          <b-input
             v-model="shop"
-            :data="filteredShopArray"
             placeholder='Try "The Sunshine Shop", "Rudy&#39;s bakes"...'
             icon="magnify"
             class="search-bar"
-            clearable
             required
-            @select="(option) => (shopSelected = option)"
           >
-            <template slot="empty">No results found</template>
-          </b-autocomplete>
+          </b-input>
         </b-field>
       </div>
       <div class="column is-2">
@@ -194,7 +186,7 @@ export default {
       if (this.shop == "" && this.isShopSwitch.toLowerCase() === "shop")
         this.toastAlert("Please type in a shop name", "is-warning", 5000);
       else if (this.isShopSwitch.toLowerCase() === "shop" && this.shop != "") {
-        this.$router.push("/search?search_type=shop&shopQuery=" + this.shop);
+        this.$emit("search", [this.isShopSwitch.toLowerCase(), this.shop])
         return;
       }
       if (
@@ -206,9 +198,7 @@ export default {
         this.isShopSwitch.toLowerCase() === "product" &&
         this.product != ""
       ) {
-        this.$router.push(
-          "/search?search_type=product&productQuery=" + this.product
-        );
+        this.$emit("search", [this.isShopSwitch.toLowerCase(), this.product])
         return;
       }
 

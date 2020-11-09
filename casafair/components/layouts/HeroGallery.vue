@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import carouselImg from '~/assets/images/carousel_img.png'
-import discover from '~/assets/images/discover.png'
-import boss from '~/assets/images/boss.png'
+import carouselImg from '~/assets/images/carousel_img.jpg'
+import discover from '~/assets/images/discover.jpg'
+import boss from '~/assets/images/boss.jpg'
 export default {
     data() {
         return {
