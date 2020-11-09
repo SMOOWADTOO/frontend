@@ -9,7 +9,7 @@
             <div class="column is-9-mobile">
                 <p class="title is-5">{{rData.name}}</p>
                 <p class="subtitle is-6">{{rData.desc}}</p>
-                <p class="title is-6">x {{rData.quantity}}</p>
+                <p class="title is-6">Quantity: {{rData.quantity}}</p>
                 <p v-if="rData.isCurrent" class="is-6">Estimated Delivery Date: {{rData.deliveryDate}}</p>
                 <p v-else class="is-6 has-text-success">Successfully Delivered</p>
                 <p class="is-6">Delivery Address: {{rData.deliveryAddress}}</p>
