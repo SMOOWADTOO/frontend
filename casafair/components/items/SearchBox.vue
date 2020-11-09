@@ -3,7 +3,7 @@
     <div class="columns is-desktop input-group is-vcentered">
       <div class="column is-desktop" id="search-toggle">
         <div class="field has-text-centered">
-          <label for="search-switch" id="switch-label">Product/Shop</label
+          <label class="ml-5" for="search-switch" id="switch-label"><strong>Product</strong>/<strong>Shop</strong></label
           ><br />
           <b-tooltip
             label="Switch to search for Product or Shop"
@@ -86,6 +86,7 @@
 </template>
 
 <script>
+
 export default {
   props: {
     productSearch: String,
