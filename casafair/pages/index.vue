@@ -5,16 +5,19 @@
                 <HeroGallery/>
             </div>
         </div>
-        <div class="columns mx-0">
-            <div class="column is-12">
+        <div class="columns mx-0 py-5">
+            <div class="column is-8 is-offset-2">
+                <h1 class="title is-size-4 mb-3 has-text-centered">Try a search..?</h1>
                 <SearchBox @search="goSearch"/>
             </div>
         </div>
-        <div class="columns mx-0">
+        <hr>
+        <div class="columns mx-0 my-5">
             <div class="column is-12">
                 <CardGallery/>
             </div>
         </div>
+        <hr>
         <div class="columns has-background-dark mx-0 px-5">
             <div class="column is-12">
                 <h1 class="has-text-light is-size-3 is-size-4-mobile has-text-weight-bold mt-5">

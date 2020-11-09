@@ -1,7 +1,7 @@
 <template>
     <div id="app" class="container">
 
-        <b-carousel-list v-model="test" :data="productsData" :items-to-show="showItems" v-if="hasLoaded">
+        <b-carousel-list v-model="test" :data="productsData" :items-to-show="showItems" :icon-size="'is-medium'" :arrow-hover="false" v-if="hasLoaded">
             <template slot="item" slot-scope="list">
                 <router-link :to="{path: '/storefront/product/' + list.productId}">
                     <HorizontalCard :productData="list" />
