@@ -7,7 +7,7 @@
                     <i class="las la-store is-size-1"></i>
                 </span>
                 <p>Oh no. You've got no products. List a product?</p>
-                    <nuxt-link class="level-item" aria-label="accept" :to="'/storefront/product/new?shopID=' + this.$route.params.id">
+                    <nuxt-link class="level-item" aria-label="new product" :to="'/storefront/product/new?shopID=' + this.$route.params.id">
                         <span class="icon is-large">
                             <i class="lar la-plus-square is-size-3" aria-hidden="true"></i>
                         </span>

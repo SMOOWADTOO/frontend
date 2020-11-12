@@ -18,7 +18,7 @@
                             <p class="subtitle has-text-signature-purple">
                                 Personal Information
                             </p>
-                            <b-tooltip label="Just trust us. We won't leak it out like Lazada." dashed multilined type="is-light">
+                            <b-tooltip label="Just trust us. We won't leak it out like Lazada. Oops..." dashed multilined type="is-light">
                                 <small>How is my data managed?</small>
                             </b-tooltip>
                             <br>

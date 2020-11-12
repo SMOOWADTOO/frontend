@@ -17,7 +17,7 @@
                             <span class="icon is-large">
                                 <i class="lar la-plus-square is-size-3" aria-hidden="true"></i>
                             </span>
-                            New product
+                            New store
                         </nuxt-link>
                 </div>
                 
