@@ -96,7 +96,7 @@ export default {
     },
     mounted() {
         if (this.$auth.loggedIn) {
-            this.$router.push("/")
+            this.$router.push("/user/profile/" + this.$auth.user.user.id)
         }
     },
     methods: {

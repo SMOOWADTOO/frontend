@@ -1,13 +1,14 @@
 <template>
     <b-carousel>
         <b-carousel-item v-for="img in imgURL" v-bind:key="img.id">
-            <!-- <section :class="`hero is-medium`" :style="{backgroundImage: 'url(~' + img + ')' }"> -->
-            <section :class="'hero is-medium carousel-img'" :style="{ backgroundImage: `url(${img.url})` }">
-                <div class="hero-body has-text-centered">
-                    <h1 class="title carousel-title">{{img.text}}</h1>
-                    <span class="subtitle is-4 carousel-title">{{img.subtitle}}</span>
-                </div>
-            </section>
+            <nuxt-link class="level-item" aria-label="accept" :to="img.url">
+                <section :class="'hero is-medium carousel-img'" :style="{ backgroundImage: `url(${img.imagesrc})` }">
+                    <div class="hero-body has-text-centered">
+                        <h1 class="title carousel-title">{{img.text}}</h1>
+                        <span class="subtitle is-4 carousel-title">{{img.subtitle}}</span>
+                    </div>
+                </section>
+            </nuxt-link>
         </b-carousel-item>
     </b-carousel>
 </template>
@@ -21,20 +22,23 @@
             return {
                 imgURL: [{
                         "id": 1,
-                        "url": carouselImg,
+                        "url": "/about-us",
+                        "imagesrc": carouselImg,
                         "text": "Casafair.", 
-                        "subtitle": "Anyone can do business. From home.", 
+                        "subtitle": "Anyone can do business. From home. Click to learn more about us.", 
 
                     },
                     {
                         "id": 2,
-                        "url": discover,
+                        "url": "/search",
+                        "imagesrc": discover,
                         "text": "Discover.", 
                         "subtitle": "Explore our platform to find hidden gems from our local home businesses", 
                     },
                     {
                         "id": 3,
-                        "url": boss,
+                        "url": "/register",
+                        "imagesrc": boss,
                         "text": "Be your own boss.", 
                         "subtitle": "Sign up as a business owner now to bring your home business to new heights", 
                     }

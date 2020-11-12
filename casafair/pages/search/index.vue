@@ -44,7 +44,11 @@
 <script>
 export default {
   mounted() {
-      this.goSearch()
+      if (Object.keys(this.$route.query).length === 0 && this.$route.query.constructor === Object) {
+        this.isLoading = false
+      } else {
+        this.goSearch()
+      }
   },
   head () {
         return {
