@@ -11,7 +11,7 @@
                     <div class="columns my-5">
                         <div class="column is-6 is-offset-3">
                             <figure class="image is-30x30 trigger-2">
-                                <img style="max-height: 50vh;" src="@/assets/images/business_shop.svg" alt="Image">
+                                <img style="max-height: 50vh; object-fit:contain;" src="@/assets/images/business_shop.svg" alt="Image">
                             </figure>
                         </div>
                     </div>
@@ -118,7 +118,12 @@ export default {
     mounted() {
         // Code vanilla JS here guys
         if (process.client) { 
-                this.$gsap.registerPlugin(this.$scrollTrigger)
+            this.startAnimation()
+        }
+    },
+    methods: {
+        startAnimation() {
+            this.$gsap.registerPlugin(this.$scrollTrigger)
                 let t1 = this.$gsap.timeline({
                     // yes, we can add it to an entire timeline!
                     scrollTrigger: {
@@ -199,12 +204,6 @@ export default {
                         scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
                     }
                 }).from(".trigger-8", {x: 800})
-
-            }
-    },
-    methods: {
-        startAnimation() {
-            
         },
     }
 }
