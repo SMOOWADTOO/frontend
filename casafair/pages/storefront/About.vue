@@ -19,8 +19,8 @@
         <nav class="level">
             <div class="level-item has-text-centered">
                 <div>
-                <p class="heading">Contact Number</p>
-                <p class="title">{{this.shopData.contactNo}}</p>
+                    <p class="heading">Contact Number</p>
+                    <p class="title">{{this.shopData.contactNo.length > 8 ? '+' + this.shopData.contactNo : this.shopData.contactNo}}</p>
                 </div>
             </div>
             <div class="level-item has-text-centered">
