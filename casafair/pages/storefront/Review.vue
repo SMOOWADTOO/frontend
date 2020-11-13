@@ -33,10 +33,16 @@ export default {
             .then((response) => {
                 let objectData = response.data;
                 let reviews = objectData.reviews;
+                let totalRating = 0
+                let ratingCount = 0
                 for (var review of reviews) {
                     this.reviewData.push(review);
+                    totalRating += review.rating
+                    ratingCount += 1
                 }
-                console.log(this.reviewData);
+                let finalRating = totalRating / ratingCount
+                console.log(totalRating / ratingCount)
+                this.$emit("rating", [finalRating, ratingCount])
             }).catch((error) => {
                 if (error.response != undefined) {
                     var response = error.response.data

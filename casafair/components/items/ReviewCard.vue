@@ -9,8 +9,10 @@
             </div>
             <div class="media-content is-vcentered">
                 <div class="content">
+
+                    <h1>{{rData.title}}</h1>
                     <p>
-                        <strong>{{product.productName}}</strong> <small>@{{rData.username}}</small> <small>{{reviewedAt}}</small>
+                        <nuxt-link :to="'/storefront/product/'+product.productId"><strong>{{product.productName}}</strong></nuxt-link> <small>@{{rData.username}}</small> <small>{{reviewedAt}}</small>
                         <br>
                         <b-rate
                             v-model="rData.rating"

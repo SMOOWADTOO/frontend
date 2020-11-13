@@ -1,7 +1,7 @@
 <template>
     <div class="columns">
         <div class="column is-4 is-12-mobile">
-            <ShopCard ref="shopCard" :rating="this.rate" :shopID="this.shopID"/>
+            <ShopCard ref="shopCard" :rating="this.rate" :ratingCount="this.ratingCount" :shopID="this.shopID"/>
         </div>
         <div class="column is-8 is-12-mobile">
             <b-tabs v-model="activeTab" position="is-centered" :size="this.windowWidth > 420 ? 'is-medium' : 'is-small'" type="is-boxed" expanded>
@@ -9,7 +9,7 @@
                     <Listing/>
                 </b-tab-item>
                 <b-tab-item label="Reviews">
-                    <Review/>
+                    <Review @rating="configRating"/>
                 </b-tab-item>
                 <b-tab-item label="About">
                     <About ref="about" :shopID="this.shopID"/>
@@ -69,6 +69,16 @@ export default {
 
             // shop details
             rate: 4.6,
+            ratingCount: 0
+        }
+    },
+    methods: {
+        configRating(ratingArray) {
+            let rating = ratingArray[0].toFixed(2)
+            let ratingCount = ratingArray[1]
+
+            this.rate = rating
+            this.ratingCount = ratingCount
         }
     }
 }

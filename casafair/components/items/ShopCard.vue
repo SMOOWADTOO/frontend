@@ -16,22 +16,24 @@
                 <a :href="'mailto:' + this.shopData.email">Email us</a>
                 <br>
                 <br>
+                <div>
                 <b-rate
                     v-if="!this.route.includes('/storefront/product')" 
                     v-model="rating"
                     :maxs="5"
-                    :show-score="true"
                     :show-text="true"
-                    :texts="ratingTexts"
+                    :texts="this.ratingTexts"
                     :spaced="true"
-                    :disab\led="true">
+                    :disabled="true">
                 </b-rate>
+                <small>Rated {{rating}} out of 5, by {{ratingCount}} reviewer{{ratingCount == 0 || ratingCount > 1 ? 's' : ''}}</small>
+                </div>
                 <small>Since {{shopData.createdAt}}</small>
                 <br>
             </div>
             <hr>
             <div class="content" v-if="this.route.includes('/storefront/' + this.shopData.shopId)">
-                <span v-if="this.$auth.user != null && shopData.username == this.$auth.user.user.username">
+                <span v-if="this.$auth.loggedIn && this.shopData.username == this.$auth.user.user.username">
                     <nuxt-link class="level-item" aria-label="accept" :to="{ name: 'create-store', params: { shopId: this.shopData.shopId }}">
                         <span class="icon is-large">
                             <i class="las la-pen has-text-signature-purple is-size-3" aria-hidden="true"></i>
@@ -120,6 +122,7 @@ export default {
         price: Number,
         shopID: Number,
         productInfo: Object,
+        ratingCount: Number,
     },
 
     data() {
