@@ -11,7 +11,7 @@
                     <iframe
                     width="100%"
                     frameborder="0" style="border:0; height:50vh;"
-                    :src="mapsURL" allowfullscreen v-if="this.mapsHasLoaded">
+                    :src="mapsURL" allowfullscreen v-if="this.apiHasLoaded">
                     </iframe>
                 </client-only>
             </div>
@@ -20,7 +20,7 @@
             <div class="level-item has-text-centered">
                 <div>
                     <p class="heading">Contact Number</p>
-                    <p class="title">{{this.shopData.contactNo.length > 8 ? '+' + this.shopData.contactNo : this.shopData.contactNo}}</p>
+                    <p class="title" v-if="this.apiHasLoaded">{{this.shopData.contactNo.length > 8 ? '+' + this.shopData.contactNo : this.shopData.contactNo}}</p>
                 </div>
             </div>
             <div class="level-item has-text-centered">
@@ -46,7 +46,7 @@ export default {
         return {
             map: null,
             mapsURL: "https://www.google.com/maps/embed/v1/place?key=AIzaSyC_qUafRGiice8SqQAUqWFFhxsTuja4enU&q=",
-            mapsHasLoaded: false,
+            apiHasLoaded: false,
             shopData: {},
         };
     },
@@ -63,7 +63,7 @@ export default {
                 var options = { year: 'numeric', month: 'long', day: 'numeric' };
                 this.shopData.createdAt = new Date(this.shopData.createdAt).toLocaleDateString('en-GB', options)
                 this.mapsURL += shopData.shop.address
-                this.mapsHasLoaded = true
+                this.apiHasLoaded = true
             }).catch((error) => {
                 if (error.response != undefined) {
                     var response = error.response.data
