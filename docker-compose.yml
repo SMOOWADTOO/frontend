@@ -11,7 +11,7 @@ services:
     #######################################
 
     ui: # service name
-        build: ./casafair
+        build: ./app
         image: asia.gcr.io/wad2-286702/homebiz-ui
         container_name: ui
         restart: always
