@@ -11,7 +11,7 @@
                 </div>
                 <div class="columns">
                     <div class="column is-6 is-offset-3 has-text-centered">
-                        <h3 class="title has-text-grey is-size-5">Your search has returned {{search_type === 'product' ? products.length : shops.length}} results.</h3>
+                        <h3 class="title has-text-grey is-size-5">Your search has returned {{search_type === 'product' ? products.length : shops.length}} result{{count == 0 || count > 1 ? 's' : ''}}.</h3>
                     </div>
                 </div>
                 <hr>
@@ -61,6 +61,7 @@ export default {
     },
   data() {
     return {
+        count: 0,
         shops: [],
         products: [],
         search_type: "shop",
@@ -96,8 +97,10 @@ export default {
           let respData = response.data;
           this.shops = respData;
           this.isLoading = false;
+          this.count = this.shops.length
         })
         .catch((error) => {
+          this.count = 0
           if (error.response != undefined) {
             var response = error.response.data;
             this.toastAlert(response.message, "is-danger", 5000);
@@ -113,8 +116,10 @@ export default {
           let respData = response.data;
           this.products = respData;
           this.isLoading = false
+          this.count = this.products.length
         })
         .catch((error) => {
+            this.count = 0
           if (error.response != undefined) {
             var response = error.response.data;
             this.toastAlert(response.message, "is-danger", 5000);
