@@ -3,8 +3,8 @@
         <div class="card is-fullimage">
             <div class="card-image">
                 <figure class="image is-4by3">
-                    <img v-if="rData.shopImageURL != ''" :src="rData.shopImageURL" :alt="rData.shopName + ' image'">
-                    <img v-else src='https://bulma.io/images/placeholders/128x128.png' :alt="rData.shopName + ' image'">
+                    <img v-if="rData.shopImageURL != null" :src="rData.shopImageURL" :alt="rData.shopName + ' image'">
+                    <img v-else src="@/assets/images/business_shop.svg"  :alt="rData.shopName + ' image'">
                 </figure>
                 <div class="card-stacked">
                     <div class="card-content to-bottom">
