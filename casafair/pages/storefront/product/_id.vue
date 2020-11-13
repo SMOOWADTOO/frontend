@@ -7,10 +7,8 @@
                 <div class="card is-fullimage">
                     <div class="card-image">
                         <figure class="image is-4by3">
-                            <img :src="productInfo.productPhotoURL" :alt="productInfo.productName + ' image'">
-                            <!-- <p class="is-overlay mx-5 is-size-4-desktop is-size-3-touch" style="margin-top: 60%;">
-                                {{productInfo.productName}}
-                            </p> -->
+                            <img :src="productInfo.productPhotoURL" :alt="productInfo.productName + ' image'" v-if="productInfo.productPhotoURL != null">
+                            <img src="@/assets/images/product.svg" alt="Product image" v-else>
                         </figure>
                         <div class="card-stacked full-height">
                             <div class="card-content equal-height to-bottom no-bkgrd">

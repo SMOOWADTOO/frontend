@@ -2,7 +2,8 @@
     <div class="card is-fullimage">
         <div class="card-image">
             <figure class="image is-4by3">
-                <img :src="product.productPhotoURL" :alt="product.productName + ' image'">
+                <img :src="product.productPhotoURL" :alt="product.productName + ' image'" v-if="product.productPhotoURL != null">
+                <img src="@/assets/images/product.svg" alt="Product image" v-else>
             </figure>
             <div class="card-stacked">
                 <div class="card-content to-bottom">
