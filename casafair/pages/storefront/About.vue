@@ -11,7 +11,7 @@
                     <iframe
                     width="100%"
                     frameborder="0" style="border:0; height:50vh;"
-                    :src="mapsURL" allowfullscreen>
+                    :src="mapsURL" allowfullscreen v-if="this.mapsHasLoaded">
                     </iframe>
                 </client-only>
             </div>
