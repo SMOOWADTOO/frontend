@@ -77,17 +77,25 @@ export default {
         this.isLoading = true;
         var queryType = searchParams === undefined ? this.$nuxt.$route.query.search_type : searchParams[0]
         if (queryType === "shop") {
-            var query = searchParams === undefined ? this.$nuxt.$route.query.shopQuery : searchParams[1]
-            var shopQuery = this.$nuxt.$route.query.shopQuery;
-            this.query = query;
-            this.search_type = queryType;
-            this.fetchShopSearchResult(query);
+            if (searchParams !== undefined) {
+                window.location.href = "/search?search_type=shop&shopQuery=" + searchParams[1]
+            } else {
+                var query = searchParams === undefined ? this.$nuxt.$route.query.shopQuery : searchParams[1]
+                var shopQuery = this.$nuxt.$route.query.shopQuery;
+                this.query = query;
+                this.search_type = queryType;
+                this.fetchShopSearchResult(query);
+            }
         } else if (queryType === "product") {
-            var query = searchParams === undefined ? this.$nuxt.$route.query.productQuery : searchParams[1]
-            var productQuery = this.$nuxt.$route.query.productQuery;
-            this.query = query
-            this.search_type = queryType;
-            this.fetchProductSearchResult(query);
+            if (searchParams !== undefined) {
+                window.location.href = "/search?search_type=product&productQuery=" + searchParams[1]
+            } else {
+                var query = searchParams === undefined ? this.$nuxt.$route.query.productQuery : searchParams[1]
+                var productQuery = this.$nuxt.$route.query.productQuery;
+                this.query = query
+                this.search_type = queryType;
+                this.fetchProductSearchResult(query);
+            }
         }
     },
     fetchShopSearchResult(shopQuery) {
