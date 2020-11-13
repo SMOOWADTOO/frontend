@@ -45,8 +45,7 @@
         },
         methods: {
             orderReceived(orderId, username) {
-                // let r = this.$axios.post(this.ORDERAPI + "/edit", {
-                let r = this.$axios.post("http://localhost:7003/order/edit", {
+                let r = this.$axios.post(this.ORDERAPI + "/edit", {
                     orderId: orderId,
                     username: username,
                     completed: true
