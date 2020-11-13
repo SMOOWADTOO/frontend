@@ -1,8 +1,8 @@
 <template>
     <div class="box">
-        <div class="columns is-vcentered-mobile">
-            <div class="columns is-vcentered card-content is-flex is-horizontal-center">
-                <figure class="image is-128x128">
+        <div class="columns is-centered is-vcentered-mobile">
+            <div class="column is-vcentered-mobile card-content is-flex-mobile is-horizontal-center-mobile">
+                <figure class="image is-1by1-mobile">
                     <img :src="rData.productPhotoURL">
                 </figure>
             </div>
@@ -15,14 +15,13 @@
                 <p class="is-6">Delivery Address: {{rData.deliveryAddress}}</p>
                 <p class="is-6">Order Number: {{rData.orderId}} </p>
             </div>
-            <div class="column is-3-mobile is-3" style="text-align: center; font-size: large;">
+            <div class="column is-3-desktop is-12-mobile is-centered is-vcentered-mobile has-text-centered">
                 <b>${{rData.total}}</b><br><br>
-                <button v-if="rData.isCurrent" id="receivedBtn" class="button is-primary is-outlined signature-dark-purple-shadows" @click="orderReceived(rData.orderId, rData.username)">Order Received</button>
+                <button v-if="rData.isCurrent" id="receivedBtn" class="button is-primary is-outlined signature-dark-purple-shadows is-fullwidth" @click="orderReceived(rData.orderId, rData.username)">Order Received</button>
                 <!-- <button v-else id="receivedBtn" class="button is-primary is-outlined signature-dark-purple-shadows" @click="orderReceived(rData.orderId, rData.username)">Order Received</button> -->
-                <p v-else-if="isReviewed" id="reviewed" class="subtitle">Reviewed</p>
-                <button v-else id="reviewBtn" class="button is-primary is-outlined signature-dark-purple-shadows" @click="submitReview(rData.shopId, rData.orderId, rData.productId)">Review</button>
-                <br>
-                <a class="my-3" @click="showDialog">View details</a>
+                <b v-else-if="isReviewed" id="reviewed">Reviewed</b>
+                <button v-else id="reviewBtn" class="button is-primary is-outlined signature-dark-purple-shadows is-fullwidth" @click="submitReview(rData.shopId, rData.orderId, rData.productId)">Review</button>
+                <p><br><a class="my-3" @click="showDialog">View details</a></p>
             </div>
 
         </div>
@@ -46,7 +45,8 @@
         },
         methods: {
             orderReceived(orderId, username) {
-                let r = this.$axios.post(this.ORDERAPI + "/edit", {
+                // let r = this.$axios.post(this.ORDERAPI + "/edit", {
+                let r = this.$axios.post("http://localhost:7003/order/edit", {
                     orderId: orderId,
                     username: username,
                     completed: true

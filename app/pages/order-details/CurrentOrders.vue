@@ -38,7 +38,8 @@ export default {
             return Math.floor(Math.random() * (10 - 1 + 1)) + 10;
         },
         fetchInformation() {
-            let r = this.$axios.get(this.ORDERAPI + "/user/" + this.$auth.user.user.username).then((response) => {
+            // let r = this.$axios.get(this.ORDERAPI + "/user/" + this.$auth.user.user.username).then((response) => {
+            let r = this.$axios.get("http://localhost:7003/order/user/" + this.$auth.user.user.username).then((response) => {
                 let oData = [];
                 let objectData = response.data;
                 let ordersData = objectData.orders;
