@@ -80,6 +80,11 @@ export default {
   methods: {
     goSearch(searchParams) {
         this.isLoading = true;
+        
+        if (Object.keys(this.$nuxt.$route.query).length === 0 && this.$nuxt.$route.query.constructor === Object) {
+            this.query = searchParams[1]
+        }
+
         var queryType = searchParams === undefined ? this.$nuxt.$route.query.search_type : searchParams[0]
         if (queryType === "shop") {
             var query = searchParams === undefined ? this.$nuxt.$route.query.shopQuery : searchParams[1]
