@@ -2,7 +2,8 @@
     <div :class="this.windowWidth > 768 ? 'card mx-3 my-3 sticky-box sticky-top' : 'card'">
         <div class="card-image">
             <figure class="image is-4by3">
-                <img :src="userData.profilePhotoURL" alt="Placeholder image">
+                <img :src="userData.profilePhotoURL" :alt="userData.firstName + '\'s photo'" v-if="userData.profilePhotoURL != null">
+                <img src="@/assets/images/default_user.svg" :alt="userData.firstName + ' has no photo yet'" v-else>
             </figure>
         </div>
         <div class="card-content">

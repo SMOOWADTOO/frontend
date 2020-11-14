@@ -3,7 +3,8 @@
     <div class="card is-fullimage equal-height">
         <div class="card-image">
             <figure class="image">
-                <img :src="profile.profilePhotoURL" :alt="profile.firstName + '\'s photo'">
+                <img :src="profile.profilePhotoURL" :alt="profile.firstName + '\'s photo'" v-if="profile.profilePhotoURL != null">
+                <img src="@/assets/images/default_user.svg" :alt="profile.firstName + ' has no photo yet'" v-else>
             </figure>
             <div class="card-stacked full-height">
                 <div class="card-content equal-height to-bottom">
