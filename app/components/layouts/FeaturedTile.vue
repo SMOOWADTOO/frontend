@@ -40,8 +40,9 @@
                 featuredShopData: {},
                 didFetchUserDetails: false,
                 ownerDetails: {},
-                randomShopID: Math.floor(Math.random() * Math.floor(2)) + 1,
+                randomShopID: Math.floor(Math.random() * Math.floor(6)),
                 products: [],
+                shopID: [1, 2, 3, 22, 23, 24]
             }
         },
         watch: {
@@ -54,7 +55,7 @@
         },
         methods: {
             fetchFeaturedBusiness() {
-                let r = this.$axios.get(this.SHOPAPI + "/" + this.randomShopID).then((response) => {
+                let r = this.$axios.get(this.SHOPAPI + "/" + this.shopID[this.randomShopID]).then((response) => {
                     let featuredShopData = response.data
                     this.featuredShopData = featuredShopData.shop
                 }).catch((error) => {
