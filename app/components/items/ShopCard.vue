@@ -26,7 +26,8 @@
                     :spaced="true"
                     :disabled="true">
                 </b-rate>
-                <small>Rated {{rating}} out of 5, by {{ratingCount}} reviewer{{ratingCount == 0 || ratingCount > 1 ? 's' : ''}}</small>
+                <small v-if="!isNaN(this.rating)">Rated {{rating}} out of 5, by {{ratingCount}} reviewer{{ratingCount == 0 || ratingCount > 1 ? 's' : ''}}</small>
+                <small v-else>No reviews yet...</small>
                 </div>
                 <small>Since {{shopData.createdAt}}</small>
                 <br>
