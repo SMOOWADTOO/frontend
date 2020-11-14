@@ -20,7 +20,7 @@
                 v-if="this.search_type === 'product'"
                 >
                     <div
-                        class="column is-3-widescreen is-6-desktop is-12-tablet"
+                        class="column is-4-widescreen is-6-desktop is-12-tablet"
                         v-for="product in products"
                         v-bind:key="product.productId"
                     >
@@ -32,7 +32,7 @@
                 class="columns is-multiline mx-5 px-5 my-5"
                 v-if="this.search_type === 'shop'"
                 >
-                    <div class="column is-3-widescreen is-6-desktop is-12-tablet" v-for="shop in shops" v-bind:key="shop.shopId">
+                    <div class="column is-4-widescreen is-6-desktop is-12-tablet" v-for="shop in shops" v-bind:key="shop.shopId">
                         <ShopBox :rData="shop" />
                     </div>
                 </div>
