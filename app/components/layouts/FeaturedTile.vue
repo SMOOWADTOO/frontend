@@ -40,9 +40,9 @@
                 featuredShopData: {},
                 didFetchUserDetails: false,
                 ownerDetails: {},
-                randomShopID: Math.floor(Math.random() * Math.floor(6)),
+                randomShopID: Math.floor(Math.random() * Math.floor(3)),
                 products: [],
-                shopID: [1, 2, 3, 22, 23, 24]
+                shopID: [1, 2, 3]
             }
         },
         watch: {

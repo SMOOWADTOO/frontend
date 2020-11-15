@@ -20,7 +20,7 @@
             <div class="level-item has-text-centered">
                 <div>
                     <p class="heading">Contact Number</p>
-                    <p class="title" v-if="this.apiHasLoaded">{{this.shopData.contactNo.length > 8 ? '+' + this.shopData.contactNo : this.shopData.contactNo}}</p>
+                    <p class="title" v-if="this.apiHasLoaded">{{this.shopData.contactNo.length > 8 ? this.shopData.contactNo : this.shopData.contactNo}}</p>
                 </div>
             </div>
             <div class="level-item has-text-centered">
